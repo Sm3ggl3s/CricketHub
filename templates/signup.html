@@ -4,7 +4,66 @@
 
 {% block body %}
 
+<section class="vh-100 gradient-custom" style="background-color: #000000;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <h1 style="text-align: center; color: white;">CricketHub</h1>
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <!--Back and login link-->
+                        <div class="row g-0">
+                            <div class="col" style="text-align: left;">
+                                <a href="/" class="link-danger">Back</a>
+                            </div>
+                            <div class="col" style="text-align: right;">
+                                <a href="/login" class="link-danger">Log in</a>
+                            </div>
 
+                        </div>
+                        <div class="mb-md-9 mt-md-7 pb-7">
+                            <h2 class="fw-bold mt-4 mb-4 text-uppercase">Sign up</h2>
+
+                            <div class="form-outline form-white mb-4" style="text-align: left;">
+                                <div class="row">
+                                    <div class="col" style="text-align: left;">
+                                        <label for="text" class="form-label" style="color: white;">Full Name</label>
+                                        <input type="text" class="form-control form-control-lg" name="lognameInp"
+                                            placeholder="First and last name" aria-label="name">
+                                    </div>
+                                    <div class="col" style="text-align: left;">
+                                        <label for="text" class="form-label" style="color: white;">Username</label>
+                                        <input type="text" class="form-control form-control-lg" name="loguserInp"
+                                            placeholder="Username" aria-label="Username">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Email label and input-->
+                            <div class="form-outline form-white mb-4" style="text-align: left;">
+                                <label for="text" class="form-label" style="color: white; text-align:left">Email</label>
+                                <input type="text" class="form-control form-control-lg" name="logemailInp"
+                                    placeholder="Enter Email" aria-label="email">
+                            </div>
+                            <!--Password label and input-->
+                            <div class="form-outline form-white mb-4" style="text-align: left;">
+                                <label for="text" class="form-label"
+                                    style="color: white; text-align:left">Password</label>
+                                <input type="text" class="form-control form-control-lg" name="logpassInp"
+                                    placeholder="Enter Password" aria-label="password">
+                            </div>
+                            <!--Button-->
+                            <button class="btn btn-outline-light btn-lg px-5" type="submit"
+                                style="background-color:#DA0037">Login</button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
 
 
 
