@@ -1,5 +1,5 @@
 :root {
-    --main-color:#DA0037;
+    --main-color: #DA0037;
     --white: #ffffff;
     --white-light: #F2F2F2;
     --black-dark: #2E2E2E;
@@ -53,7 +53,7 @@ body {
     background-color: var(--white);
     display: flex;
     align-items: center;
-    border-radius:  8px;
+    border-radius: 8px;
     padding: 10px 20px;
     border: 1px solid #CED4DA;
 }
@@ -71,7 +71,8 @@ body {
     color: var(--main-color);
     background-color: var(--white);
 }
-.search-bar button{
+
+.search-bar button {
     border: 0;
     outline: none;
     background: var(--white);
@@ -85,12 +86,13 @@ body {
     margin: 23px 16px;
 }
 
-.fa-moon { 
+.fa-moon {
     color: var(--main-color);
     margin-right: 32px;
 }
 
-.fa-user, .fa-chevron-down {
+.fa-user,
+.fa-chevron-down {
     color: var(--black-dark);
 }
 
@@ -100,31 +102,94 @@ body {
 
 .menu {
     margin: 96px 80px;
+    padding: 10px 0;
     width: 308px;
     height: 273px;
     align-items: flex-start;
     font-family: 'Poppins', sans-serif;
+    background: var(--white);
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 6px, transparent 6px) 0% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px) 100% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px) 0% 100%/8px 8px no-repeat,
+            radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100% 100%/8px 8px no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 4px) calc(100% - 16px) no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 16px) calc(100% - 4px) no-repeat,
+            linear-gradient(46deg, transparent 30%, #da0037 100%);
+    border-radius: 8px;
+    padding: 6px;
     box-sizing: border-box;
-    background-color: var(--white);
-    -webkit-box-shadow: 2px -2px 0px 0px rgba(218, 0, 55, 0.85);
-    -moz-box-shadow: 2px -2px 0px 0px rgba(218, 0, 55, 0.85);
-    box-shadow: 2px -2px 0px 0px rgba(218, 0, 55, 0.85);
     border-radius: 8px;
 }
+
+.menu-items {
+    margin: 0;
+    padding: 0;
+}
+
 
 .menu li {
     padding: 18px 0px;
     list-style: none;
+    font-size: 16px;
+    padding-left: 40px;
 }
 
+.menu-title {
+    font-size: 24px !important;
+    font-weight: bold;
+    margin-left: 15px;
+    padding-left: 50px !important;
+}
+
+/* End Menu Styling */
 
 
+/* Index Styling */
 
+.post-nav {
+    margin-top: 96px;
+    margin-bottom: 17px;
+    padding: 7.5px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    background: var(--white);
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 6px, transparent 6px) 0% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px) 100% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px) 0% 100%/8px 8px no-repeat,
+            radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100% 100%/8px 8px no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 4px) calc(100% - 16px) no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 16px) calc(100% - 4px) no-repeat,
+            linear-gradient(46deg, transparent 30%, #da0037 100%);
+    border-radius: 8px;
+    padding: 6px;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
 
+.post-nav a {
+    text-decoration: none;
+    color: var(--black-dark);
+}
 
+.post-nav .trending-post {
+    margin-left: 30px;
+}
 
-
-
-.colum-2 {
-    background: #e3e3e3;
+.post-nav a i {
+    padding: 0px 10px;
+}
+.post-nav .active {
+    border-radius: 40px;
+    background: var(--main-color);
+    padding: 6px 12px;
+    color: var(--white);
 }
