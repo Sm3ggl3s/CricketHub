@@ -2,6 +2,8 @@
 
 {% block title %}CricketHub | Home{% endblock %}
 {% block navbar %}{% endblock %}
+{% block title %}CricketHub | Login{% endblock %}
+
 {% block body %}
 
 <section class="vh-100 gradient-custom" style="background-color: #000000;">
@@ -17,15 +19,15 @@
   
                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                 
-  
+                
                 <div class="form-outline form-white mb-4"style="text-align: left;">
                     <label class="form-label" for="typeEmailX" >Email</label>
-                    <input type="email" id="typeEmailX" class="form-control form-control-lg" />
+                    <input type="email" id="typeEmailX" name="loginEmail" class="form-control form-control-lg" />
                 </div>
   
                 <div class="form-outline form-white mb-4" style="text-align: left;">
                     <label class="form-label" for="typePasswordX">Password</label>
-                    <input type="password" id="typePasswordX" class="form-control form-control-lg" />  
+                    <input type="password" id="typePasswordX" name="loginPass" class="form-control form-control-lg" />  
                 </div>
   
                 <!--Maybe we should do something about changing the way this buttons color changes. I wanted to make the button our chosen color though-->
@@ -34,7 +36,7 @@
               </div>
   
               <div>
-                <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
+                <p class="mb-0">Don't have an account? <a href="/signup" class="text-white-50 fw-bold">Sign Up</a>
                 </p>
               </div>
   
