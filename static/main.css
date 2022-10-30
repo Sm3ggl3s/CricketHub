@@ -103,7 +103,6 @@ body {
 .menu {
     margin: 96px 80px;
     padding: 10px 0;
-    width: 308px;
     height: 273px;
     align-items: flex-start;
     font-family: 'Poppins', sans-serif;
@@ -192,4 +191,20 @@ body {
     background: var(--main-color);
     padding: 6px 12px;
     color: var(--white);
+}
+
+.user-post
+
+.user-post .counter {
+    margin: auto 0;
+}
+.user-post .like-counter {
+    margin: 0;
+    font-size: 16px;
+}
+
+.user-post .bar {
+    height: 3px;
+    background: #2E2E2E;
+    border-radius: 8px;
 }
