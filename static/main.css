@@ -1,0 +1,101 @@
+:root {
+    --main-color:#DA0037;
+    --white: #ffffff;
+    --white-light: #F2F2F2;
+    --black-dark: #2E2E2E;
+    --black-light: #363636;
+    --green: #58ED6D;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+/* Navbar Styling */
+
+.navbar {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 70px;
+}
+
+.navbar .navbar-brand {
+    margin-left: 32px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 25.9459px;
+    line-height: 31px;
+}
+
+.navbar .hub {
+    margin-left: 2px;
+    width: 60px;
+    height: 32px;
+    top: 19px;
+    background: var(--main-color);
+    border-radius: 6px;
+    padding: 4px;
+    color: var(--white);
+}
+
+.search {
+    width: 360px;
+}
+
+.search-bar {
+    width: 100%;
+    max-width: 700px;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    border-radius:  8px;
+    padding: 10px 20px;
+    border: 1px solid #CED4DA;
+}
+
+.search-bar input {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    font-size: 16px;
+    color: #ABB5BE;
+}
+
+.search-bar button i {
+    color: var(--main-color);
+    background-color: var(--white);
+}
+.search-bar button{
+    border: 0;
+    outline: none;
+    background: var(--white);
+}
+
+.navbar ul {
+    margin-right: 32px;
+}
+
+.nav-items {
+    margin: 23px 16px;
+}
+
+.fa-moon { 
+    color: var(--main-color);
+    margin-right: 32px;
+}
+
+.fa-user, .fa-chevron-down {
+    color: var(--black-dark);
+}
+
+.colorjersey{
+    height: 50;
+    width: 30;
+}
+
+.rules{
+    text-align: center;
+}
