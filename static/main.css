@@ -91,3 +91,11 @@
     color: var(--black-dark);
 }
 
+.colorjersey{
+    height: 50;
+    width: 30;
+}
+
+.rules{
+    text-align: center;
+}
