@@ -101,9 +101,9 @@ body {
 /* Menu Styling */
 
 .menu {
-    margin: 96px 80px;
+    margin: 96px auto;
+    max-width: 300px;
     padding: 10px 0;
-    height: 273px;
     align-items: flex-start;
     font-family: 'Poppins', sans-serif;
     background: var(--white);
@@ -120,7 +120,6 @@ body {
     border-radius: 8px;
     padding: 6px;
     box-sizing: border-box;
-    border-radius: 8px;
 }
 
 .menu-items {
@@ -149,8 +148,11 @@ body {
 /* Index Styling */
 
 .post-nav {
+    margin: 0 auto;
     margin-top: 96px;
     margin-bottom: 17px;
+    max-width: 700px;
+    min-width: 300px;;
     padding: 7.5px;
     font-family: 'Inter';
     font-style: normal;
@@ -171,7 +173,6 @@ body {
     border-radius: 8px;
     padding: 6px;
     box-sizing: border-box;
-    border-radius: 8px;
 }
 
 .post-nav a {
@@ -193,7 +194,24 @@ body {
     color: var(--white);
 }
 
-.user-post
+.user-post {
+    font-family: 'Inter';
+    max-width: 700px;
+    background: var(--white);
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 6px, transparent 6px) 0% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px) 100% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px) 0% 100%/8px 8px no-repeat,
+            radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100% 100%/8px 8px no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 4px) calc(100% - 16px) no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 16px) calc(100% - 4px) no-repeat,
+            linear-gradient(46deg, transparent 30%, #da0037 100%);
+    border-radius: 8px;
+    padding: 6px;
+    box-sizing: border-box;
+}
 
 .user-post .counter {
     margin: auto 0;
@@ -203,8 +221,89 @@ body {
     font-size: 16px;
 }
 
+.user-post .post-title {
+    margin: 15px 0 10px 0;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.user-post .post-details {
+    font-size: 18px;
+    padding: 2px 5px;
+}
+
 .user-post .bar {
     height: 3px;
     background: #2E2E2E;
     border-radius: 8px;
+}
+
+.user-post .post-by {
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.user-post .post-by span {
+    color: var(--main-color);
+}
+
+.user-post .comment {
+    font-size: 18px;
+}
+
+
+.leaderboard {
+    margin: 96px auto;
+    max-width: 300px;
+    padding: 10px 0;
+    align-items: flex-start;
+    font-family: 'Poppins', sans-serif;
+    background: var(--white);
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 6px, transparent 6px) 0% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px) 100% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px) 0% 100%/8px 8px no-repeat,
+            radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100% 100%/8px 8px no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 4px) calc(100% - 16px) no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 16px) calc(100% - 4px) no-repeat,
+            linear-gradient(46deg, transparent 30%, #da0037 100%);
+    border-radius: 8px;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+
+.leaderboard .lb-title-container {
+    margin: 15px 0 0 10px;
+}
+
+.leaderboard .lb-title {
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.leaderboard .lb-num {
+    color: var(--main-color);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.leaderboard .lb-num i{
+    padding-top: 17.5px;
+}
+
+.leaderboard .lb-team {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+
+.leaderboard .line {
+    height: 3px;
+    background: #828282;
+    border-radius: 8px;
+    margin: 0 5px;
 }
