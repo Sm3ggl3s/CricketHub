@@ -307,3 +307,14 @@ body {
     border-radius: 8px;
     margin: 0 5px;
 }
+
+
+/* Rules Page */
+.colorjersey{
+    height: 50;
+    width: 30;
+}
+
+.rules{
+    text-align: center;
+}

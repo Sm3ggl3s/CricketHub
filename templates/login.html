@@ -1,33 +1,31 @@
 {% extends '_layout.html' %}
 
-{% block title %}CricketHub | Login {% endblock %}
+{% block title %}CricketHub | Home{% endblock %}
 {% block navbar %}{% endblock %}
-
-
 {% block body %}
 
-<section class="vh-100 gradient-custom" style="background-color: #000000;">
+<section class="vh-100 gradient-custom" style="background: var(--white-light)">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
             <!--We can work on the logo later, right now this crickethub logo will be a place holder-->
-            <h1 style="text-align: center; color: white;">CricketHub</h1>
-          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <h1 style="text-align: center; color: black;">CricketHub</h1>
+          <div class="card" style="border-radius: 1rem; background: var(--white)">
             <div class="card-body p-5 text-center">
   
               <div class="mb-md-5 mt-md-4 pb-5">
   
                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                 
-                
+  
                 <div class="form-outline form-white mb-4"style="text-align: left;">
                     <label class="form-label" for="typeEmailX" >Email</label>
-                    <input type="email" id="typeEmailX" name="loginEmail" class="form-control form-control-lg" />
+                    <input type="email" id="typeEmailX" class="form-control form-control-lg" />
                 </div>
   
                 <div class="form-outline form-white mb-4" style="text-align: left;">
                     <label class="form-label" for="typePasswordX">Password</label>
-                    <input type="password" id="typePasswordX" name="loginPass" class="form-control form-control-lg" />  
+                    <input type="password" id="typePasswordX" class="form-control form-control-lg" />  
                 </div>
   
                 <!--Maybe we should do something about changing the way this buttons color changes. I wanted to make the button our chosen color though-->
@@ -36,7 +34,7 @@
               </div>
   
               <div>
-                <p class="mb-0">Don't have an account? <a href="/signup" class="text-white-50 fw-bold">Sign Up</a>
+                <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
                 </p>
               </div>
   
