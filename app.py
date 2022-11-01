@@ -22,3 +22,8 @@ def signup():
 def rules():
     return render_template('rules.html')
 
+
+@app.route('/about')
+def info():
+    return render_template('about.html')
+
