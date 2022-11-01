@@ -19,3 +19,8 @@ def signup():
 @app.route('/rules')
 def rules():
     return render_template('rules.html')
+
+@app.route('/about')
+def info():
+    return render_template('about.html')
+
