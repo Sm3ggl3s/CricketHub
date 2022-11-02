@@ -1,0 +1,44 @@
+{% extends '_layout.html' %}
+
+
+{% block title %}CricketHub | About{% endblock %}
+
+{% block body %}
+<div class="col-md-6">
+    <div class="container part">
+        <div class="row">
+            <div class="col-1 text-center counter">
+                <p class="like-counter"> </p>
+            </div>
+            <div class="col-10">
+                <h3 class="post-header">Behind the <span class="proj">Project</span> </h3>
+                <p class="post-details"> In ultricies fermentum aliquet. Pellentesque dui magna, condimentum non ullamcorper at, cursus in sem. Nunc condimentum, purus ac enenatis commodo libero, am auctor porta tortor, nec consequat nibh finibus a. Sed ultrices risus eget iaculis luctus. Mauris vel gravida magna.<em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
+				</p>
+                <div class="bar"></div>
+                <div>
+                    <div>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="faq">
+        <div class="faq-container d-flex">
+        </div class="faq-content">
+		<h3 class="faq-title">FAQs</h3>
+		{% for p in range(6) %}
+		<p class="question">Sample Question?</p>
+		<p class="answer">Answer</p>
+		{% endfor %}
+</div>
+
+{% endblock %}

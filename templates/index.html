@@ -1,8 +1,113 @@
 {% extends '_layout.html' %}
 
-{% block title %}CricketHub | Home{% endblock %}
+{% block title %} CricketHub | Home {% endblock %}
 
 {% block body %}
 
+<div class="col-md-6">
+    <div class="d-flex mb-3 post-nav">
+        <div class="p-2 new-post">
+            <a class="active" href="/"> New </a>
+        </div>
+        <div class="p-2 trending-post">
+            <a class="inactive" href="/"> Trending </a>
+        </div>
+        <div class="ms-auto p-2 new-post">
+            <a class="active" href="/"> New Post <i class="fa-solid fa-plus"></i> </a>
+        </div>
+    </div>
+
+    <div class="container user-post">
+        <div class="row">
+            <div class="col-1 text-center counter">
+                <i class="fa-solid fa-angle-up fa-xl"></i>
+                <p class="like-counter"> 2</p>
+                <i class="fa-solid fa-angle-down fa-xl"></i>
+            </div>
+            <div class="col-10">
+                <h3 class="post-title"> Title of Post </h3>
+                <p class="post-details"> In ultricies fermentum aliquet. Pellentesque dui magna, condimentum non
+                    ullamcorper at,
+                    cursus in sem. Nunc condimentum, purus ac sagittis ultricies, metus leo pharetra mi.</p>
+                <div class="bar"></div>
+                <div class="d-flex">
+                    <div class="p-2 username">
+                        <p class="post-by"> Posted By: <span> Username </span> </p>
+                    </div>
+                    <div class="ms-auto p-2 comment">
+                        <p class="comment-button"> Comment <i class="fa-regular fa-comment"></i> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="leaderboard">
+        <div class="lb-title-container d-flex">
+            <div class="p-2">
+                <div class="lb-title"> Leaderboard </div>
+            </div>
+            <div class="ms-auto p-2">
+                <div class="lb-num"> <i class="fa-solid fa-hashtag fa-xl"></i> </div>
+            </div>
+        </div>
+
+        <div class="lb-rank d-flex">
+            <div class="p-2">
+                <div class="lb-team"> England </div>
+            </div>
+            <div class="ms-auto p-2 ">
+                <div class="lb-num"> 1 </div>
+            </div>
+        </div>
+        <div class="line"></div>
+
+        <div class="lb-rank d-flex">
+            <div class="p-2">
+                <div class="lb-team"> India </div>
+            </div>
+            <div class="ms-auto p-2 ">
+                <div class="lb-num"> 2 </div>
+            </div>
+        </div>
+        <div class="line"></div>
+
+        <div class="lb-rank d-flex">
+            <div class="p-2">
+                <div class="lb-team"> Pakistan </div>
+            </div>
+            <div class="ms-auto p-2 ">
+                <div class="lb-num"> 3 </div>
+            </div>
+        </div>
+        <div class="line"></div>
+
+        <div class="lb-rank d-flex">
+            <div class="p-2">
+                <div class="lb-team"> Australia </div>
+            </div>
+            <div class="ms-auto p-2 ">
+                <div class="lb-num"> 4 </div>
+            </div>
+        </div>
+        <div class="line"></div>
+
+        <div class="lb-rank d-flex">
+            <div class="p-2">
+                <div class="lb-team"> South Africa </div>
+            </div>
+            <div class="ms-auto p-2 ">
+                <div class="lb-num"> 5 </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 {% endblock %}
