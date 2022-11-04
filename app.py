@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
 
-    return render_template('index.html')
+    return render_template('index.html', home_active=True)
 
 
 @app.route('/login')
@@ -20,10 +20,10 @@ def signup():
 
 @app.route('/rules')
 def rules():
-    return render_template('rules.html')
+    return render_template('rules.html', rules_active=True)
 
 
 @app.route('/about')
 def info():
-    return render_template('about.html')
+    return render_template('about.html', about_active=True)
 
