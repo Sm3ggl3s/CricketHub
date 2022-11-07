@@ -373,6 +373,11 @@ body {
     color: #DA0037;
 }
 
+.faq .answer
+{
+    padding: 5px;
+}
+
 .part 
 {
     margin: 15% auto;
