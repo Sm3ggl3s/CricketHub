@@ -24,7 +24,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
         integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
         crossorigin="anonymous"></script>
-        
+
     <title>{% block title %}{% endblock %}</title>
 
 <body>
@@ -44,12 +44,22 @@
                     </form>
                 </div>
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <li class="nav-item ">
                         <i class="fa-sharp fa-solid fa-moon fa-xl"></i>
                     </li>
-                    <li class="nav-item">
-                        <i class="fa-regular fa-user fa-xl"></i>
-                        <i class="fa-solid fa-chevron-down fa-xl"></i>
+                    <li class="nav-item dropdown profile-toggle">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-regular fa-user fa-xl"></i>
+                            <i class="fa-solid fa-chevron-down fa-xl"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-lg-end">
+                            <li><a class="dropdown-item dropdown-text" href="#"> Sign Up </a></li>
+                            <li>
+                                <div class="menu-bar"></div>
+                            </li>
+                            <li><a class="dropdown-item dropdown-text" href="#"> Log In</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>

@@ -113,6 +113,37 @@ body {
     margin: 23px 16px;
 }
 
+.profile-toggle {
+    margin-right: 32px;
+}
+
+.dropdown-toggle:after {
+    display: none;
+}
+
+.dropdown-text {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0px;
+    padding: 10px;
+}
+
+.dropdown-menu {
+    padding: 0px !important;
+}
+
+.menu-bar {
+    height: 1.5px;
+    background: #2E2E2E;
+    border-radius: 8px;
+    margin: 0px 8px;
+}
+
+.dropdown-text:hover {
+    background: var(--main-color);
+    color: var(--white);
+}
 .fa-moon {
     color: var(--main-color);
     margin-right: 32px;
