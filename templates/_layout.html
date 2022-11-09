@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -24,6 +24,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
         integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
         crossorigin="anonymous"></script>
+    <script defer src="{{ url_for('static', filename='script/darkmode.js') }}"></script>
 
     <title>{% block title %}{% endblock %}</title>
 
@@ -44,8 +45,15 @@
                     </form>
                 </div>
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item ">
-                        <i class="fa-sharp fa-solid fa-moon fa-xl"></i>
+                    <li class="nav-item toggle-button mx-auto my-auto">
+                        <div>
+                            <input type="checkbox" class="checkbox" id="checkbox">
+                            <label for="checkbox" class="label">
+                                <i class="fas fa-moon"></i>
+                                <i class="fas fa-sun"></i>
+                                <div class="ball"></div>
+                            </label>
+                        </div>
                     </li>
                     <li class="nav-item dropdown profile-toggle">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -54,11 +62,10 @@
                             <i class="fa-solid fa-chevron-down fa-xl"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg-end">
-                            <li><a class="dropdown-item dropdown-text" href="#"> Sign Up </a></li>
-                            <li>
-                                <div class="menu-bar"></div>
+                            <li><a class="dropdown-item dropdown-text" href="#"> Hello, User </a></li>
+                            <li><a class="dropdown-item dropdown-text" href="#"> View Profile</a></li>
+                            <li><a class="dropdown-item dropdown-text dropdown-button" href="#">Sign Up / Log In</a>
                             </li>
-                            <li><a class="dropdown-item dropdown-text" href="#"> Log In</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -72,7 +79,7 @@
             <!-- Menu -->
             {% block menu %}
             <div class="col-md-3">
-                <div class="menu box-outline">
+                <div class="menu box-outline ">
                     <ul class="menu-items">
                         <li class="menu-title"> MENU </li>
                         <li class="menu-links">

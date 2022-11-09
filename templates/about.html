@@ -41,11 +41,11 @@
     <div class="faq box-outline">
         <div class="faq-container d-flex">
         </div class="faq-content">
-        <h3 class="faq-title">FAQs</h3>
-        {% for p in range(6) %}
-        <p class="question">Sample Question?</p>
-        <p class="answer">Answer</p>
-        {% endfor %}
-    </div>
+		<h3 class="faq-title">FAQs</h3>
+		{% for faq_listofQuestions , faq_listofAnswers in faq_dictionary.items() %}
+		<p class="question">{{faq_listofQuestions}}</p>
+		<p class="answer">{{faq_listofAnswers}}</p>
+		{% endfor %}
+</div>
 
     {% endblock %}
