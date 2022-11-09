@@ -23,7 +23,7 @@
     {% block navbar %}
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Cricket<span class="hub">Hub</span></a>
+            <a class="navbar-brand logo" href="#">Cricket<span class="hub">Hub</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -58,23 +58,22 @@
                     <ul class="menu-items">
                         <li class="menu-title"> MENU </li>
                         <li class="menu-links">
-                            <a class="nav-link" href="/">
+                            <a class="nav-link {% if home_active %} active{% endif %}" href="/">
                                 <i class="fa-solid fa-house-chimney fa-xl"></i> Home
                             </a>
                         </li>
                         <li class="menu-links">
-                            <a class="nav-link" href="/rules">
+                            <a class="nav-link {% if rules_active %} active{% endif %}" href="/rules">
                                 <i class="fa-regular fa-circle-question fa-xl"></i> Game Information
                             </a>
                         </li>
                         <li class="menu-links">
-                            <a class="nav-link" href="/">
+                            <a class="nav-link {% if about_active %} active{% endif %}" href="/about">
                                 <i class="fa-solid fa-user-group fa-xl"></i> About
                             </a>
                         </li>
                     </ul>
                 </div>
-            </div>
             {% endblock %}
 
             {% block body %}
