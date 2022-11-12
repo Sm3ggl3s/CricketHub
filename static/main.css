@@ -127,19 +127,29 @@ body {
     padding: 0;
 }
 
-
 .menu li {
+    list-style:none;
+}
+
+.menu li a{
     padding: 18px 0px;
-    list-style: none;
     font-size: 16px;
     padding-left: 40px;
+    
 }
 
 .menu-title {
+    padding: 18px 0px;
     font-size: 24px !important;
     font-weight: bold;
     margin-left: 15px;
     padding-left: 50px !important;
+}
+
+.menu .active {
+    color: var(--main-color);
+    background: rgba(218, 0, 55, 0.13);
+    border-radius: 8px;
 }
 
 /* End Menu Styling */
@@ -318,4 +328,148 @@ body {
 
 .rules{
     text-align: center;
+    line-height: 0.5;
 }
+
+/* END Rules Styling */
+
+/* Login Styling */
+
+.login-content {
+    margin: 124px auto;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 12px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 64px;
+}
+
+.logo .hub {
+    margin-left: 4px;
+    width: 60px;
+    height: 32px;
+    top: 19px;
+    background: var(--main-color);
+    border-radius: 8px;
+    padding: 2px 8px;
+    color: var(--white);
+}
+
+.login-form {
+    max-width: 465px;
+    min-width: 465px;
+    font-family: 'Inter';
+}
+
+/* END Login Styling */
+
+
+/* About Page */
+.question
+{
+    color: #DA0037;
+}
+
+.faq .answer
+{
+    padding: 5px;
+}
+
+.part 
+{
+    margin: 15% auto;
+    font-family: 'Inter';
+    max-width: 700px;
+    background: var(--white);
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 6px, transparent 6px) 0% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px) 100% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px) 0% 100%/8px 8px no-repeat,
+            radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100% 100%/8px 8px no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 4px) calc(100% - 16px) no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 16px) calc(100% - 4px) no-repeat,
+            linear-gradient(46deg, transparent 30%, #da0037 100%);
+    border-radius: 8px;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+.part .post-header 
+{
+    text-align: right;
+    margin: 17px 0 10px 0;
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    border-bottom: 2px solid currentColor;
+    display: inline-block;
+    line-height: 0.85;
+    text-shadow:
+    2px 2px white,
+    2px -2px white,
+    -2px 2px white,
+    -2px -2px white;
+}
+
+.proj
+{
+    color: #DA0037;
+}
+
+.faq 
+{
+    margin: 90px auto;
+    max-width: 300px;
+    padding: 10px 0;
+    align-items: flex-start;
+    font-family: 'Poppins', sans-serif;
+    background: var(--white);
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 6px, transparent 6px) 0% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px) 100% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px) 0% 100%/8px 8px no-repeat,
+            radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100% 100%/8px 8px no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 4px) calc(100% - 16px) no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 16px) calc(100% - 4px) no-repeat,
+            linear-gradient(46deg, transparent 30%, #da0037 100%);
+    border-radius: 8px;
+    padding: 17px;
+    box-sizing: border-box;
+}
+
+.faq .faq-title-container 
+{
+    margin: 15px 0 0 10px;
+}
+
+.faq .faq-title 
+{
+    font-size: 24px;
+    font-weight: 900;
+    text-align: center;
+    border-bottom: 2px solid currentColor;
+    display: inline-block;
+    line-height: 0.85;
+    text-shadow:
+    2px 2px white,
+    2px -2px white,
+    -2px 2px white,
+    -2px -2px white;
+    padding: -20px;
+
+}
+
+.faq .faq-content
+{
+    margin: 15px 0 0 10px;
+}
+
+/* END About Page Styling */
+
