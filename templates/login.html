@@ -9,27 +9,42 @@
 <div class="col-md-6 d-flex align-items-center">
   <div class="login-content">
     <div class="logo-login">Cricket <span class="hub"> Hub </span></div>
-    <div class="login-form ">
-      <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+    <div class="login-box">
+      <div class="login-controls d-flex mt-2 mx-2">
+        <div class="p-2 go-home">
+          <a class="login-ctl" href="/"> <i class="fa-solid fa-chevron-left"></i> Home </a>
+        </div>
+        <div class="ms-auto p-2 go-signup">
+          <a class="login-ctl" href="/signup"> Sign Up <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+      </div>
+      <h2 class="login-title">Log In</h2>
 
-      <form>
-        <div class="form-group mb-2">
-          <label class="form-label" for="typeEmailX">Email</label>
-          <input type="email" id="typeEmailX" class="form-control form-control-lg" required
+      <form class="login-form">
+        <div class="form-group mb-4">
+          <label class="form-label lg-lab" for="typeEmailX">Email</label>
+          <input type="email" id="typeEmailX" class="form-control lg-input form-control-lg" required
             placeholder="Enter your email" />
         </div>
-        <div class="form-group mb-2">
-          <label class="form-label" for="typePasswordX">Password</label>
-          <input type="password" id="typePasswordX" class="form-control form-control-lg" required
+        <div class="form-group mb-4">
+          <label class="form-label lg-lab" for="typePasswordX">Password</label>
+          <input type="password" id="typePasswordX" class="form-control lg-input form-control-lg" required
             placeholder="Enter your password" />
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
-        <button class="btn btn-outline-light btn-lg px-5" type="submit" style="background-color:#DA0037">Login</button>
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <button class="btn btn-lg lg-btn text-center" type="submit">Log In</button>
+        </div>
       </form>
 
+      <div class="google-lg">
+        <p> or </p>
+        <p> Sign in with <i class="fa-brands fa-google fa-lg "></i>oogle</p>
 
-      <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
-      </p>
+        <p class="mb-5 signup-option">Don't have an account?
+          <a href="/signup" class="signup-link"> Sign Up</a>
+        </p>
+      </div>
+
     </div>
   </div>
 </div>

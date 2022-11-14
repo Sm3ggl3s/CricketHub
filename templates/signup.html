@@ -5,74 +5,66 @@
 {% block menu %}{% endblock %}
 {% block body %}
 
-<div class="col-md-2"> </div>
-<div class="col-md-8">
-  <section class="vh-100 gradient-custom" style="background: var(--white-light)">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <!--We can work on the logo later, right now this crickethub logo will be a place holder-->
-          <h1 style="text-align: center; color: black;">CricketHub</h1>
-          <div class="card" style="border-radius: 1rem; background: var(--white)">
-            <div class="card-body p-5 text-center">
-
-              <div class="mb-md-5 mt-md-4 pb-5">
-                <div class="row g-0">
-                  <div class="col" style="text-align: left;">
-                    <a href="/" class="link-danger">Back</a>
-                  </div>
-                  <div class="col" style="text-align: right;">
-                    <a href="/login" class="link-danger">Log in</a>
-                  </div>
-
-                </div>
-                <h2 class="fw-bold mb-2 text-uppercase">Signup</h2>
-
-                <div class="row">
-                  <div class="col-md-6 mb-4">
-
-                    <div class="form-outline" style="text-align: left;">
-                      <label class="form-label" for="firstName">Full Name</label>
-                      <input type="text" id="firstName" class="form-control form-control-lg" />
-                    </div>
-
-                  </div>
-                  <div class="col-md-6 mb-4">
-
-                    <div class="form-outline" style="text-align: left;">
-                      <label class="form-label" for="lastName">User Name</label>
-                      <input type="text" id="lastName" class="form-control form-control-lg" />
-                    </div>
-
-                  </div>
-                </div>
-                <div class="form-outline form-white mb-4" style="text-align: left;">
-                  <label class="form-label" for="typeEmailX">Email</label>
-                  <input type="email" id="typeEmailX" name="loginEmail" class="form-control form-control-lg" />
-                </div>
-
-                <div class="form-outline form-white mb-4" style="text-align: left;">
-                  <label class="form-label" for="typePasswordX">Password</label>
-                  <input type="password" id="typePasswordX" name="loginPass" class="form-control form-control-lg" />
-                </div>
-
-                <!--Maybe we should do something about changing the way this buttons color changes. I wanted to make the button our chosen color though-->
-                <button class="btn btn-outline-light btn-lg px-5" type="submit"
-                  style="background-color:#DA0037">Signup</button>
-
-              </div>
-
-              <div>
-                <p class="mb-0">Already have an account? <a href="/login" class="fw-bold">Login</a>
-                </p>
-              </div>
-
-            </div>
-          </div>
+<div class="col-md-3"> </div>
+<div class="col-md-6 d-flex align-items-center">
+  <div class="signin-content">
+    <div class="logo-signin">Cricket <span class="hub"> Hub </span></div>
+    <div class="signin-box">
+      <div class="signin-controls d-flex mt-2 mx-2">
+        <div class="p-2 go-home">
+          <a class="signin-ctl" href="/"> <i class="fa-solid fa-chevron-left"></i> Home </a>
+        </div>
+        <div class="ms-auto p-2 go-signup">
+          <a class="signin-ctl" href="/signup"> Log In <i class="fa-solid fa-chevron-right"></i></a>
         </div>
       </div>
+      <h2 class="signin-title"> Sign Up </h2>
+
+      <form class="signin-form">
+        <div class="row">
+          <div class="col-md-6 mb-4">
+
+            <div class="form-outline" style="text-align: left;">
+              <label class="form-label sg-lab" for="firstName">Full Name</label>
+              <input type="text" id="firstName" class="form-control sg-input form-control-lg" placeholder="Enter your first name"/>
+            </div>
+
+          </div>
+          <div class="col-md-6 mb-4">
+
+            <div class="form-outline" style="text-align: left;">
+              <label class="form-label sg-lab" for="username">Username</label>
+              <input type="text" id="username" class="form-control sg-input form-control-lg" placeholder="Enter your username"/>
+            </div>
+
+          </div>
+        </div>
+        <div class="form-group mb-4">
+          <label class="form-label sg-lab" for="typeEmailX">Email</label>
+          <input type="email" id="typeEmailX" class="form-control lg-input form-control-lg" required
+            placeholder="Enter your email" />
+        </div>
+        <div class="form-group mb-4">
+          <label class="form-label sg-lab" for="typePasswordX">Password</label>
+          <input type="password" id="typePasswordX" class="form-control sg-input form-control-lg" required
+            placeholder="Enter your password" />
+        </div>
+        <div class="d-grid gap-2 col-8 mx-auto">
+          <button class="btn btn-lg lg-btn text-center" type="submit">Create Account</button>
+        </div>
+      </form>
+
+      <div class="google-sg">
+        <p> or </p>
+        <p> Sign in with <i class="fa-brands fa-google fa-lg "></i>oogle</p>
+
+        <p class="mb-5 login-option"> Have an account already?
+          <a href="/login" class="login-link"> Log In</a>
+        </p>
+      </div>
+
     </div>
-  </section>
+  </div>
 </div>
-<div class="col-md-2"> </div>
+<div class="col-md-3"> </div>
 {% endblock %}
