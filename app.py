@@ -36,3 +36,7 @@ def info():
         faq_dictionary[faq_listofQuestions[i]] = faq_listofAnswers[i] 
     return render_template('about.html', about_active=True, faq_dictionary = faq_dictionary)
 
+@app.route('/profile')
+def prof():
+
+    return render_template('profile.html')
