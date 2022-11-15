@@ -6,40 +6,22 @@
 {% block body %}
 </div>
 <div class="col-md-6">
-    <div class="container part">
-        <div class="row">
-            <div class="col-1 text-center counter">
-                <p class="like-counter"> </p>
-            </div>
-            <div class="col-10">
-                <h3 class="post-header">Behind the <span class="proj">Project</span> </h3>
-                <p class="post-details"> In ultricies fermentum aliquet. Pellentesque dui magna, condimentum non ullamcorper at, cursus in sem. Nunc condimentum, purus ac enenatis commodo libero, am auctor porta tortor, nec consequat nibh finibus a. Sed ultrices risus eget iaculis luctus. Mauris vel gravida magna.<em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-				</p>
-                <div class="bar"></div>
-                <div>
-                    <div>
-                    </div>
-                    <div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-1">
-
-            </div>
-        </div>
+    <div class="container part box-outline">
+        <h3 class="post-header">Behind the <span class="proj">Project</span> </h3>
+        <p class="post-details">Hailing from different parts of the world several staunch computer science students gathered together as developers of the next big sports platform. Tasked with the challenge of creating a project that could transform the world. These six astute developers in training analyzed the niche of cricket and its potential to galvanize enthusiasts all around the world and especially in the developers’ nation of operation, the USA. Encouraged by the excitement of the T20 Cricket World Cup 2022 these students joined together to form a site that would not only facilitate a culture for all cricket lovers but in it produce future cricket enthusiasts. A platform where people can be engrossed by cricket culture. Crickethub is the cricket community for everyone! 
     </div>
 </div>
 
 
 <div class="col-md-3">
-    <div class="faq">
+    <div class="faq box-outline">
         <div class="faq-container d-flex">
         </div class="faq-content">
-		<h3 class="faq-title">FAQs</h3>
-		{% for faq_listofQuestions , faq_listofAnswers in faq_dictionary.items() %}
-		<p class="question">{{faq_listofQuestions}}</p>
-		<p class="answer">{{faq_listofAnswers}}</p>
-		{% endfor %}
-</div>
+        <h3 class="faq-title">FAQs</h3>
+        {% for faq_listofQuestions , faq_listofAnswers in faq_dictionary.items() %}
+        <p class="question">{{faq_listofQuestions}}</p>
+        <p class="answer">{{faq_listofAnswers}}</p>
+        {% endfor %}
+    </div>
 
-{% endblock %}
+    {% endblock %}
