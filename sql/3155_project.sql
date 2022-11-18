@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS users(
 	name VARCHAR(255),
 	email VARCHAR(255),
 	pinned_team int,
+	password VARCHAR(255),
 	PRIMARY KEY (user_id),
 	FOREIGN KEY (pinned_team) REFERENCES team(team_id)
 );
