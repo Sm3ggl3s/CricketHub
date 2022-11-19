@@ -345,8 +345,12 @@ li {
     color: var(--text-title);
 }
 
-.user-post .post-menu a:link, a:visited {
+.user-post .post-menu a {
     color: var(--text-title);
+}
+
+.user-post .post-menu a:hover {
+    color: var(--main-color);
 }
 
 .user-post .post-details {
@@ -508,7 +512,7 @@ li {
 
 /* Log In and Sign Up Styling */
 
-.login-content, .signin-content {
+.login-content, .signin-content, .create-content {
     margin: 96px auto;
 }
 
@@ -533,9 +537,12 @@ li {
 }
 
 
-.login-box, .signin-box {
+.login-box, .signin-box, .create-box {
     max-width: 465px;
     min-width: 465px;
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
     background: radial-gradient(circle at 100% 100%, var(--background-highlight) 0, var(--background-highlight) 19px, transparent 19px) 0% 0%/20px 20px no-repeat,
             radial-gradient(circle at 0 100%, var(--background-highlight) 0, var(--background-highlight) 19px, transparent 19px) 100% 0%/20px 20px no-repeat,
             radial-gradient(circle at 100% 0, var(--background-highlight) 0, var(--background-highlight) 19px, transparent 19px) 0% 100%/20px 20px no-repeat,
@@ -548,22 +555,22 @@ li {
     box-sizing: border-box;
 }
 
-.login-controls, .signin-controls {
+.login-controls, .signin-controls, .create-controls {
     font-size: 20px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
 }
 
-.login-ctl, .signin-ctl {
+.login-ctl, .signin-ctl, .create-ctl {
     text-decoration: none;
     color: var(--main-color);
 }
 
-.login-ctl:hover, .signin-ctl:hover {
+.login-ctl:hover, .signin-ctl:hover, .create-ctl:hover {
     color: var(--text-title);
 }
 
-.login-title, .signin-title {
+.login-title, .signin-title, .create-title {
     color: var(--text-title );
     font-family: 'Inter', sans-serif;
     font-size: 40px;
@@ -571,18 +578,18 @@ li {
     text-align: center;
 }
 
-.login-form, .signin-form {
+.login-form, .signin-form, .create-form {
     margin: 32px 32px;
 }
 
-.lg-lab, .sg-lab{
+.lg-lab, .sg-lab, .ct-lab{
     color: var(--text-body);
     font-size: 20px;
     font-weight: 600;
     font-family: 'Inter', sans-serif;
 }
 
-.lg-input, .sg-input {
+.lg-input, .sg-input, .ct-input {
     border: none;
     background-color: hsla(0, 100%, 100%, 0.07);
 	box-shadow:
@@ -597,14 +604,14 @@ li {
 }
 
 
-.lg-btn, .sg-btn {
+.lg-btn, .sg-btn, .ct-btn {
     color: var(--white);
     background: var(--main-color);
     padding: 10px 40px;
     margin-top: 30px;
 }
 
-.lg-btn:hover, .sg-btn:hover{
+.lg-btn:hover, .sg-btn:hover, .ct-btn:hover{
     background: var(--main-color);
     color: var(--white);
 }
