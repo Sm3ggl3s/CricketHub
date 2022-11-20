@@ -8,6 +8,11 @@ def index():
 
     return render_template('index.html', home_active=True)
 
+@app.route('/create_post')
+def create_post():
+
+    return render_template('create_post.html')
+
 
 @app.route('/login')
 def login():

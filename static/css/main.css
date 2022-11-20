@@ -39,6 +39,9 @@ body.dark {
     --login-placeholder: #f2f2f2;
 }
 
+li {
+    list-style-type: none;
+}
 
 /* Box Styling */
 .box-outline {
@@ -164,13 +167,6 @@ body.dark {
     background: var(--main-color);
     color: var(--white);
     border-radius: 6px;
-}
-
-.dropdown-button {
-    background: var(--main-color);
-    border-radius: 6px;
-    padding: 6px;
-    color: var(--white);
 }
 
 .dropdown {
@@ -330,6 +326,7 @@ body.dark {
 
 .user-post .counter {
     margin: auto 0;
+    margin-left: 1rem;
 }
 .user-post .like-counter {
     margin: 0;
@@ -341,6 +338,19 @@ body.dark {
     font-size: 20px;
     font-weight: 900;
     color: var(--text-title);
+}
+
+.user-post .post-menu {
+    margin: 15px 0 10px 0;
+    color: var(--text-title);
+}
+
+.user-post .post-menu a {
+    color: var(--text-title);
+}
+
+.user-post .post-menu a:hover {
+    color: var(--main-color);
 }
 
 .user-post .post-details {
@@ -376,7 +386,7 @@ body.dark {
 .leaderboard {
     margin: 96px auto;
     max-width: 300px;
-    padding: 10px 0;
+    padding: 10px 16px;
     align-items: flex-start;
     color: var(--text-body);
 }
@@ -419,12 +429,36 @@ body.dark {
 
 /* Rules Page */
 
+.rules {
+    margin: 20px;
+}
+
 .rules-title {
     color: var(--text-title);
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    margin: 5rem 0 2rem 0;
 }
 
 .rules-subtitle, .rules-info {
     color: var(--text-body);
+    padding: 16px;
+}
+
+.rules-info {
+    padding-left: 32px;
+}
+
+.rules-subtitle {
+    padding-bottom: 0;
+}
+
+
+
+.img-rules {
+    margin: 4rem 0; 
 }
 
 .rules-acc {
@@ -478,7 +512,7 @@ body.dark {
 
 /* Log In and Sign Up Styling */
 
-.login-content, .signin-content {
+.login-content, .signin-content, .create-content {
     margin: 96px auto;
 }
 
@@ -503,9 +537,12 @@ body.dark {
 }
 
 
-.login-box, .signin-box {
+.login-box, .signin-box, .create-box {
     max-width: 465px;
     min-width: 465px;
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
     background: radial-gradient(circle at 100% 100%, var(--background-highlight) 0, var(--background-highlight) 19px, transparent 19px) 0% 0%/20px 20px no-repeat,
             radial-gradient(circle at 0 100%, var(--background-highlight) 0, var(--background-highlight) 19px, transparent 19px) 100% 0%/20px 20px no-repeat,
             radial-gradient(circle at 100% 0, var(--background-highlight) 0, var(--background-highlight) 19px, transparent 19px) 0% 100%/20px 20px no-repeat,
@@ -518,22 +555,22 @@ body.dark {
     box-sizing: border-box;
 }
 
-.login-controls, .signin-controls {
+.login-controls, .signin-controls, .create-controls {
     font-size: 20px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
 }
 
-.login-ctl, .signin-ctl {
+.login-ctl, .signin-ctl, .create-ctl {
     text-decoration: none;
     color: var(--main-color);
 }
 
-.login-ctl:hover, .signin-ctl:hover {
+.login-ctl:hover, .signin-ctl:hover, .create-ctl:hover {
     color: var(--text-title);
 }
 
-.login-title, .signin-title {
+.login-title, .signin-title, .create-title {
     color: var(--text-title );
     font-family: 'Inter', sans-serif;
     font-size: 40px;
@@ -541,18 +578,18 @@ body.dark {
     text-align: center;
 }
 
-.login-form, .signin-form {
+.login-form, .signin-form, .create-form {
     margin: 32px 32px;
 }
 
-.lg-lab, .sg-lab{
+.lg-lab, .sg-lab, .ct-lab{
     color: var(--text-body);
     font-size: 20px;
     font-weight: 600;
     font-family: 'Inter', sans-serif;
 }
 
-.lg-input, .sg-input {
+.lg-input, .sg-input, .ct-input {
     border: none;
     background-color: hsla(0, 100%, 100%, 0.07);
 	box-shadow:
@@ -567,14 +604,14 @@ body.dark {
 }
 
 
-.lg-btn, .sg-btn {
+.lg-btn, .sg-btn, .ct-btn {
     color: var(--white);
     background: var(--main-color);
     padding: 10px 40px;
     margin-top: 30px;
 }
 
-.lg-btn:hover, .sg-btn:hover{
+.lg-btn:hover, .sg-btn:hover, .ct-btn:hover{
     background: var(--main-color);
     color: var(--white);
 }
