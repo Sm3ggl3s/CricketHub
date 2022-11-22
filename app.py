@@ -13,6 +13,9 @@ def create_post():
 
     return render_template('create_post.html')
 
+@app.route('/edit_post')
+def edit_post():
+    return render_template('edit_post.html')
 
 @app.route('/login')
 def login():
