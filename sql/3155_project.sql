@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS team(
 
 CREATE TABLE IF NOT EXISTS users(
 	user_id int,
+	username VARCHAR(255),
 	name VARCHAR(255),
 	email VARCHAR(255),
 	pinned_team int,

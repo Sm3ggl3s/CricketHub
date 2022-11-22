@@ -1,6 +1,19 @@
+import os
+
+from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, url_for
 
+from src.models import db, User
+
+load_dotenv()
+
+
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+
 faq_dictionary = {}
 
 @app.route('/')
@@ -19,11 +32,18 @@ def edit_post():
 
 @app.route('/login')
 def login():
-
+    username = request.form.get('username')
+    password = request.form.get('password')
+    
     return render_template('login.html')
 
 @app.route('/signup')
 def signup():
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    existing_user = User.query.filter_by(username=username).first()
+
     return render_template('signup.html')
 
 
