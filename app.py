@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, url_for, session
 from security import bcrypt
-from src.models import db
+from src.models import db,User
 from blueprints.session_blueprint import router as session_router
 
 load_dotenv()
@@ -23,11 +23,14 @@ app.register_blueprint(session_router)
 
 faq_dictionary = {}
 
+
 @app.route('/')
 def index():
     if 'user' not in session:
         return redirect('/login')
-    return render_template('index.html', home_active=True)
+
+
+    return render_template('index.html', home_active=True, loged_in = True, username =session['user']['username'])
 
 @app.route('/create_post')
 def create_post():
@@ -37,8 +40,6 @@ def create_post():
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
-
-
 
 @app.route('/login')
 def login():
