@@ -350,7 +350,8 @@ li {
 }
 
 .user-post .post-menu a:hover {
-    color: var(--main-color);
+    background: var(--main-color);
+    color: var(--white);
 }
 
 .user-post .post-details {

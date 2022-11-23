@@ -1,9 +1,10 @@
 import os
 
 from dotenv import load_dotenv
-from flask import Flask, redirect, render_template, request, url_for
-
-from src.models import db, User
+from flask import Flask, redirect, render_template, request, url_for, session
+from security import bcrypt
+from src.models import db
+from blueprints.session_blueprint import router as session_router
 
 load_dotenv()
 
@@ -12,13 +13,20 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+app.secret_key = os.getenv('APP_SECRET_KEY')
+
 db.init_app(app)
+bcrypt.init_app(app)
+
+app.register_blueprint(session_router)
 
 faq_dictionary = {}
 
 @app.route('/')
 def index():
-
+    if 'user' not in session:
+        return redirect('/login')
     return render_template('index.html', home_active=True)
 
 @app.route('/create_post')
@@ -26,23 +34,16 @@ def create_post():
 
     return render_template('create_post.html')
 
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
+
+
 
 @app.route('/login')
 def login():
-    username = request.form.get('username')
-    password = request.form.get('password')
-    
+
     return render_template('login.html')
-
-@app.route('/signup')
-def signup():
-    username = request.form.get('username')
-    password = request.form.get('password')
-
-    existing_user = User.query.filter_by(username=username).first()
-
-    return render_template('signup.html')
-
 
 @app.route('/rules')
 def rules():
@@ -65,3 +66,9 @@ def info():
 def prof():
 
     return render_template('profile.html')
+
+
+@app.get('/secret')
+def secret():
+    if 'user' not in session:
+        return redirect('/login')

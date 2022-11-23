@@ -1,3 +1,4 @@
+
 CREATE TABLE IF NOT EXISTS team(
 	team_id int NOT NULL,
 	team_info VARCHAR(255),
@@ -6,7 +7,7 @@ CREATE TABLE IF NOT EXISTS team(
 );
 
 CREATE TABLE IF NOT EXISTS users(
-	user_id int,
+	user_id SERIAL,
 	username VARCHAR(255),
 	name VARCHAR(255),
 	email VARCHAR(255),
