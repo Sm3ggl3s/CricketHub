@@ -62,9 +62,12 @@
                             <i class="fa-solid fa-chevron-down fa-xl"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg-end box-outline">
-                            <li><a class="dropdown-item dropdown-text" role="link" aria-disabled="true"> Hello, User </a></li>
+                            <li class="dropdown-item dropdown-user"> Hello, <span>{{username}}</span></li>
                             <li><a class="dropdown-item dropdown-text" href="/profile"> View Profile</a></li>
-                            <li><a class="dropdown-item dropdown-text dropdown-button" href="/login">Sign Up / Log In</a>
+                            <li>
+                                <form action="/logout" method="post">
+                                    <button class="btn btn-lg dropdown-text dropdown-btn" type="submit">Sign Out</button>
+                                </form>
                             </li>
                         </ul>
                     </li>
