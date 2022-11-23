@@ -1,11 +1,11 @@
 import os
 
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, url_for
 
 from src.models import db, User
 
-load_dotenv()
+# load_dotenv()
 
 
 app = Flask(__name__)
