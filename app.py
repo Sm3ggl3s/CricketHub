@@ -37,15 +37,13 @@ def create_post():
 
     return render_template('create_post.html')
 
-<<<<<<< HEAD
 @app.route('/edit_post')
 def edit_post():
     return render_template('edit_post.html')
-=======
+
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
->>>>>>> main
 
 @app.route('/login')
 def login():
