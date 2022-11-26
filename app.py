@@ -1,17 +1,10 @@
 import os
 
-<<<<<<< HEAD
-# from dotenv import load_dotenv
-from flask import Flask, redirect, render_template, request, url_for
-
-from src.models import db, User
-=======
 from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, url_for, session
 from security import bcrypt
 from src.models import db,User
 from blueprints.session_blueprint import router as session_router
->>>>>>> main
 
 # load_dotenv()
 
