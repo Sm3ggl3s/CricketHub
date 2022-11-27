@@ -783,6 +783,7 @@ li {
     box-sizing: border-box;
 
     position: absolute;
+    padding-bottom: 2px;
     width: 392px;
     height: 371px;
     left: 483px;
@@ -794,7 +795,7 @@ li {
         linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 4px) calc(100% - 16px) no-repeat,
         linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 16px) calc(100% - 4px) no-repeat,
         linear-gradient(46deg, transparent 30%, #da0037 100%);
-    padding-bottom: 0px;
+    
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
 }
@@ -822,7 +823,7 @@ li {
     box-sizing: border-box;
     position: absolute;
     width: 392px;
-
+    padding-bottom: 2px;
     left: 483px;
     top: 590px;
 

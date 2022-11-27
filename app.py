@@ -6,7 +6,6 @@ from security import bcrypt
 from src.models import db,User,Post
 from blueprints.session_blueprint import router as session_router
 
-
 load_dotenv()
 
 
@@ -39,20 +38,21 @@ def create_post():
     return render_template('create_post.html')
 
 @app.post('/createpost')
-def createpost():
-    if 'user' not in session:
-        return redirect('/login')
-
+def create():
+    
     post_title = request.form.get('post_title')
     post_body = request.form.get('post_body')
-    if 'user' in session:
-        poster_id = session['user']['user_id']
+    poster_id = session['user']['user_id']
+    new_post = Post(post_title, post_body, poster_id)
 
-    new_post = Post(post_title,post_body,poster_id)
     db.session.add(new_post)
     db.session.commit()
-    
+
     return redirect('/')
+
+@app.route('/edit_post')
+def edit_post():
+    return render_template('edit_post.html')
 
 @app.route('/signup')
 def signup():
