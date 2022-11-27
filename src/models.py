@@ -20,4 +20,25 @@ class User(db.Model):
         self.password = password
         self.pinned_team = pinned_team
 
+class Post(db.Model):
+    tablename = 'posts'
 
+    post_id = db.Column(db.Integer, primary_key=True)
+    likes = db.Column(db.Integer, nullable=True)
+    dislikes = db.Column(db.Integer, nullable=True)
+    post_title = db.Column(db.String, nullable=False)
+    post_body = db.Column(db.String, nullable=False)
+    poster_id = db.Column(db.String, db.ForeignKey('users.user_id'), \
+    nullable=False)
+
+    def init(self, post_title, post_body, poster_id) -> None:
+        self.post_title = post_title
+        self.post_body = post_body
+        self.poster_id = poster_id
+
+class Comment(db.Model):
+    tablename = 'comments'
+
+    comment_id = db.Column(db.Integer, primary_key =True)
+    likes = db.Column(db.Integer, nullable=True)
+    dislikes = db.Column(db.Integer, nullable=True)
