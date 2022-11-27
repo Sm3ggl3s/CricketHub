@@ -6,7 +6,7 @@ from security import bcrypt
 from src.models import db,User
 from blueprints.session_blueprint import router as session_router
 
-load_dotenv()
+# load_dotenv()
 
 
 app = Flask(__name__)
@@ -36,6 +36,10 @@ def index():
 def create_post():
 
     return render_template('create_post.html')
+
+@app.route('/edit_post')
+def edit_post():
+    return render_template('edit_post.html')
 
 @app.route('/signup')
 def signup():
