@@ -47,16 +47,16 @@ li {
 .box-outline {
     font-family: 'Inter';
     font-family: 'Poppins', sans-serif;
-    -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.75);
     background: radial-gradient(circle at 100% 100%, var(--background-highlight) 0, var(--background-highlight) 6px, transparent 6px) 0% 0%/8px 8px no-repeat,
-            radial-gradient(circle at 0 100%, var(--background-highlight) 0, var(--background-highlight) 6px, transparent 6px) 100% 0%/8px 8px no-repeat,
-            radial-gradient(circle at 100% 0, var(--background-highlight) 0, var(--background-highlight) 6px, transparent 6px) 0% 100%/8px 8px no-repeat,
-            radial-gradient(circle at 0 0, var(--background-highlight) 0, var(--background-highlight) 6px, transparent 6px) 100% 100%/8px 8px no-repeat,
-            linear-gradient(var(--background-highlight), var(--background-highlight)) 50% 50%/calc(100% - 4px) calc(100% - 16px) no-repeat,
-            linear-gradient(var(--background-highlight), var(--background-highlight)) 50% 50%/calc(100% - 16px) calc(100% - 4px) no-repeat,
-            linear-gradient(46deg, transparent 30%, #da0037 100%);
+        radial-gradient(circle at 0 100%, var(--background-highlight) 0, var(--background-highlight) 6px, transparent 6px) 100% 0%/8px 8px no-repeat,
+        radial-gradient(circle at 100% 0, var(--background-highlight) 0, var(--background-highlight) 6px, transparent 6px) 0% 100%/8px 8px no-repeat,
+        radial-gradient(circle at 0 0, var(--background-highlight) 0, var(--background-highlight) 6px, transparent 6px) 100% 100%/8px 8px no-repeat,
+        linear-gradient(var(--background-highlight), var(--background-highlight)) 50% 50%/calc(100% - 4px) calc(100% - 16px) no-repeat,
+        linear-gradient(var(--background-highlight), var(--background-highlight)) 50% 50%/calc(100% - 16px) calc(100% - 4px) no-repeat,
+        linear-gradient(46deg, transparent 30%, #da0037 100%);
     border-radius: 8px;
     padding: 6px;
     box-sizing: border-box;
@@ -148,7 +148,8 @@ li {
     display: none;
 }
 
-.dropdown-text, .dropdown-user{
+.dropdown-text,
+.dropdown-user {
     color: var(--text-body);
     font-size: 16px;
     font-weight: 600;
@@ -196,11 +197,11 @@ li {
 }
 
 .dp02 {
-	background-color: hsla(0, 100%, 100%, 0.07);
-	box-shadow:
-	0px 2px 2px 0px hsla(0,0%,0%,0.14), 
-	0px 3px 1px -2px hsla(0,0%,0%,0.12), 
-	0px 1px 5px 0px hsla(0,0%,0%,0.2);
+    background-color: hsla(0, 100%, 100%, 0.07);
+    box-shadow:
+        0px 2px 2px 0px hsla(0, 0%, 0%, 0.14),
+        0px 3px 1px -2px hsla(0, 0%, 0%, 0.12),
+        0px 1px 5px 0px hsla(0, 0%, 0%, 0.2);
 }
 
 .label {
@@ -209,7 +210,7 @@ li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+
     border-radius: 50px;
     position: relative;
     padding: 5px;
@@ -225,15 +226,15 @@ li {
 .ball {
     background-color: var(--text-body);
     border-radius: 50%;
-    position:absolute;
+    position: absolute;
     left: 2px;
     height: 22px;
     width: 22px;
     transition: .3s ease-out;
 }
 
-.checkbox:checked + .label .ball {
-    transform:  translateX(24px);
+.checkbox:checked+.label .ball {
+    transform: translateX(24px);
 }
 
 .fa-moon {
@@ -263,13 +264,13 @@ li {
 }
 
 .menu li {
-    list-style:none;
+    list-style: none;
 }
 
-.menu li a{
+.menu li a {
     padding: 18px 0px;
     font-size: 16px;
-    padding-left: 40px;    
+    padding-left: 40px;
     color: var(--text-title);
 }
 
@@ -302,7 +303,8 @@ li {
     margin-top: 96px;
     margin-bottom: 17px;
     max-width: 700px;
-    min-width: 300px;;
+    min-width: 300px;
+    ;
     padding: 7.5px;
     font-family: 'Inter';
     font-style: normal;
@@ -323,6 +325,7 @@ li {
 .post-nav a i {
     padding: 0px 10px;
 }
+
 .post-nav .active {
     border-radius: 40px;
     background: var(--main-color);
@@ -334,12 +337,14 @@ li {
     font-family: 'Inter';
     max-width: 700px;
     color: var(--text-body);
+    margin-bottom: 16px;
 }
 
 .user-post .counter {
     margin: auto 0;
     margin-left: 1rem;
 }
+
 .user-post .like-counter {
     margin: 0;
     font-size: 16px;
@@ -421,7 +426,7 @@ li {
     font-size: 16px;
 }
 
-.leaderboard .lb-num i{
+.leaderboard .lb-num i {
     padding-top: 17.5px;
 }
 
@@ -455,7 +460,8 @@ li {
     margin: 5rem 0 2rem 0;
 }
 
-.rules-subtitle, .rules-info {
+.rules-subtitle,
+.rules-info {
     color: var(--text-body);
     padding: 16px;
 }
@@ -471,7 +477,7 @@ li {
 
 
 .img-rules {
-    margin: 4rem 0; 
+    margin: 4rem 0;
 }
 
 .rules-acc {
@@ -525,11 +531,14 @@ li {
 
 /* Log In and Sign Up Styling */
 
-.login-content, .signin-content, .create-content {
+.login-content,
+.signin-content,
+.create-content {
     margin: 96px auto;
 }
 
-.logo-login, .logo-signin {
+.logo-login,
+.logo-signin {
     color: var(--text-title);
     text-align: center;
     margin-bottom: 12px;
@@ -538,7 +547,8 @@ li {
     font-size: 64px;
 }
 
-.logo-login .hub, .logo-signin .hub {
+.logo-login .hub,
+.logo-signin .hub {
     margin-left: 4px;
     width: 60px;
     height: 32px;
@@ -550,65 +560,81 @@ li {
 }
 
 
-.login-box, .signin-box, .create-box {
+.login-box,
+.signin-box,
+.create-box {
     max-width: 465px;
     min-width: 465px;
-    -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.75);
     background: radial-gradient(circle at 100% 100%, var(--background-highlight) 0, var(--background-highlight) 19px, transparent 19px) 0% 0%/20px 20px no-repeat,
-            radial-gradient(circle at 0 100%, var(--background-highlight) 0, var(--background-highlight) 19px, transparent 19px) 100% 0%/20px 20px no-repeat,
-            radial-gradient(circle at 100% 0, var(--background-highlight) 0, var(--background-highlight) 19px, transparent 19px) 0% 100%/20px 20px no-repeat,
-            radial-gradient(circle at 0 0, var(--background-highlight) 0, var(--background-highlight) 19px, transparent 19px) 100% 100%/20px 20px no-repeat,
-            linear-gradient(var(--background-highlight), var(--background-highlight)) 50% 50%/calc(100% - 2px) calc(100% - 40px) no-repeat,
-            linear-gradient(var(--background-highlight), var(--background-highlight)) 50% 50%/calc(100% - 40px) calc(100% - 2px) no-repeat,
-            linear-gradient(22deg, rgba(255,255,255,0) 0%, #da0037 30%);
+        radial-gradient(circle at 0 100%, var(--background-highlight) 0, var(--background-highlight) 19px, transparent 19px) 100% 0%/20px 20px no-repeat,
+        radial-gradient(circle at 100% 0, var(--background-highlight) 0, var(--background-highlight) 19px, transparent 19px) 0% 100%/20px 20px no-repeat,
+        radial-gradient(circle at 0 0, var(--background-highlight) 0, var(--background-highlight) 19px, transparent 19px) 100% 100%/20px 20px no-repeat,
+        linear-gradient(var(--background-highlight), var(--background-highlight)) 50% 50%/calc(100% - 2px) calc(100% - 40px) no-repeat,
+        linear-gradient(var(--background-highlight), var(--background-highlight)) 50% 50%/calc(100% - 40px) calc(100% - 2px) no-repeat,
+        linear-gradient(22deg, rgba(255, 255, 255, 0) 0%, #da0037 30%);
     border-radius: 20px;
     padding: 5px;
     box-sizing: border-box;
 }
 
-.login-controls, .signin-controls, .create-controls {
+.login-controls,
+.signin-controls,
+.create-controls {
     font-size: 20px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
 }
 
-.login-ctl, .signin-ctl, .create-ctl {
+.login-ctl,
+.signin-ctl,
+.create-ctl {
     text-decoration: none;
     color: var(--main-color);
 }
 
-.login-ctl:hover, .signin-ctl:hover, .create-ctl:hover {
+.login-ctl:hover,
+.signin-ctl:hover,
+.create-ctl:hover {
     color: var(--text-title);
 }
 
-.login-title, .signin-title, .create-title {
-    color: var(--text-title );
+.login-title,
+.signin-title,
+.create-title {
+    color: var(--text-title);
     font-family: 'Inter', sans-serif;
     font-size: 40px;
     font-weight: 600;
     text-align: center;
 }
 
-.login-form, .signin-form, .create-form {
+.login-form,
+.signin-form,
+.create-form {
     margin: 32px 32px;
 }
 
-.lg-lab, .sg-lab, .ct-lab{
+.lg-lab,
+.sg-lab,
+.ct-lab {
     color: var(--text-body);
     font-size: 20px;
     font-weight: 600;
     font-family: 'Inter', sans-serif;
 }
 
-.lg-input, .sg-input, .ct-input {
+.lg-input,
+.sg-input,
+.ct-input {
     border: none;
     background-color: hsla(0, 100%, 100%, 0.07);
-	box-shadow:
-	0px 2px 2px 0px hsla(0,0%,0%,0.14), 
-	0px 3px 1px -2px hsla(0,0%,0%,0.12), 
-	0px 1px 5px 0px hsla(0,0%,0%,0.2);
+    box-shadow:
+        0px 2px 2px 0px hsla(0, 0%, 0%, 0.14),
+        0px 3px 1px -2px hsla(0, 0%, 0%, 0.12),
+        0px 1px 5px 0px hsla(0, 0%, 0%, 0.2);
 }
 
 ::placeholder {
@@ -617,19 +643,24 @@ li {
 }
 
 
-.lg-btn, .sg-btn, .ct-btn {
+.lg-btn,
+.sg-btn,
+.ct-btn {
     color: var(--white);
     background: var(--main-color);
     padding: 10px 40px;
     margin-top: 30px;
 }
 
-.lg-btn:hover, .sg-btn:hover, .ct-btn:hover{
+.lg-btn:hover,
+.sg-btn:hover,
+.ct-btn:hover {
     background: var(--main-color);
     color: var(--white);
 }
 
-.google-lg, .google-sg {
+.google-lg,
+.google-sg {
     margin-bottom: 64px;
     text-align: center;
     color: var(--text-body);
@@ -638,16 +669,19 @@ li {
     font-family: 'Inter', sans-serif;
 }
 
-.google-lg i, .google-sg i{
+.google-lg i,
+.google-sg i {
     margin-bottom: 30px;
-    color: var(--main-color);   
+    color: var(--main-color);
 }
 
-.signup-option, .login-option {
+.signup-option,
+.login-option {
     font-size: 14px;
 }
 
-.signup-option .signup-link, .login-option .login-link{
+.signup-option .signup-link,
+.login-option .login-link {
     color: var(--main-color);
     text-decoration: none;
 }
@@ -662,18 +696,15 @@ li {
 
 
 /* About Page */
-.question
-{
+.question {
     color: var(--main-color);
 }
 
-.faq .answer
-{
+.faq .answer {
     padding: 5px;
 }
 
-.part 
-{
+.part {
     margin: 15% auto;
     font-family: 'Inter';
     max-width: 700px;
@@ -681,8 +712,7 @@ li {
     padding: 17px;
 }
 
-.part .post-header 
-{
+.part .post-header {
     color: var(--text-title);
     text-align: right;
     margin: 17px 0 10px 30px;
@@ -693,26 +723,24 @@ li {
     display: inline-block;
     line-height: 0.85;
     text-shadow:
-    2px 2px var(--background-highlight),
-    2px -2px  var(--background-highlight),
-    -2px 2px  var(--background-highlight),
-    -2px -2px  var(--background-highlight);
+        2px 2px var(--background-highlight),
+        2px -2px var(--background-highlight),
+        -2px 2px var(--background-highlight),
+        -2px -2px var(--background-highlight);
 }
 
 .part .post-details {
     color: var(--text-body);
     font-size: 21px;
     margin-left: 30px;
-    
+
 }
 
-.proj
-{
+.proj {
     color: var(--main-color);
 }
 
-.faq 
-{
+.faq {
     margin: 90px auto;
     max-width: 300px;
     padding: 10px 0;
@@ -722,13 +750,11 @@ li {
     padding: 17px;
 }
 
-.faq .faq-title-container 
-{
+.faq .faq-title-container {
     margin: 15px 0 0 10px;
 }
 
-.faq .faq-title 
-{
+.faq .faq-title {
     color: var(--text-title);
     font-size: 24px;
     font-weight: 900;
@@ -737,16 +763,15 @@ li {
     display: inline-block;
     line-height: 0.85;
     text-shadow:
-    2px 2px var(--background-highlight),
-    2px -2px  var(--background-highlight),
-    -2px 2px  var(--background-highlight),
-    -2px -2px  var(--background-highlight);
+        2px 2px var(--background-highlight),
+        2px -2px var(--background-highlight),
+        -2px 2px var(--background-highlight),
+        -2px -2px var(--background-highlight);
     padding: -20px;
 
 }
 
-.faq .faq-content
-{
+.faq .faq-content {
     margin: 15px 0 0 10px;
 }
 
@@ -795,9 +820,9 @@ li {
 
 .profChangePass {
     box-sizing: border-box;
-    position:absolute;
+    position: absolute;
     width: 392px;
-    
+
     left: 483px;
     top: 590px;
 
@@ -810,10 +835,10 @@ li {
         linear-gradient(46deg, transparent 30%, #da0037 100%);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
-    
+
 }
 
-.prefInfo{
+.prefInfo {
     background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 6px, transparent 6px) 0% 0%/8px 8px no-repeat,
         radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px) 100% 0%/8px 8px no-repeat,
         radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px) 0% 100%/8px 8px no-repeat,
@@ -827,4 +852,3 @@ li {
 
 
 /* END About Page Styling */
-
