@@ -79,8 +79,11 @@ def info():
         faq_dictionary[faq_listofQuestions[i]] = faq_listofAnswers[i] 
     return render_template('about.html', about_active=True, faq_dictionary = faq_dictionary)
 
-@app.route('/profile')
+@app.get('/profile')
 def prof():
+    post_firstname = request.form.get('firstname-dis')
+    post_lastname = request.form.get('lastname-dis')
+    post_email = request.form.get('email')
 
     return render_template('profile.html')
 
