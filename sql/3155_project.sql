@@ -1,3 +1,4 @@
+
 CREATE TABLE IF NOT EXISTS team(
 	team_id int NOT NULL,
 	team_info VARCHAR(255),
@@ -6,7 +7,8 @@ CREATE TABLE IF NOT EXISTS team(
 );
 
 CREATE TABLE IF NOT EXISTS users(
-	user_id int,
+	user_id SERIAL,
+	username VARCHAR(255),
 	name VARCHAR(255),
 	email VARCHAR(255),
 	pinned_team int,
@@ -16,16 +18,18 @@ CREATE TABLE IF NOT EXISTS users(
 );
 
 CREATE TABLE IF NOT EXISTS posts(
-	post_id int,
+	post_id SERIAL,
 	likes int,
 	dislikes int,
+	post_title VARCHAR(255),
+	post_body TEXT,
 	poster_id int,
 	PRIMARY KEY(post_id),
 	FOREIGN KEY(poster_id) REFERENCES users(user_id)
 );
 
 CREATE TABLE IF NOT EXISTS comments(
-	comment_id int,
+	comment_id SERIAL,
 	likes int, 
 	dislikes int,
 	content VARCHAR(255),

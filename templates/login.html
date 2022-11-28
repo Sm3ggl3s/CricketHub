@@ -20,15 +20,15 @@
       </div>
       <h2 class="login-title">Log In</h2>
 
-      <form class="login-form">
+      <form class="login-form" action="/log_in" method="post">
         <div class="form-group mb-4">
-          <label class="form-label lg-lab" for="typeEmailX">Email</label>
-          <input type="email" id="typeEmailX" class="form-control lg-input form-control-lg" required
-            placeholder="Enter your email" />
+          <label class="form-label lg-lab" for="username">Username</label>
+          <input type="text" id="username" name="username" class="form-control lg-input form-control-lg" required
+            placeholder="Enter your username" />
         </div>
         <div class="form-group mb-4">
-          <label class="form-label lg-lab" for="typePasswordX">Password</label>
-          <input type="password" id="typePasswordX" class="form-control lg-input form-control-lg" required
+          <label class="form-label lg-lab" for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control lg-input form-control-lg" required
             placeholder="Enter your password" />
         </div>
         <div class="d-grid gap-2 col-6 mx-auto">
