@@ -3,91 +3,95 @@
 
 {% block title %}CricketHub | Profile{% endblock %}
 
-{% block body  %}
+{% block body %}
 </div>
 <!--Edit User info Box-->
-<div class="col-5 align-self-center">
-    <h1 class="profTit" style="text-align: center">Hi, User</h1>
-    <div class="card UserInfo">
-        <div class="card-body">
-            <h2 style="text-align:center;">Bio</h2>
-            <div class="form-group mb-2">
-                <label class="form-label" for="typefirstname">First Name</label>
-                <input type="usernmae" id="typefirstname" name="username-dis" class="form-control form-control-lg"
-                    required placeholder="First Name" autocomplete="off" />
+<form action="/profile" method="get">
+    <div class="col-5 align-self-center">
+        <h1 class="profTit" style="text-align: center">Hi, User</h1>
+        <div class="card UserInfo">
+            <div class="card-body">
+                <h2 style="text-align:center;">Bio</h2>
+                <div class="form-group mb-2">
+                    <label class="form-label" for="typefirstname">First Name</label>
+                    <input type="username" id="typefirstname" name="firstname-dis" class="form-control form-control-lg"
+                        required placeholder="First Name" autocomplete="off" />
+                </div>
+                <div class="form-group mb-2">
+                    <label class="form-label" for="typeUsername">Last Name</label>
+                    <input type="username" id="typelastname" name="lastname-dis" class="form-control form-control-lg"
+                        required placeholder="Last Name" autocomplete="off" />
+                </div>
+                <div class="form-group mb-2">
+                    <label class="form-label" for="typeUsername">Email</label>
+                    <input type="email" id="typeemail" name="email" class="form-control form-control-lg" required
+                        placeholder="Email" autocomplete="off" />
+                </div>
+                <button type="submit" class="form-control">Edit Info</button>
             </div>
-            <div class="form-group mb-2">
-                <label class="form-label" for="typeUsername">Last Name</label>
-                <input type="usernmae" id="typelastname" name="lastname-dis" class="form-control form-control-lg"
-                    required placeholder="Last Name" autocomplete="off" />
-            </div>
-            <div class="form-group mb-2">
-                <label class="form-label" for="typeUsername">Email</label>
-                <input type="email" id="typeemail" name="email" class="form-control form-control-lg" required
-                    placeholder="Email" autocomplete="off" />
-            </div>
-            <button type="submit" class="form-control">Edit Info</button>
         </div>
     </div>
 
-</div>
-
-<!--Password Box-->
-<div class="col align-self-center">
-    <div class="card mb-2 user-post">
-        <div class="card-body mb-0  ">
-            <figure class="figure">
-                <img src="static/Colored-Cricket-Jerseys.png" class="img-fluid rounded" alt="Image Jersey Placeholder">
-            </figure>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-    </div>
-    <div class="col align-self-start">
-        <div class="card profChangePass">
-            <div class="card-body ">
-                <h2 style="text-align:center;margin-bottom:20px;">Change Password</h2>
-                <div class="form-group mb-2">
-                    <label class="form-label" for="typepassword">New Password</label>
-                    <input type="password" id="new-password-1" name="new-password-1"
-                        class="form-control form-control-lg" required placeholder="Enter New Password"
-                        autocomplete="off" />
-                </div>
-                <div class="form-group mb-2">
-                    <label class="form-label" for="typeconfim">Confirm New Password</label>
-                    <input type="password" id="new-password-2" name="new-password-2"
-                        class="form-control form-control-lg" required placeholder="Renter New Password"
-                        autocomplete="off" />
-                </div>
-                <button type="submit" class="form-control">Change Password</button>
-            </div>
-        </div>
-    </div>
+    <!--Picture Box-->
     <div class="col align-self-center">
-        <div class="card prefInfo">
-
-            <div class="card-body ">
-                <h2 style="text-align:center;margin-bottom:20px;">Edit Preferences</h2>
-                <div class="form-group mb-2">
-                    <label class="form-label" for="typepassword">Favorite Team</label>
-                    <input type="team-name" id="team-name" name="team-name" class="form-control form-control-lg"
-                        required placeholder="Enter Team Name" autocomplete="off" />
-                </div>
-                <div class="form-group mb-2">
-                    <label class="form-label" for="typeconfim">Favorite Player</label>
-                    <input type="player" id="player" name="player" class="form-control form-control-lg" required
-                        placeholder="Enter Player Name" autocomplete="off" />
-                </div>
-                <button type="submit" class="form-control">Change Preferences</button>
+        <div class="card mb-2 profPic ">
+            <div class="card-body mb-0  ">
+                <figure class="figure">
+                    <img src="static/imgs/Colored-Cricket-Jerseys.png" class="img-fluid rounded"
+                        alt="Image Jersey Placeholder">
+                </figure>
             </div>
-
-
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+        </div>
+        <!--Password Box-->
+        <div class="col align-self-start">
+            <div class="card profChangePass">
+                <div class="card-body ">
+                    <h2 style="text-align:center;margin-bottom:20px;">Change Password</h2>
+                    <div class="form-group mb-2">
+                        <label class="form-label" for="typepassword">New Password</label>
+                        <input type="password" id="new-password-1" name="new-password-1"
+                            class="form-control form-control-lg" required placeholder="Enter New Password"
+                            autocomplete="off" />
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="form-label" for="typeconfim">Confirm New Password</label>
+                        <input type="password" id="new-password-2" name="new-password-2"
+                            class="form-control form-control-lg" required placeholder="Renter New Password"
+                            autocomplete="off" />
+                    </div>
+                    <button type="submit" class="form-control">Change Password</button>
+                </div>
+            </div>
+        </div>
+        <div class="col align-self-center">
+            <div class="card prefInfo">
+
+                <div class="card-body ">
+                    <h2 style="text-align:center;margin-bottom:20px;">Edit Preferences</h2>
+                    <div class="form-group mb-2">
+                        <label class="form-label" for="typepassword">Favorite Team</label>
+                        <input type="team-name" id="team-name" name="team-name" class="form-control form-control-lg"
+                            required placeholder="Enter Team Name" autocomplete="off" />
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="form-label" for="typeconfim">Favorite Player</label>
+                        <input type="player" id="player" name="player" class="form-control form-control-lg" required
+                            placeholder="Enter Player Name" autocomplete="off" />
+                    </div>
+                    <button type="submit" class="form-control">Change Preferences</button>
+                </div>
 
 
-</div>
+            </div>
+        </div>
+
+
+    </div>
+</form>
+
 
 {% endblock %}
