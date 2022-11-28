@@ -92,3 +92,11 @@ def prof():
 def secret():
     if 'user' not in session:
         return redirect('/login')
+
+
+@app.post('/profile/edit')
+def prof_edit():
+
+
+    
+    return redirect('/profile')  
