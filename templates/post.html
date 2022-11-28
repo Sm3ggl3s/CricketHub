@@ -1,0 +1,22 @@
+{% extends '_layout.html' %}
+
+{% block title %}CricketHub | Create Post {% endblock %}
+{% block navbar %}{% endblock %}
+
+{% block menu %}{% endblock %}
+{% block body %}
+<h1>
+    {{post.post_title}}
+</h1>
+<p>{{post.post_body}}</p>
+
+<form class="create-form" action="/post/{{post.post_id}}/create_comment" method="post">
+    <textarea name="comment_body" required=""></textarea>
+    <button type="submit">Submit</button>
+</form>
+<!--{% if all_comments|length > 0 %}-->
+{% for comment in all_comments %}
+<p>{{comment.content}}</p>
+{% endfor %}
+<!--{% endif %}-->
+{% endblock %}

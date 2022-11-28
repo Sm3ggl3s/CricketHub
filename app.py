@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from flask import Flask, redirect, render_template, request, url_for, session
+from flask import Flask, redirect, render_template, request, url_for, session, abort
 from security import bcrypt
 from src.models import db,User,Post, Comment
 from blueprints.session_blueprint import router as session_router
@@ -54,19 +54,30 @@ def create():
 def edit_post():
     return render_template('edit_post.html')
 
-@app.post('/create_comment')
-def create():
+@app.route('/post/<post_id>')
+def view_post(post_id):
+    post = Post.query.get(post_id)
+    all_comments = Comment.query.filter_by(post_id=post_id).all()
+    return render_template('post.html', post=post, all_comments=all_comments)
 
-    content = request.form.get('content')
-    post_id = ''
+
+@app.post('/post/<post_id>/create_comment')
+def create_comment(post_id):
+
+    content = request.form.get('comment_body')
+    error_msg =''
+    if content is None:
+        error_msg = "Comment needs content"
+        return abort(403)
+    #how to create post id
     commentor_id = session['user']['user_id']
 
-    new_comment = Comment(content, post_id, commentor_id)
+    new_comment = Comment(content=content, post_id=post_id, commentor_id=commentor_id)
 
     db.session.add(new_comment)
     db.session.commit()
 
-    return('/')
+    return redirect(f'/post/{post_id}')
 
 @app.route('/signup')
 def signup():
