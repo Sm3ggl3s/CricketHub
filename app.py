@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, url_for, session
 from security import bcrypt
-from src.models import db,User,Post
+from src.models import db,User,Post, Comment
 from blueprints.session_blueprint import router as session_router
 
 load_dotenv()
@@ -53,6 +53,20 @@ def create():
 @app.route('/edit_post')
 def edit_post():
     return render_template('edit_post.html')
+
+@app.post('/create_comment')
+def create():
+
+    content = request.form.get('content')
+    post_id = ''
+    commentor_id = session['user']['user_id']
+
+    new_comment = Comment(content, post_id, commentor_id)
+
+    db.session.add(new_comment)
+    db.session.commit()
+
+    return('/')
 
 @app.route('/signup')
 def signup():
