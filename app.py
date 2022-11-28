@@ -3,10 +3,10 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, url_for, session
 from security import bcrypt
-from src.models import db,User
+from src.models import db,User,Post
 from blueprints.session_blueprint import router as session_router
 
-# load_dotenv()
+load_dotenv()
 
 
 app = Flask(__name__)
@@ -29,13 +29,26 @@ def index():
     if 'user' not in session:
         return redirect('/login')
 
-
-    return render_template('index.html', home_active=True, loged_in = True, username =session['user']['username'])
+    posts = Post.query.all()
+    #results = Livescore.results_of_matches
+    return render_template('index.html', home_active=True, loged_in = True, username =session['user']['username'], posts = posts)
 
 @app.route('/create_post')
 def create_post():
-
     return render_template('create_post.html')
+
+@app.post('/createpost')
+def create():
+    
+    post_title = request.form.get('post_title')
+    post_body = request.form.get('post_body')
+    poster_id = session['user']['user_id']
+    new_post = Post(post_title, post_body, poster_id)
+
+    db.session.add(new_post)
+    db.session.commit()
+
+    return redirect('/')
 
 @app.route('/edit_post')
 def edit_post():
@@ -47,7 +60,6 @@ def signup():
 
 @app.route('/login')
 def login():
-
     return render_template('login.html')
 
 @app.route('/rules')

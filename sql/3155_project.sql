@@ -18,16 +18,18 @@ CREATE TABLE IF NOT EXISTS users(
 );
 
 CREATE TABLE IF NOT EXISTS posts(
-	post_id int,
+	post_id SERIAL,
 	likes int,
 	dislikes int,
+	post_title VARCHAR(255),
+	post_body TEXT,
 	poster_id int,
 	PRIMARY KEY(post_id),
 	FOREIGN KEY(poster_id) REFERENCES users(user_id)
 );
 
 CREATE TABLE IF NOT EXISTS comments(
-	comment_id int,
+	comment_id SERIAL,
 	likes int, 
 	dislikes int,
 	content VARCHAR(255),

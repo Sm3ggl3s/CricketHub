@@ -12,6 +12,7 @@ class User(db.Model):
     email = db.Column(db.String(255), nullable=False)
     password = db.Column(db.String(255), nullable=False)
     pinned_team = db.Column(db.Integer, nullable=True)
+    posts = db.relationship('Post', backref='poster')
 
     def __init__(self, username, name, email,password, pinned_team) -> None:
         self.username = username
@@ -21,7 +22,7 @@ class User(db.Model):
         self.pinned_team = pinned_team
 
 class Post(db.Model):
-    tablename = 'posts'
+    __tablename__ = 'posts'
 
     post_id = db.Column(db.Integer, primary_key=True)
     likes = db.Column(db.Integer, nullable=True)
@@ -31,14 +32,7 @@ class Post(db.Model):
     poster_id = db.Column(db.String, db.ForeignKey('users.user_id'), \
     nullable=False)
 
-    def init(self, post_title, post_body, poster_id) -> None:
+    def __init__(self, post_title, post_body, poster_id) -> None:
         self.post_title = post_title
         self.post_body = post_body
         self.poster_id = poster_id
-
-class Comment(db.Model):
-    tablename = 'comments'
-
-    comment_id = db.Column(db.Integer, primary_key =True)
-    likes = db.Column(db.Integer, nullable=True)
-    dislikes = db.Column(db.Integer, nullable=True)
