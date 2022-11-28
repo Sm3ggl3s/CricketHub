@@ -50,6 +50,14 @@ def create():
 
     return redirect('/')
 
+@app.post('/deletepost/<int:post_id>')
+def delete_post(post_id):
+    post_to_delete = Post.query.get_or_404(post_id)
+    db.session.delete(post_to_delete)
+    db.session.commit()
+
+    return redirect('/')
+
 @app.route('/edit_post')
 def edit_post():
     return render_template('edit_post.html')
@@ -64,7 +72,7 @@ def login():
 
 @app.route('/rules')
 def rules():
-    return render_template('rules.html', rules_active=True)
+    return render_template('rules.html', rules_active=True, username =session['user']['username'])
 
 
 @app.route('/about')
@@ -77,12 +85,12 @@ def info():
 
     for i in range(6):
         faq_dictionary[faq_listofQuestions[i]] = faq_listofAnswers[i] 
-    return render_template('about.html', about_active=True, faq_dictionary = faq_dictionary)
+    return render_template('about.html', about_active=True, faq_dictionary = faq_dictionary, username =session['user']['username'])
 
 @app.route('/profile')
 def prof():
 
-    return render_template('profile.html')
+    return render_template('profile.html', username =session['user']['username'])
 
 
 @app.get('/secret')

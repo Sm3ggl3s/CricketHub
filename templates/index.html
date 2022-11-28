@@ -5,7 +5,34 @@
 {% block body %}
 </div>
 <div class="col-md-6">
-        <div class="d-flex mb-3 post-nav box-outline">
+    <div class="carousel_container">
+        <div id="carouselExampleControls" class="carousel slide"data-interval="false">
+            <div class="carousel-inner">
+                {% for i in range(3) %}
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="live_scorecard box-outline"> Test of card</div>
+                        </div>
+                        <div class="col-lg-4">
+                            <img src="..." class="d-block w-100" alt="...">
+                        </div>
+                        <div class="col-lg-4">
+                            <img src="..." class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="d-flex mb-3 post-nav box-outline">
         <div class="p-2 new-post">
             <a class="active" href="/"> New </a>
         </div>
@@ -26,17 +53,25 @@
             </div>
             <div class="col-10">
                 <div class="d-flex">
-                <h3 class="post-title p-2"> Title of Post </h3>
-                <li class="post-menu dropdown p-2 ms-auto post-toggle">
-                    <a class="post-menu-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="fa-solid fa-ellipsis-vertical fa-xl post-menu-i"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-lg-end box-outline">
-                        <li><a class="dropdown-item dropdown-text post-menu-item" href="/edit_post"> Edit </a></li>
-                        <li><a class="dropdown-item dropdown-text post-menu-item" href="/"> Delete</a></li>
-                    </ul>
-                </li>
+                    <h3 class="post-title p-2"> {{post.post_title}} </h3>
+
+                    {% if username == post.poster.username %}
+                    <li class="post-menu dropdown p-2 ms-auto post-toggle">
+                        <a class="post-menu-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis-vertical fa-xl post-menu-i"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-lg-end box-outline">
+                            <li><a class="dropdown-item dropdown-text post-menu-item" href="/edit_post"> Edit </a></li>
+                            <li>
+                                <form action="/deletepost/{{post.post_id}}" method="post">
+                                    <button class="btn btn-lg dropdown-item dropdown-text post-menu-item"
+                                        type="submit">Delete</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endif %}
                 </div>
                 <p class="post-details"> {{post.post_body}}</p>
                 <div class="bar"></div>

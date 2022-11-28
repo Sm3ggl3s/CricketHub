@@ -298,6 +298,17 @@ li {
 
 /* Index Styling */
 
+    
+
+.live_scorecard {
+    background: var(--background-highlight);
+    margin-top: 40px;
+    text-align: center;
+    color: var(--text-title);
+    width: 100%;
+    height: 128px;
+}
+
 .post-nav {
     margin: 0 auto;
     margin-top: 96px;
