@@ -26,7 +26,7 @@
             </div>
             <div class="col-10">
                 <div class="d-flex">
-                <h3 class="post-title p-2"> Title of Post </h3>
+                <h3 class="post-title p-2"> {{post.post_title}} </h3>
                 <li class="post-menu dropdown p-2 ms-auto post-toggle">
                     <a class="post-menu-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -45,7 +45,10 @@
                         <p class="post-by"> Posted By: <span> {{post.poster.username}} </span> </p>
                     </div>
                     <div class="ms-auto p-2 comment">
-                        <p class="comment-button"> Comment <i class="fa-regular fa-comment"></i> </p>
+                        <a href="/post/{{post.post_id}}">
+                            <p class="comment-button"> Comment <i class="fa-regular fa-comment"></i> </p>
+                        </a>
+                        
                     </div>
                 </div>
             </div>

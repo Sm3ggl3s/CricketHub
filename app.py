@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, url_for, session, abort
 from security import bcrypt
-from src.models import db,User,Post, Comment
+from src.models import db,User,Post, Comment, Post_like
 from blueprints.session_blueprint import router as session_router
 
 load_dotenv()
@@ -49,7 +49,7 @@ def create():
     db.session.commit()
 
     return redirect('/')
-
+#maybe modify, /post/<post_id>/edit
 @app.route('/edit_post')
 def edit_post():
     return render_template('edit_post.html')
@@ -116,3 +116,13 @@ def prof():
 def secret():
     if 'user' not in session:
         return redirect('/login')
+
+#maybe for delete post we can have "on delete cascade or manually delete likes by id in the delete method, query on likes junction table"
+
+@app.post('/post/<post_id>/like')
+def like(post_id):
+    user_liked = session['user']['user_id']
+
+    post_like = Post_like(post_id = post_id, user_liked = user_liked)
+    db.session.add(post_like)
+    db.session.commit()

@@ -19,8 +19,6 @@ CREATE TABLE IF NOT EXISTS users(
 
 CREATE TABLE IF NOT EXISTS posts(
 	post_id SERIAL,
-	likes int,
-	dislikes int,
 	post_title VARCHAR(255),
 	post_body TEXT,
 	poster_id int,
@@ -30,12 +28,26 @@ CREATE TABLE IF NOT EXISTS posts(
 
 CREATE TABLE IF NOT EXISTS comments(
 	comment_id SERIAL,
-	likes int, 
-	dislikes int,
 	content VARCHAR(255),
 	post_id int,
 	commentor_id int,
 	PRIMARY KEY(comment_id),
 	FOREIGN KEY(post_id) REFERENCES posts(post_id),
 	FOREIGN KEY(commentor_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE IF NOT EXISTS post_likes(
+	post_id SERIAL,
+	users_liked SERIAL,
+	PRIMARY KEY(post_id, users_liked),
+	FOREIGN KEY(post_id) REFERENCES posts(post_id),
+	FOREIGN KEY(users_liked) REFERENCES users(user_id)
+);
+
+CREATE TABLE IF NOT EXISTS post_dislikes(
+	post_id SERIAL,
+	users_disliked SERIAL,
+	PRIMARY KEY(post_id, users_disliked),
+	FOREIGN KEY(post_id) REFERENCES posts(post_id),
+	FOREIGN KEY(users_disliked) REFERENCES users(user_id)
 );
