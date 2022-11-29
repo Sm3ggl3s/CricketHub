@@ -79,6 +79,8 @@ def create_comment(post_id):
 
     return redirect(f'/post/{post_id}')
 
+#add like and dislike
+
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
