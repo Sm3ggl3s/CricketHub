@@ -36,3 +36,19 @@ class Post(db.Model):
         self.post_title = post_title
         self.post_body = post_body
         self.poster_id = poster_id
+
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+
+    comment_id = db.Column(db.Integer, primary_key = True)
+    likes = db.Column(db.Integer, nullable=True)
+    dislikes = db.Column(db.Integer, nullable=True)
+    content = db.Column(db.String, nullable =False)
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.post_id'), nullable = False)
+    commentor_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable = True)
+
+    def __init__(self, content, post_id, commentor_id) -> None:
+        self.content = content
+        self.post_id = post_id
+        self.commentor_id = commentor_id
