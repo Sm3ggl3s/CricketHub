@@ -1,11 +1,11 @@
 import requests
 import json
 
-# url = "https://cricbuzz-cricket.p.rapidapi.com/matches/v1/recent"
+# url = url 
 
 # headers = {
-# 	"X-RapidAPI-Key": "f64f040edcmshff1312af07cc944p171933jsn33a8eee55b6a",
-# 	"X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+# 	"X-RapidAPI-Key": X-RapidAPI-Key
+# 	"X-RapidAPI-Host": X-RapidAPI-Host
 # }
 
 # response = requests.request("GET", url, headers=headers)
