@@ -4,8 +4,8 @@ import json
 # url = url 
 
 # headers = {
-# 	"X-RapidAPI-Key": X-RapidAPI-Key
-# 	"X-RapidAPI-Host": X-RapidAPI-Host
+# 	"X-RapidAPI-Key": os.getenv("X-RapidAPI-Key")
+# 	"X-RapidAPI-Host": os.getenv("X-RapidAPI-Host")
 # }
 
 # response = requests.request("GET", url, headers=headers)
