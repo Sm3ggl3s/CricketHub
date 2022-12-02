@@ -13,8 +13,22 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Poppins:wght@400;600;700&family=Roboto:wght@400;700;900&display=swap"
         rel="stylesheet">
-    
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon"  href="{{ url_for('static', filename='imgs/favicon.ico') }}">
+
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script defer src="https://kit.fontawesome.com/50ed053f4d.js" crossorigin="anonymous"></script>
     <script defer src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -80,6 +94,35 @@
     {% endblock%}
 
     <div class="container-fluid">
+        {% block livescores %}
+        <div class="row">
+            <!-- <div class="col-md-2"></div> -->
+            <div class="col-md-12">
+                <div class="owl-carousel owl-theme" id="div_refresh">
+                    {% for match in results%}
+
+                    <div class="item">
+                        <div class="livescore-card box-outline">
+                            <div class="title"> {{match['team1_name']}} vs {{match['team2_name']}}</div>
+                            <div class="d-flex teams">
+                                <div class="team_abr p-2"> {{match['team1_abr']}} </div>
+                                <div class="team_score p-2 ms-auto"> <span>{{match['team1_runs']}}/ {{match['team1_wickets']}}</span>  ({{match['team1_overs']}} Overs)</div>
+                            </div> 
+                            <div class="d-flex teams">
+                                <div class="team_abr p-2"> {{match['team2_abr']}} </div>
+                                <div class="team_score p-2 ms-auto"> <span>{{match['team2_runs']}}/ {{match['team2_wickets']}}</span>  ({{match['team2_overs']}} Overs)</div>
+                            </div>
+                            <div class="match_details"> {{match['status']}}</div>
+                        </div>
+                    </div>
+                    
+                    {% endfor %}
+                </div>
+
+            </div>
+            <!-- <div class="col-md-2"></div> -->
+        </div>
+        {% endblock %}
         <div class="row">
             <!-- Menu -->
             {% block menu %}
@@ -110,6 +153,7 @@
                 {% endblock %}
             </div>
         </div>
+
 </body>
 
 </html>

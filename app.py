@@ -5,6 +5,7 @@ from flask import Flask, redirect, render_template, request, url_for, session, a
 from security import bcrypt
 from src.models import db,User,Post, Comment
 from blueprints.session_blueprint import router as session_router
+from src.livescore import all_matches
 
 load_dotenv()
 
@@ -30,8 +31,8 @@ def index():
         return redirect('/login')
 
     posts = Post.query.all()
-    #results = Livescore.results_of_matches
-    return render_template('index.html', home_active=True, loged_in = True, username =session['user']['username'], posts = posts)
+    results = all_matches["match_data"][:20]
+    return render_template('index.html', home_active=True, loged_in = True, username =session['user']['username'], posts = posts, results = results)
 
 @app.route('/create_post')
 def create_post():
