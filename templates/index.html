@@ -20,9 +20,14 @@
     <div class="container user-post box-outline">
         <div class="row">
             <div class="col-1 text-center counter">
-                <i class="fa-solid fa-angle-up fa-xl"></i>
-                <p class="like-counter"> 2</p>
-                <i class="fa-solid fa-angle-down fa-xl"></i>
+                <!--post table not updating, fix button-->
+                <a href="" action="/post/{{post_id}}/like">
+                    <i class="fa-solid fa-angle-up fa-xl"></i>
+                </a>
+                <p class="like-counter"> 2 </p>
+                <a href="" action = '"/post/{{post_id}}/dislike"'>
+                   <i class="fa-solid fa-angle-down fa-xl"></i>  
+                </a> 
             </div>
             <div class="col-10">
                 <div class="d-flex">

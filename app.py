@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, url_for, session, abort
 from security import bcrypt
-from src.models import db,User,Post, Comment, Post_like
+from src.models import db,User,Post, Comment, Post_like, Post_dislike
 from blueprints.session_blueprint import router as session_router
 
 load_dotenv()
@@ -119,6 +119,7 @@ def secret():
 
 #maybe for delete post we can have "on delete cascade or manually delete likes by id in the delete method, query on likes junction table"
 
+#like dislike function
 @app.post('/post/<post_id>/like')
 def like(post_id):
     user_liked = session['user']['user_id']
@@ -126,3 +127,13 @@ def like(post_id):
     post_like = Post_like(post_id = post_id, user_liked = user_liked)
     db.session.add(post_like)
     db.session.commit()
+
+@app.post('/post/<post_id>/dislike')
+def dislike(post_id):
+    user_disliked = session['user']['user_id']
+
+    post_dislike = Post_dislike(post_id = post_id, users_disliked= user_disliked)
+    db.session.add(post_dislike)
+    db.session.commit()
+
+#maybe write function that will calculate likes / dislike for the display
