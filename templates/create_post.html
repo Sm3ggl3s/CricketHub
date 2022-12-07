@@ -12,7 +12,7 @@
         <div class="create-box">
             <div class="create-controls d-flex mt-2 mx-2">
                 <div class="p-2 go-home">
-                    <a class="login-ctl" href="/"> <i class="fa-solid fa-chevron-left"></i> Go Back </a>
+                    <a class="create-ctl" href="/"> <i class="fa-solid fa-chevron-left"></i> Go Back </a>
                 </div>
             </div>
             <h2 class="create-title"> Create Post</h2>
@@ -26,7 +26,7 @@
                 <div class="form-group mb-4">
                     <label class="form-label ct-lab" for="postBody">Post Body</label>
                     <textarea id="postBody" name="post_body" class="form-control ct-input form-control-lg" rows="5" col ="30" required
-                        placeholder="Enter text here..."></textarea>
+                        placeholder="Enter text here..." minlength="1" maxlength="250"></textarea>
                 </div>
                 <div class="d-grid gap-2 col-6 mx-auto">
                     <button class="btn btn-lg ct-btn text-center" type="submit"> Post </button>

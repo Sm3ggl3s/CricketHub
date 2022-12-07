@@ -27,9 +27,9 @@ class Post(db.Model):
     post_id = db.Column(db.Integer, primary_key=True)
     likes = db.Column(db.Integer, nullable=True)
     dislikes = db.Column(db.Integer, nullable=True)
-    post_title = db.Column(db.String, nullable=False)
-    post_body = db.Column(db.String, nullable=False)
-    poster_id = db.Column(db.String, db.ForeignKey('users.user_id'), \
+    post_title = db.Column(db.String(255), nullable=False)
+    post_body = db.Column(db.String(255), nullable=False)
+    poster_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), 
     nullable=False)
 
     def __init__(self, post_title, post_body, poster_id) -> None:
@@ -52,3 +52,4 @@ class Comment(db.Model):
         self.content = content
         self.post_id = post_id
         self.commentor_id = commentor_id
+

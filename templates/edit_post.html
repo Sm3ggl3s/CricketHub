@@ -8,28 +8,28 @@
 {% block body %}
 <div class="col-md-3"> </div>
 <div class="col-md-6 d-flex align-items-center">
-    <div class="create-content">
-        <div class="create-box">
-            <div class="create-controls d-flex mt-2 mx-2">
+    <div class="edit-content">
+        <div class="edit-box">
+            <div class="edit-controls d-flex mt-2 mx-2">
                 <div class="p-2 go-home">
-                    <a class="login-ctl" href="/"> <i class="fa-solid fa-chevron-left"></i> Go Back </a>
+                    <a class="edit-ctl" href="/"> <i class="fa-solid fa-chevron-left"></i> Go Back </a>
                 </div>
             </div>
-            <h2 class="create-title"> Create Post</h2>
+            <h2 class="edit-title"> Edit Post</h2>
 
-            <form class="create-form">
+            <form class="edit-form" action="/edit_post/{{post_to_update.post_id}}" method="post">
                 <div class="form-group mb-4">
-                    <label class="form-label ct-lab" for="postTitle">Edit Title</label>
-                    <input type="text" id="postTitle" class="form-control ct-input form-control-lg" required
-                        placeholder="Edit your posts title" />
+                    <label class="form-label et-lab" for="postTitle">Edit Title</label>
+                    <input type="text" id="postTitle" name="title" class="form-control et-input form-control-lg" required
+                        placeholder="Edit your posts title" value=" {{post_to_update.post_title}}"/>
                 </div>
                 <div class="form-group mb-4">
-                    <label class="form-label ct-lab" for="postBody">Edit Body</label>
-                    <textarea id="postBody" class="form-control ct-input form-control-lg" rows="5" col ="30" required
-                        placeholder="Edit text here..."></textarea>
+                    <label class="form-label et-lab" for="postBody">Edit Body</label>
+                    <textarea id="postBody" name="content" class="form-control et-input form-control-lg" rows="4" col ="30" required
+                        placeholder="Edit text here..." minlength="1" maxlength="250">{{post_to_update.post_body}}</textarea>
                 </div>
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <button class="btn btn-lg ct-btn text-center" type="submit"> Save </button>
+                    <button class="btn btn-lg et-btn text-center" type="submit"> Save </button>
                 </div>
             </form>
 

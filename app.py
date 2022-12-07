@@ -3,8 +3,9 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, url_for, session, abort
 from security import bcrypt
-from src.models import db,User,Post, Comment
+from src.models import db, User, Post, Comment
 from blueprints.session_blueprint import router as session_router
+from blueprints.posts_blueprint import router as posts_router
 from src.livescore import all_matches
 
 load_dotenv()
@@ -21,6 +22,7 @@ db.init_app(app)
 bcrypt.init_app(app)
 
 app.register_blueprint(session_router)
+app.register_blueprint(posts_router)
 
 faq_dictionary = {}
 
@@ -34,40 +36,6 @@ def index():
     results = all_matches["match_data"][:20]
     return render_template('index.html', home_active=True, loged_in = True, username =session['user']['username'], posts = posts, results = results)
 
-@app.route('/create_post')
-def create_post():
-    return render_template('create_post.html')
-
-@app.post('/createpost')
-def create():
-    
-    post_title = request.form.get('post_title')
-    post_body = request.form.get('post_body')
-    poster_id = session['user']['user_id']
-    new_post = Post(post_title, post_body, poster_id)
-
-    db.session.add(new_post)
-    db.session.commit()
-
-    return redirect('/')
-
-@app.post('/deletepost/<int:post_id>')
-def delete_post(post_id):
-    post_to_delete = Post.query.get_or_404(post_id)
-    db.session.delete(post_to_delete)
-    db.session.commit()
-
-    return redirect('/')
-
-@app.route('/edit_post')
-def edit_post():
-    return render_template('edit_post.html')
-
-@app.route('/post/<post_id>')
-def view_post(post_id):
-    post = Post.query.get(post_id)
-    all_comments = Comment.query.filter_by(post_id=post_id).all()
-    return render_template('post.html', post=post, all_comments=all_comments)
 
 
 @app.post('/post/<post_id>/create_comment')
