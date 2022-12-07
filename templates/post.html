@@ -1,22 +1,53 @@
 {% extends '_layout.html' %}
 
-{% block title %}CricketHub | Create Post {% endblock %}
-{% block navbar %}{% endblock %}
+{% block title %}CricketHub | Post {% endblock %}
 
-{% block menu %}{% endblock %}
+
+
 {% block body %}
-<h1>
-    {{post.post_title}}
-</h1>
-<p>{{post.post_body}}</p>
+</div>
+<div class="col-md-6">
+    <div class="d-flex mb-3 post-nav box-outline">
+        <div class="p-2 new-post">
+            <a class="active" href="/"> New </a>
+        </div>
+        <div class="p-2 trending-post">
+            <a class="inactive" href="/"> Trending </a>
+        </div>
+        <div class="ms-auto p-2 new-post">
+            <a class="active" href="/create_post"> New Post <i class="fa-solid fa-plus"></i> </a>
+        </div>
+    </div>
+    <div class="container user-post box-outline">
+       <h1>
+            {{post.post_title}}
+        </h1> 
+        <p>{{post.post_body}}</p>
+    </div>
+    {% for comment in all_comments %}
+    <div class="container user-post box-outline">
+        <p>{{comment.content}}</p>
+    </div>
+    {% endfor %}
+    <form class="create-form" action="/post/{{post.post_id}}/create_comment" method="post">
+        <div class="form-group mb-4">
+            <label class="form-label ct-lab" for="comment_body">Comment</label>
+            <textarea id="comment_body" name="comment_body" class="form-control ct-input form-control-lg" rows="5" col ="30" 
+                placeholder="Enter text here...">
+            </textarea>
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
 
-<form class="create-form" action="/post/{{post.post_id}}/create_comment" method="post">
-    <textarea name="comment_body" required=""></textarea>
-    <button type="submit">Submit</button>
-</form>
+    
+</div>
+
+
+
+
 <!--{% if all_comments|length > 0 %}-->
-{% for comment in all_comments %}
-<p>{{comment.content}}</p>
-{% endfor %}
+
 <!--{% endif %}-->
 {% endblock %}

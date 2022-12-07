@@ -23,6 +23,16 @@ app.register_blueprint(session_router)
 
 faq_dictionary = {}
 
+def calculate_ratio(posts: list[Post]) -> list[list[int, Post]]:
+    ratio_post_pair=[]
+    for post in posts:
+        amt_likes = len(Post_like.query.filter_by(post_id = post.post_id).all())
+        amt_dislikes = len(Post_dislike.query.filter_by(post_id = post.post_id).all())
+        
+        ratio = amt_likes - amt_dislikes
+        ratio_post_pair.append([ratio, post])
+    return ratio_post_pair
+
 
 @app.route('/')
 def index():
@@ -30,8 +40,10 @@ def index():
         return redirect('/login')
 
     posts = Post.query.all()
+    #calculate likes dislikes
+    post_pairs = calculate_ratio(posts)
     #results = Livescore.results_of_matches
-    return render_template('index.html', home_active=True, loged_in = True, username =session['user']['username'], posts = posts)
+    return render_template('index.html', home_active=True, loged_in = True, username =session['user']['username'], post_pairs = post_pairs)
 
 @app.route('/create_post')
 def create_post():
@@ -122,12 +134,21 @@ def secret():
 #like dislike function
 @app.post('/post/<post_id>/like')
 def like(post_id):
-    users_liked = session['user']['user_id']
     
-    post_like = Post_like(post_id = post_id, users_liked = users_liked)
-    db.session.add(post_like)
+    liked = session['user']['user_id']
+    post_like_in_question = Post_like.query.filter_by(users_liked = liked, post_id = post_id).first()
+    post_dislike_in_question = Post_dislike.query.filter_by(users_disliked = liked, post_id = post_id).first()
+    if post_like_in_question:
+        Post_like.query.filter_by(users_liked = liked, post_id = post_id).delete()
+        
+    else:
+        if post_dislike_in_question:
+            Post_dislike.query.filter_by(users_disliked = liked, post_id = post_id).delete()
+        post_like = Post_like(post_id = post_id, users_liked = liked)
+        db.session.add(post_like)
     db.session.commit()
-    redirect('/')
+    return redirect('/')
+    
 
 @app.post('/post/<post_id>/dislike')
 def dislike(post_id):
@@ -136,5 +157,8 @@ def dislike(post_id):
     post_dislike = Post_dislike(post_id = post_id, users_disliked= users_disliked)
     db.session.add(post_dislike)
     db.session.commit()
-    redirect('/')
+    return redirect('/')
+
+
+#count likes dislikes, have a function that counts likes for a post, count dislikes for a specific post, likes - dislikes
 #maybe write function that will calculate likes / dislike for the display
