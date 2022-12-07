@@ -156,16 +156,20 @@ def like(post_id):
 
 @app.post('/post/<post_id>/dislike')
 def dislike(post_id):
-    users_disliked = session['user']['user_id']
-    
-    post_dislike = Post_dislike(post_id = post_id, users_disliked= users_disliked)
-    db.session.add(post_dislike)
+    disliked = session['user']['user_id']
+
+    post_like_in_question = Post_like.query.filter_by(users_liked = disliked, post_id = post_id).first()
+    post_dislike_in_question = Post_dislike.query.filter_by(users_disliked = disliked, post_id = post_id).first()
+    if post_dislike_in_question:
+        Post_dislike.query.filter_by(users_disliked = disliked, post_id = post_id).delete()
+    else:
+        if post_like_in_question:
+            Post_like.query.filter_by(post_id = post_id, users_liked= disliked).delete
+        post_dislike = Post_dislike(post_id = post_id, users_disliked= disliked)
+        db.session.add(post_dislike)
+
     db.session.commit()
     return redirect('/')
-
-
-#count likes dislikes, have a function that counts likes for a post, count dislikes for a specific post, likes - dislikes
-#maybe write function that will calculate likes / dislike for the display
 
 
 @app.post('/profile/edit')
