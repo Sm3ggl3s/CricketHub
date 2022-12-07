@@ -21,13 +21,17 @@
         <div class="row">
             <div class="col-1 text-center counter">
                 <!--post table not updating, fix button-->
-                <a href="" action="/post/{{post_id}}/like">
-                    <i class="fa-solid fa-angle-up fa-xl"></i>
-                </a>
+                <form method="POST" action="/post/{{post.post_id}}/like" >
+                    <button type="submit" >
+                        <i class="fa-solid fa-angle-up fa-xl"></i>
+                    </button>
+                </form>
                 <p class="like-counter"> 2 </p>
-                <a href="" action = '"/post/{{post_id}}/dislike"'>
-                   <i class="fa-solid fa-angle-down fa-xl"></i>  
-                </a> 
+                <form method="POST"action = "/post/{{post.post_id}}/dislike" >
+                    <button type="submit" >
+                        <i class="fa-solid fa-angle-down fa-xl"></i>  
+                    </button> 
+                </form>
             </div>
             <div class="col-10">
                 <div class="d-flex">

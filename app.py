@@ -122,18 +122,19 @@ def secret():
 #like dislike function
 @app.post('/post/<post_id>/like')
 def like(post_id):
-    user_liked = session['user']['user_id']
-
-    post_like = Post_like(post_id = post_id, user_liked = user_liked)
+    users_liked = session['user']['user_id']
+    
+    post_like = Post_like(post_id = post_id, users_liked = users_liked)
     db.session.add(post_like)
     db.session.commit()
+    redirect('/')
 
 @app.post('/post/<post_id>/dislike')
 def dislike(post_id):
-    user_disliked = session['user']['user_id']
-
-    post_dislike = Post_dislike(post_id = post_id, users_disliked= user_disliked)
+    users_disliked = session['user']['user_id']
+    
+    post_dislike = Post_dislike(post_id = post_id, users_disliked= users_disliked)
     db.session.add(post_dislike)
     db.session.commit()
-
+    redirect('/')
 #maybe write function that will calculate likes / dislike for the display
