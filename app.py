@@ -118,8 +118,11 @@ def info():
         faq_dictionary[faq_listofQuestions[i]] = faq_listofAnswers[i] 
     return render_template('about.html', about_active=True, faq_dictionary = faq_dictionary)
 
-@app.route('/profile')
+@app.get('/profile')
 def prof():
+    post_firstname = request.form.get('firstname-dis')
+    post_lastname = request.form.get('lastname-dis')
+    post_email = request.form.get('email')
 
     return render_template('profile.html')
 
@@ -128,6 +131,7 @@ def prof():
 def secret():
     if 'user' not in session:
         return redirect('/login')
+
 
 #maybe for delete post we can have "on delete cascade or manually delete likes by id in the delete method, query on likes junction table"
 
@@ -162,3 +166,12 @@ def dislike(post_id):
 
 #count likes dislikes, have a function that counts likes for a post, count dislikes for a specific post, likes - dislikes
 #maybe write function that will calculate likes / dislike for the display
+=======
+
+@app.post('/profile/edit')
+def prof_edit():
+
+
+    
+    return redirect('/profile')  
+
