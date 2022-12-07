@@ -166,7 +166,7 @@ def dislike(post_id):
 
 #count likes dislikes, have a function that counts likes for a post, count dislikes for a specific post, likes - dislikes
 #maybe write function that will calculate likes / dislike for the display
-=======
+
 
 @app.post('/profile/edit')
 def prof_edit():
