@@ -18,15 +18,15 @@ def calculate_ratio(posts: list[Post]) -> list[list[int, Post]]:
         ratio_post_pair.append([ratio, post])
     return ratio_post_pair
 
-@router.route('/create_post')
-def create_post():
-    return render_template('create_post.html')
-
 @router.route('/post/<post_id>')
 def view_post(post_id):
     post = Post.query.get(post_id)
     all_comments = Comment.query.filter_by(post_id=post_id).all()
     return render_template('post.html', post=post, all_comments=all_comments)
+
+@router.route('/create_post')
+def create_post():
+    return render_template('create_post.html')
 
 @router.post('/createpost')
 def create():

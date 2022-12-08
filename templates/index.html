@@ -23,14 +23,16 @@
             <div class="col-1 text-center counter">
                 <!--post table not updating, fix button-->
                 <form method="POST" action="/post/{{post_pair[1].post_id}}/like" >
-                    <button type="submit" >
-                        <i class="fa-solid fa-angle-up fa-xl"></i>
+                    <button type="submit" class="like-btn">
+                        <i class="fa-solid fa-angle-up fa-xl {% if color == 'green' %} green {% endif %}"></i>
                     </button>
                 </form>
-                <p class="like-counter"> {{post_pair[0]}} </p>
+                <p class="{{color}} like-counter">
+                    {{post_pair[0]}}
+                </p>
                 <form method="POST"action = "/post/{{post_pair[1].post_id}}/dislike" >
-                    <button type="submit" >
-                        <i class="fa-solid fa-angle-down fa-xl"></i>  
+                    <button type="submit" class="dislike-btn">
+                        <i class="fa-solid fa-angle-down fa-xl {% if color == 'red' %} red {% endif %}"></i>  
                     </button> 
                 </form>
             </div>
@@ -43,7 +45,7 @@
                         <i class="fa-solid fa-ellipsis-vertical fa-xl post-menu-i"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg-end box-outline">
-                        <li><a class="dropdown-item dropdown-text post-menu-item" href="/edit_post"> Edit </a></li>
+                        <li><a class="dropdown-item dropdown-text post-menu-item" href="/edit_post/{{post_pair[1].post_id}}"> Edit </a></li>
                         <li><a class="dropdown-item dropdown-text post-menu-item" href="/"> Delete</a></li>
                     </ul>
                 </li>
@@ -55,8 +57,8 @@
                         <p class="post-by"> Posted By: <span> {{post_pair[1].poster.username}} </span> </p>
                     </div>
                     <div class="ms-auto p-2 comment">
-                        <a href="/post/{{post_pair[1].post_id}}">
-                            <p class="comment-button"> Comment <i class="fa-regular fa-comment"></i> </p>
+                        <a href="/post/{{post_pair[1].post_id}}" class="comment-btn">
+                            <p> Comment <i class="fa-regular fa-comment"></i> </p>
                         </a>
                         
                     </div>

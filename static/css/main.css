@@ -298,8 +298,6 @@ li {
 
 /* Index Styling */
 
-    
-
 .livescore-card {
     background: var(--background-highlight);
     margin: 30px 0;
@@ -403,6 +401,21 @@ li {
     font-size: 16px;
 }
 
+.user-post .counter .green{
+    color: var(--green);
+}
+
+.user-post .counter .red {
+    color: var(--main-color);
+}
+
+.user-post .counter .like-btn, 
+.user-post .counter .dislike-btn {
+    background:none;
+    border:none;
+    color: var(--text-title);
+}
+
 .user-post .post-title {
     margin: 15px 0 10px 0;
     font-size: 20px;
@@ -448,6 +461,11 @@ li {
 .user-post .comment {
     font-size: 18px;
 }
+
+.user-post .comment .comment-btn {
+    color: var(--text-title);
+    text-decoration: none;
+    }
 
 .fa-comment {
     color: var(--main-color);
