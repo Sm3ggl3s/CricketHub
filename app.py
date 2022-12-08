@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, url_for, session, abort
 from security import bcrypt
-from src.models import db,User,Post, Comment
+from src.models import db,User,Post, Comment, Post_dislike, Post_like
 from blueprints.session_blueprint import router as session_router
 from blueprints.posts_blueprint import router as posts_router
 from src.livescore import all_matches

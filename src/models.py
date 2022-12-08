@@ -55,3 +55,24 @@ class Comment(db.Model):
         self.content = content
         self.post_id = post_id
         self.commentor_id = commentor_id
+
+class Post_like(db.Model):
+    __tablename__ = 'post_likes'
+
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.post_id'), primary_key=True)
+    users_liked = db.Column(db.Integer, db.ForeignKey('users.user_id'), primary_key=True)
+
+
+    def __init__(self, post_id, users_liked) -> None:
+        self.post_id = post_id
+        self.users_liked = users_liked
+    
+class Post_dislike(db.Model):
+    __tablename__= 'post_dislikes'
+
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.post_id'), primary_key=True)
+    users_disliked= db.Column(db.Integer, db.ForeignKey('users.user_id'), primary_key=True)
+
+    def __init__(self, post_id, users_disliked) -> None:
+        self.post_id = post_id
+        self.users_disliked = users_disliked
