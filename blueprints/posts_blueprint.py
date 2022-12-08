@@ -1,7 +1,7 @@
 import os
 from flask import abort, redirect, render_template, request, session, Blueprint
 
-from src.models import Post, db, Comment,Post_like, Post_dislike
+from src.models import Post, User, db, Comment,Post_like, Post_dislike
 
 
 
@@ -74,10 +74,18 @@ def create_comment(post_id):
     return redirect(f'/post/{post_id}')
 
 
-@router.post('/deletepost/<int:post_id>')
+@router.post('/<int:post_id>/delete')
 def delete_post(post_id):
     post_to_delete = Post.query.get_or_404(post_id)
-    db.session.delete(post_to_delete)
-    db.session.commit()
+    if 'user' in session:
+        user_id = session['user'].get('user_id')
+        if post_to_delete.user_id == user_id:
+            Post_like.query.filter_by(post_id=post_id).delete()
+            Post_dislike.query.filter_by(post_id=post_id).delete()
+            Comment.query.filter_by(post_id=post_id).delete()
 
-    return redirect('/')
+
+            db.session.delete(post_to_delete)
+            db.session.commit()
+    
+    return redirect('/')    

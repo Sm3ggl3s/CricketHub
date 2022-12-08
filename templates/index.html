@@ -39,6 +39,7 @@
             <div class="col-10">
                 <div class="d-flex">
                 <h3 class="post-title p-2"> {{post_pair[1].post_title}} </h3>
+                {% if username == post_pair[1].poster_id %}
                 <li class="post-menu dropdown p-2 ms-auto post-toggle">
                     <a class="post-menu-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -46,9 +47,10 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg-end box-outline">
                         <li><a class="dropdown-item dropdown-text post-menu-item" href="/edit_post/{{post_pair[1].post_id}}"> Edit </a></li>
-                        <li><a class="dropdown-item dropdown-text post-menu-item" href="/"> Delete</a></li>
+                        <li><a class="dropdown-item dropdown-text post-menu-item" href="/{{post_pair[1].post_id}}/delete"> Delete</a></li>
                     </ul>
                 </li>
+                {% endif %}
                 </div>
                 <p class="post-details"> {{post_pair[1].post_body}}</p>
                 <div class="bar"></div>
