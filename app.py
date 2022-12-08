@@ -163,7 +163,6 @@ def like(post_id):
 def dislike(post_id):
     user = session['user']['user_id']
 
-    disliked=''
     post_like_in_question = Post_like.query.filter_by(users_liked = user, post_id = post_id).first()
     post_dislike_in_question = Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).first()
     #stops after first if since it passes
@@ -186,8 +185,5 @@ def dislike(post_id):
 
 @app.post('/profile/edit')
 def prof_edit():
-
-
-    
     return redirect('/profile')  
 
