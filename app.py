@@ -1,10 +1,12 @@
 import os
 
 from dotenv import load_dotenv
-from flask import Flask, redirect, render_template, request, url_for, session, abort
+from flask import Flask, redirect, render_template, request, session, abort
 from security import bcrypt
-from src.models import db,User,Post, Comment, Post_like, Post_dislike
+from src.models import db,Post, Post_dislike, Post_like
 from blueprints.session_blueprint import router as session_router
+from blueprints.posts_blueprint import router as posts_router
+from blueprints.posts_blueprint import calculate_ratio
 from src.livescore import all_matches
 
 load_dotenv()
@@ -21,18 +23,9 @@ db.init_app(app)
 bcrypt.init_app(app)
 
 app.register_blueprint(session_router)
+app.register_blueprint(posts_router)
 
 faq_dictionary = {}
-
-def calculate_ratio(posts: list[Post]) -> list[list[int, Post]]:
-    ratio_post_pair=[]
-    for post in posts:
-        amt_likes = len(Post_like.query.filter_by(post_id = post.post_id).all())
-        amt_dislikes = len(Post_dislike.query.filter_by(post_id = post.post_id).all())
-        
-        ratio = amt_likes - amt_dislikes
-        ratio_post_pair.append([ratio, post])
-    return ratio_post_pair
 
 
 @app.route('/')
@@ -46,62 +39,6 @@ def index():
     post_pairs = calculate_ratio(posts)
     return render_template('index.html', home_active=True, loged_in = True, username =session['user']['username'], post_pairs = post_pairs, results = results)
 
-@app.route('/create_post')
-def create_post():
-    return render_template('create_post.html')
-
-@app.post('/createpost')
-def create():
-    
-    post_title = request.form.get('post_title')
-    post_body = request.form.get('post_body')
-    poster_id = session['user']['user_id']
-    new_post = Post(post_title, post_body, poster_id)
-
-    db.session.add(new_post)
-    db.session.commit()
-
-    return redirect('/')
-
-@app.post('/deletepost/<int:post_id>')
-def delete_post(post_id):
-    post_to_delete = Post.query.get_or_404(post_id)
-    db.session.delete(post_to_delete)
-    db.session.commit()
-
-    return redirect('/')
-
-#maybe modify, /post/<post_id>/edit
-@app.route('/edit_post')
-def edit_post():
-    return render_template('edit_post.html')
-
-@app.route('/post/<post_id>')
-def view_post(post_id):
-    post = Post.query.get(post_id)
-    all_comments = Comment.query.filter_by(post_id=post_id).all()
-    return render_template('post.html', post=post, all_comments=all_comments)
-
-
-@app.post('/post/<post_id>/create_comment')
-def create_comment(post_id):
-
-    content = request.form.get('comment_body')
-    error_msg =''
-    if content is None:
-        error_msg = "Comment needs content"
-        return abort(403)
-    #how to create post id
-    commentor_id = session['user']['user_id']
-
-    new_comment = Comment(content=content, post_id=post_id, commentor_id=commentor_id)
-
-    db.session.add(new_comment)
-    db.session.commit()
-
-    return redirect(f'/post/{post_id}')
-
-#add like and dislike
 
 @app.route('/signup')
 def signup():

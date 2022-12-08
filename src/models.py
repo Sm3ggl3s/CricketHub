@@ -25,8 +25,8 @@ class Post(db.Model):
     __tablename__ = 'posts'
 
     post_id = db.Column(db.Integer, primary_key=True)
-    post_title = db.Column(db.String, nullable=False)
-    post_body = db.Column(db.String, nullable=False)
+    post_title = db.Column(db.String(255), nullable=False)
+    post_body = db.Column(db.String(255), nullable=False)
     poster_id = db.Column(db.String, db.ForeignKey('users.user_id'), \
     nullable=False)
 
