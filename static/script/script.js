@@ -37,3 +37,36 @@ checkbox.addEventListener('change', () => {
   }
 });
 
+$(document).ready(function(){
+  $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    autoplay: true,
+    autoplayTimeout: 5000,
+    nav:false,
+    dots: false,
+    stagePadding: 25,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:2
+        },
+        1000:{
+            items:3
+        },
+        1400:{
+            items:5
+        },
+    }
+  })
+
+}) 
+
+// $(document).ready(function(){
+//   $('#div_refresh').load('templates/_layout.html');
+//     setInterval(function(){
+//       $('#div_refresh').load('templates/_layout.html');
+//     }, 3000);
+// });

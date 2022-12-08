@@ -5,6 +5,7 @@ from flask import Flask, redirect, render_template, request, url_for, session, a
 from security import bcrypt
 from src.models import db,User,Post, Comment, Post_like, Post_dislike
 from blueprints.session_blueprint import router as session_router
+from src.livescore import all_matches
 
 load_dotenv()
 
@@ -40,10 +41,10 @@ def index():
         return redirect('/login')
 
     posts = Post.query.all()
+    results = all_matches["match_data"][:20]
     #calculate likes dislikes
     post_pairs = calculate_ratio(posts)
-    #results = Livescore.results_of_matches
-    return render_template('index.html', home_active=True, loged_in = True, username =session['user']['username'], post_pairs = post_pairs)
+    return render_template('index.html', home_active=True, loged_in = True, username =session['user']['username'], post_pairs = post_pairs, results = results)
 
 @app.route('/create_post')
 def create_post():
@@ -61,6 +62,15 @@ def create():
     db.session.commit()
 
     return redirect('/')
+
+@app.post('/deletepost/<int:post_id>')
+def delete_post(post_id):
+    post_to_delete = Post.query.get_or_404(post_id)
+    db.session.delete(post_to_delete)
+    db.session.commit()
+
+    return redirect('/')
+
 #maybe modify, /post/<post_id>/edit
 @app.route('/edit_post')
 def edit_post():
@@ -103,7 +113,7 @@ def login():
 
 @app.route('/rules')
 def rules():
-    return render_template('rules.html', rules_active=True)
+    return render_template('rules.html', rules_active=True, username =session['user']['username'])
 
 
 @app.route('/about')
@@ -116,7 +126,7 @@ def info():
 
     for i in range(6):
         faq_dictionary[faq_listofQuestions[i]] = faq_listofAnswers[i] 
-    return render_template('about.html', about_active=True, faq_dictionary = faq_dictionary)
+    return render_template('about.html', about_active=True, faq_dictionary = faq_dictionary, username =session['user']['username'])
 
 @app.get('/profile')
 def prof():
@@ -124,7 +134,7 @@ def prof():
     post_lastname = request.form.get('lastname-dis')
     post_email = request.form.get('email')
 
-    return render_template('profile.html')
+    return render_template('profile.html', username =session['user']['username'])
 
 
 @app.get('/secret')

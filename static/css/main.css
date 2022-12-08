@@ -252,7 +252,7 @@ li {
 /* Menu Styling */
 
 .menu {
-    margin: 96px auto;
+    margin: 48px auto;
     max-width: 300px;
     padding: 10px 0;
     align-items: flex-start;
@@ -298,9 +298,62 @@ li {
 
 /* Index Styling */
 
+    
+
+.livescore-card {
+    background: var(--background-highlight);
+    margin: 30px 0;
+    margin-bottom: 5px;
+    text-align: center;
+    color: var(--text-title);
+    max-width: 320px;
+    min-height: 140px;
+}
+
+.livescore-card .title {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 0 10px 10px;
+}
+.livescore-card .team_abr {
+    font-size: 12px;
+    font-weight: 600;
+    padding:0;
+    padding-left: 5px;
+    margin: 0;
+    
+}
+
+.livescore-card .teams {
+    margin: 0;
+    padding: 0;
+    line-height: 0.6;
+    
+}
+
+.livescore-card .team_score {
+    font-size: 12px;
+    text-align: right;
+    align-items: right;
+}
+
+.livescore-card .team_score span {
+    color: var(--main-color);
+}
+
+.livescore-card .match_details {
+    font-size: 12px;
+    color: var(--main-color);
+    margin: auto 0;
+    text-align: left;
+    padding-left: 5px;
+}
+
+
 .post-nav {
     margin: 0 auto;
-    margin-top: 96px;
+    margin-top: 48px;
     margin-bottom: 17px;
     max-width: 700px;
     min-width: 300px;
@@ -402,7 +455,7 @@ li {
 
 
 .leaderboard {
-    margin: 96px auto;
+    margin: 48px auto;
     max-width: 300px;
     padding: 10px 16px;
     align-items: flex-start;

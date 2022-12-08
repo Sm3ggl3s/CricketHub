@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS users(
 CREATE TABLE IF NOT EXISTS posts(
 	post_id SERIAL,
 	post_title VARCHAR(255),
-	post_body TEXT,
+	post_body VARCHAR(255),
 	poster_id int,
 	PRIMARY KEY(post_id),
 	FOREIGN KEY(poster_id) REFERENCES users(user_id)
