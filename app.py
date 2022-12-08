@@ -139,16 +139,21 @@ def secret():
 @app.post('/post/<post_id>/like')
 def like(post_id):
     
-    liked = session['user']['user_id']
-    post_like_in_question = Post_like.query.filter_by(users_liked = liked, post_id = post_id).first()
-    post_dislike_in_question = Post_dislike.query.filter_by(users_disliked = liked, post_id = post_id).first()
-    if post_like_in_question:
-        Post_like.query.filter_by(users_liked = liked, post_id = post_id).delete()
-        
+    user = session['user']['user_id']
+    post_like_in_question = Post_like.query.filter_by(users_liked = user, post_id = post_id).first()
+    post_dislike_in_question = Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).first()
+    if post_like_in_question and post_dislike_in_question:
+        Post_like.query.filter_by(users_liked = user, post_id = post_id).delete()
+        Post_dislike.query.filter_by(users_disliked= user, post_id = post_id).delete()
+        post_like = Post_like(post_id = post_id, users_liked = user)
+        db.session.add(post_like)
+
+    elif post_like_in_question:
+        Post_like.query.filter_by(users_liked = user, post_id = post_id).delete()
     else:
         if post_dislike_in_question:
-            Post_dislike.query.filter_by(users_disliked = liked, post_id = post_id).delete()
-        post_like = Post_like(post_id = post_id, users_liked = liked)
+            Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).delete()
+        post_like = Post_like(post_id = post_id, users_liked = user)
         db.session.add(post_like)
     db.session.commit()
     return redirect('/')
@@ -156,16 +161,23 @@ def like(post_id):
 
 @app.post('/post/<post_id>/dislike')
 def dislike(post_id):
-    disliked = session['user']['user_id']
+    user = session['user']['user_id']
 
-    post_like_in_question = Post_like.query.filter_by(users_liked = disliked, post_id = post_id).first()
-    post_dislike_in_question = Post_dislike.query.filter_by(users_disliked = disliked, post_id = post_id).first()
-    if post_dislike_in_question:
-        Post_dislike.query.filter_by(users_disliked = disliked, post_id = post_id).delete()
+    disliked=''
+    post_like_in_question = Post_like.query.filter_by(users_liked = user, post_id = post_id).first()
+    post_dislike_in_question = Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).first()
+    #stops after first if since it passes
+    if post_dislike_in_question and post_like_in_question:
+        Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).delete()
+        Post_like.query.filter_by(users_liked = user, post_id = post_id).delete()
+        post_dislike = Post_dislike(post_id = post_id, users_disliked= user)
+        db.session.add(post_dislike)
+    elif post_dislike_in_question:
+        Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).delete()
     else:
         if post_like_in_question:
-            Post_like.query.filter_by(post_id = post_id, users_liked= disliked).delete
-        post_dislike = Post_dislike(post_id = post_id, users_disliked= disliked)
+            Post_like.query.filter_by(users_liked= user, post_id = post_id).delete
+        post_dislike = Post_dislike(post_id = post_id, users_disliked= user)
         db.session.add(post_dislike)
 
     db.session.commit()
