@@ -17,44 +17,48 @@
             <a class="active" href="/create_post"> New Post <i class="fa-solid fa-plus"></i> </a>
         </div>
     </div>
-    {% for post in posts %}
+    {% for post_pair in post_pairs %}
     <div class="container user-post box-outline">
         <div class="row">
             <div class="col-1 text-center counter">
-                <i class="fa-solid fa-angle-up fa-xl"></i>
-                <p class="like-counter"> 2</p>
-                <i class="fa-solid fa-angle-down fa-xl"></i>
+                <!--post table not updating, fix button-->
+                <form method="POST" action="/post/{{post_pair[1].post_id}}/like" >
+                    <button type="submit" >
+                        <i class="fa-solid fa-angle-up fa-xl"></i>
+                    </button>
+                </form>
+                <p class="like-counter"> {{post_pair[0]}} </p>
+                <form method="POST"action = "/post/{{post_pair[1].post_id}}/dislike" >
+                    <button type="submit" >
+                        <i class="fa-solid fa-angle-down fa-xl"></i>  
+                    </button> 
+                </form>
             </div>
             <div class="col-10">
                 <div class="d-flex">
-                    <h3 class="post-title p-2"> {{post.post_title}} </h3>
-
-                    {% if username == post.poster.username %}
-                    <li class="post-menu dropdown p-2 ms-auto post-toggle">
-                        <a class="post-menu-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="fa-solid fa-ellipsis-vertical fa-xl post-menu-i"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-lg-end box-outline">
-                            <li><a class="dropdown-item dropdown-text post-menu-item" href="/edit_post/{{post.post_id}}"> Edit </a></li>
-                            <li>
-                                <form action="/deletepost/{{post.post_id}}" method="post">
-                                    <button class="btn btn-lg dropdown-item dropdown-text post-menu-item"
-                                        type="submit">Delete</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                    {% endif %}
+                <h3 class="post-title p-2"> {{post_pair[1].post_title}} </h3>
+                <li class="post-menu dropdown p-2 ms-auto post-toggle">
+                    <a class="post-menu-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis-vertical fa-xl post-menu-i"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-lg-end box-outline">
+                        <li><a class="dropdown-item dropdown-text post-menu-item" href="/edit_post"> Edit </a></li>
+                        <li><a class="dropdown-item dropdown-text post-menu-item" href="/"> Delete</a></li>
+                    </ul>
+                </li>
                 </div>
-                <p class="post-details"> {{post.post_body}}</p>
+                <p class="post-details"> {{post_pair[1].post_body}}</p>
                 <div class="bar"></div>
                 <div class="d-flex">
                     <div class="p-2 username">
-                        <p class="post-by"> Posted By: <span> {{post.poster.username}} </span> </p>
+                        <p class="post-by"> Posted By: <span> {{post_pair[1].poster.username}} </span> </p>
                     </div>
                     <div class="ms-auto p-2 comment">
-                        <p class="comment-button"> Comment <i class="fa-regular fa-comment"></i> </p>
+                        <a href="/post/{{post_pair[1].post_id}}">
+                            <p class="comment-button"> Comment <i class="fa-regular fa-comment"></i> </p>
+                        </a>
+                        
                     </div>
                 </div>
             </div>

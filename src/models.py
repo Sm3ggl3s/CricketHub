@@ -25,25 +25,28 @@ class Post(db.Model):
     __tablename__ = 'posts'
 
     post_id = db.Column(db.Integer, primary_key=True)
-    likes = db.Column(db.Integer, nullable=True)
-    dislikes = db.Column(db.Integer, nullable=True)
     post_title = db.Column(db.String(255), nullable=False)
     post_body = db.Column(db.String(255), nullable=False)
-    poster_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), 
+    poster_id = db.Column(db.String, db.ForeignKey('users.user_id'), \
     nullable=False)
 
     def __init__(self, post_title, post_body, poster_id) -> None:
         self.post_title = post_title
         self.post_body = post_body
         self.poster_id = poster_id
+    
+    def count_total_likes(self) -> int:
+        likes = Post_like.query.filter_by(self.post_id).count()
+        dislikes= Post_dislike.query.filter_by(self.post_id).count()
+        return likes - dislikes
+
+    
 
 
 class Comment(db.Model):
     __tablename__ = 'comments'
 
     comment_id = db.Column(db.Integer, primary_key = True)
-    likes = db.Column(db.Integer, nullable=True)
-    dislikes = db.Column(db.Integer, nullable=True)
     content = db.Column(db.String, nullable =False)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.post_id'), nullable = False)
     commentor_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable = True)
@@ -52,4 +55,3 @@ class Comment(db.Model):
         self.content = content
         self.post_id = post_id
         self.commentor_id = commentor_id
-
