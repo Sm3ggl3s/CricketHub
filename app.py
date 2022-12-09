@@ -158,7 +158,7 @@ def like(post_id):
     db.session.commit()
     return redirect('/')
     
-
+#
 @app.post('/post/<post_id>/dislike')
 def dislike(post_id):
     user = session['user']['user_id']
