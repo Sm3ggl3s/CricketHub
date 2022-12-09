@@ -86,39 +86,51 @@ def secret():
 @app.post('/post/<post_id>/like')
 def like(post_id):
     
-    liked = session['user']['user_id']
-    post_like_in_question = Post_like.query.filter_by(users_liked = liked, post_id = post_id).first()
-    post_dislike_in_question = Post_dislike.query.filter_by(users_disliked = liked, post_id = post_id).first()
-    if post_like_in_question:
-        Post_like.query.filter_by(users_liked = liked, post_id = post_id).delete()
-        
+    user = session['user']['user_id']
+    post_like_in_question = Post_like.query.filter_by(users_liked = user, post_id = post_id).first()
+    post_dislike_in_question = Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).first()
+    if post_like_in_question and post_dislike_in_question:
+        Post_like.query.filter_by(users_liked = user, post_id = post_id).delete()
+        Post_dislike.query.filter_by(users_disliked= user, post_id = post_id).delete()
+        post_like = Post_like(post_id = post_id, users_liked = user)
+        db.session.add(post_like)
+
+    elif post_like_in_question:
+        Post_like.query.filter_by(users_liked = user, post_id = post_id).delete()
     else:
         if post_dislike_in_question:
-            Post_dislike.query.filter_by(users_disliked = liked, post_id = post_id).delete()
-        post_like = Post_like(post_id = post_id, users_liked = liked)
+            Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).delete()
+        post_like = Post_like(post_id = post_id, users_liked = user)
         db.session.add(post_like)
     db.session.commit()
     return redirect('/')
     
-
+#
 @app.post('/post/<post_id>/dislike')
 def dislike(post_id):
-    users_disliked = session['user']['user_id']
-    
-    post_dislike = Post_dislike(post_id = post_id, users_disliked= users_disliked)
-    db.session.add(post_dislike)
+    user = session['user']['user_id']
+
+    post_like_in_question = Post_like.query.filter_by(users_liked = user, post_id = post_id).first()
+    post_dislike_in_question = Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).first()
+    #stops after first if since it passes
+    if post_dislike_in_question and post_like_in_question:
+        Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).delete()
+        Post_like.query.filter_by(users_liked = user, post_id = post_id).delete()
+        post_dislike = Post_dislike(post_id = post_id, users_disliked= user)
+        db.session.add(post_dislike)
+    elif post_dislike_in_question:
+        Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).delete()
+    else:
+        if post_like_in_question:
+            Post_like.query.filter_by(users_liked= user, post_id = post_id).delete
+        post_dislike = Post_dislike(post_id = post_id, users_disliked= user)
+        db.session.add(post_dislike)
+
     db.session.commit()
     return redirect('/')
 
 
-#count likes dislikes, have a function that counts likes for a post, count dislikes for a specific post, likes - dislikes
-#maybe write function that will calculate likes / dislike for the display
-
-
 @app.post('/profile/edit')
 def prof_edit():
-
-
-    
     return redirect('/profile')  
 
