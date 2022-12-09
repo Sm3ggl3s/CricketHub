@@ -13,6 +13,7 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)
     pinned_team = db.Column(db.Integer, nullable=True)
     posts = db.relationship('Post', backref='poster')
+    comments = db.relationship('Comment', backref='commentor')
 
     def __init__(self, username, name, email,password, pinned_team) -> None:
         self.username = username
@@ -27,8 +28,8 @@ class Post(db.Model):
     post_id = db.Column(db.Integer, primary_key=True)
     post_title = db.Column(db.String(255), nullable=False)
     post_body = db.Column(db.String(255), nullable=False)
-    poster_id = db.Column(db.String, db.ForeignKey('users.user_id'), \
-    nullable=False)
+    poster_id = db.Column(db.String, db.ForeignKey('users.user_id'), nullable=False)
+
 
     def __init__(self, post_title, post_body, poster_id) -> None:
         self.post_title = post_title
@@ -40,8 +41,6 @@ class Post(db.Model):
         dislikes= Post_dislike.query.filter_by(self.post_id).count()
         return likes - dislikes
 
-    
-
 
 class Comment(db.Model):
     __tablename__ = 'comments'
@@ -49,7 +48,7 @@ class Comment(db.Model):
     comment_id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.String, nullable =False)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.post_id'), nullable = False)
-    commentor_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable = True)
+    commentor_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable = False)
 
     def __init__(self, content, post_id, commentor_id) -> None:
         self.content = content

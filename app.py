@@ -37,7 +37,7 @@ def index():
     results = all_matches["match_data"][:20]
     #calculate likes dislikes
     post_pairs = calculate_ratio(posts)
-    return render_template('index.html', home_active=True, loged_in = True, username =session['user']['username'], post_pairs = post_pairs, results = results)
+    return render_template('index.html', home_active=True, loged_in = True, username =session['user']['username'], user_id=session['user']['user_id'], post_pairs = post_pairs, results = results)
 
 
 @app.route('/signup')

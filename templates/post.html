@@ -5,44 +5,116 @@
 
 
 {% block livescores %}{% endblock %}
-{% block menu %}{% endblock %}
 {% block body %}
 </div>
 <div class="col-md-6">
-    <div class="d-flex mb-3 post-nav box-outline">
-        <div class="p-2 new-post">
-            <a class="active" href="/"> New </a>
+    <div class="container user-post post-single box-outline">
+        <div class="row">
+            <div class="col-1 text-center counter">
+                <!--post table not updating, fix button-->
+                <form method="POST" action="/post/{{post.post_id}}/like">
+                    <button type="submit" class="like-btn">
+                        <i class="fa-solid fa-angle-up fa-xl"></i>
+                    </button>
+                </form>
+                <p class="like-counter">
+                    1
+                </p>
+                <form method="POST" action="/post/{{post.post_id}}/dislike">
+                    <button type="submit" class="dislike-btn">
+                        <i class="fa-solid fa-angle-down fa-xl "></i>
+                    </button>
+                </form>
+            </div>
+            <div class="col-10">
+                <div class="d-flex">
+                    <h3 class="post-title p-2"> {{post.post_title}} </h3>
+                    {% if user_id == post.poster_id %}
+                    <li class="post-menu dropdown p-2 ms-auto post-toggle">
+                        <a class="post-menu-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis-vertical fa-xl post-menu-i"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-lg-end box-outline">
+                            <li><a class="dropdown-item dropdown-text post-menu-item"
+                                    href="/edit_post/{{post.post_id}}"> Edit </a></li>
+                            <li><a class="dropdown-item dropdown-text post-menu-item" href="/{{post.post_id}}/delete">
+                                    Delete</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </div>
+                <p class="post-details"> {{post.post_body}}</p>
+                <div class="bar"></div>
+                <div class="d-flex">
+                    <div class="p-2 username">
+                        <p class="post-by"> Posted By: <span> {{post.poster.username}} </span> </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+                <!-- Blank Space -->
+            </div>
         </div>
-        <div class="p-2 trending-post">
-            <a class="inactive" href="/"> Trending </a>
-        </div>
-        <div class="ms-auto p-2 new-post">
-            <a class="active" href="/create_post"> New Post <i class="fa-solid fa-plus"></i> </a>
-        </div>
-    </div>
-    <div class="container user-post box-outline">
-        <h1>
-            {{post.post_title}}
-        </h1> 
-        <p>{{post.post_body}}</p>
     </div>
     {% for comment in all_comments %}
-    <div class="container user-post box-outline">
-        <p>{{comment.content}}</p>
+    <div class="container user-post posted-com box-outline">
+        <div class="row">
+
+            <div class="col-1 text-center counter">
+                <!--post table not updating, fix button-->
+                <!-- <form method="POST" action="/post/{{post.post_id}}/like">
+                    <button type="submit" class="like-btn">
+                        <i class="fa-solid fa-angle-up"></i>
+                    </button>
+                </form> -->
+                <p class="like-counter like-comm">
+                    1
+                </p>
+                <!-- <form method="POST" action="/post/{{post.post_id}}/dislike">
+                    <button type="submit" class="dislike-btn">
+                        <i class="fa-solid fa-angle-down "></i>
+                    </button>
+                </form> -->
+            </div>
+            <div class="col-10">
+                <div class="d-flex">
+                    <div class="p-2 username-com">
+                        <p class="post-by"> Reply from: <span> {{comment.commentor.username}} </span> </p>
+                    </div>
+                    {% if user_id == comment.commentor_id %}
+                    <li class="post-menu dropdown p-2 ms-auto post-toggle">
+                        <a class="post-menu-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis-vertical post-menu-i"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-lg-end box-outline">
+                            <li><a class="dropdown-item dropdown-text post-menu-item" href="/post/{{post.post_id}}/delete/{{comment.comment_id}}">
+                                    Delete</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </div>
+                <p class="comm-content">{{comment.content}}</p>
+            </div>
+        </div>
+        <div class="col-1"></div>
     </div>
     {% endfor %}
-    <form class="create-form" action="/post/{{post.post_id}}/create_comment" method="post">
-        <div class="form-group mb-4">
-            <label class="form-label ct-lab" for="comment_body">Comment</label>
-            <textarea id="comment_body" name="comment_body" class="form-control ct-input form-control-lg" rows="5" col ="30">
-            </textarea>
-        </div>
-        <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit">Submit</button>
-        </div>
-    </form>
-
-    
+</div>
+<div class="col-md-3">
+    <div class="box-outline create-comment user-post container">
+        <form class="create-form" action="/post/{{post.post_id}}/create_comment" method="post">
+            <div class="form-group mb-4">
+                <label class="form-label ct-lab" for="comment_body"> Add Comment: </label>
+                <textarea id="comment_body" name="comment_body" class="form-control ct-input form-control-lg"
+                    rows="3"></textarea>
+            </div>
+            <div class="mx-auto">
+                <button class="btn btn-lg comment-btn text-center" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 

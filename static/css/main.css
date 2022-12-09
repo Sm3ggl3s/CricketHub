@@ -118,7 +118,7 @@ li {
     border: 0;
     outline: none;
     font-size: 16px;
-    color: #ABB5BE;
+    color: #2E2E2E;
 }
 
 .search-bar button i {
@@ -156,6 +156,10 @@ li {
     text-align: center;
     margin: 0px;
     padding: 10px;
+}
+
+.dropdown-user span {
+    color: var(--main-color);
 }
 
 .dropdown-btn {
@@ -298,8 +302,6 @@ li {
 
 /* Index Styling */
 
-    
-
 .livescore-card {
     background: var(--background-highlight);
     margin: 30px 0;
@@ -403,6 +405,21 @@ li {
     font-size: 16px;
 }
 
+.user-post .counter .green{
+    color: var(--green);
+}
+
+.user-post .counter .red {
+    color: var(--main-color);
+}
+
+.user-post .counter .like-btn, 
+.user-post .counter .dislike-btn {
+    background:none;
+    border:none;
+    color: var(--text-title);
+}
+
 .user-post .post-title {
     margin: 15px 0 10px 0;
     font-size: 20px;
@@ -448,6 +465,11 @@ li {
 .user-post .comment {
     font-size: 18px;
 }
+
+.user-post .comment .com-btn {
+    color: var(--text-title);
+    text-decoration: none;
+    }
 
 .fa-comment {
     color: var(--main-color);
@@ -497,6 +519,69 @@ li {
 }
 
 /* END Index Styling */
+
+/* Post Page */
+
+.post-single {
+    margin-top: 96px;
+    margin-bottom: 0;
+}
+
+.posted-com .post-toggle {
+    margin: 0px 10px;
+}
+
+.create-comment {
+    margin: 48px auto;
+    margin-left: 0;
+    max-width: 400px;
+}
+
+.create-form {  
+    margin: 15px 20px;
+}
+
+.create-form .comment-lab {
+    color: var(--text-body);
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+}
+
+.comment-btn {
+    padding: 8px 16px;
+    background: var(--main-color);
+    color: var(--white);
+    font-weight: 600;
+}
+
+.comment-btn:hover {
+    padding: 8px 16px;
+    background: var(--main-color);
+    color: #292929;
+}
+
+.posted-com {
+    max-width: 600px;
+    margin: 5px auto;
+    background: var(--background-highlight);
+}
+
+.posted-com .username-com .post-by {
+    margin-bottom: 0;
+    margin-left: 0;
+    font-size: 12px;
+}
+
+.comm-content {
+    margin: 0 20px;
+}
+
+.like-comm {
+    font-size: 12px;
+}
+
+/* END Post Page Styling*/
 
 /* Rules Page */
 
@@ -672,7 +757,6 @@ li {
 
 .login-form,
 .signin-form,
-.create-form,
 .edit-form {
     margin: 32px 32px;
 }

@@ -1,7 +1,7 @@
 import os
 from flask import abort, redirect, render_template, request, session, Blueprint
 
-from src.models import Post, db, Comment,Post_like, Post_dislike
+from src.models import Post, User, db, Comment,Post_like, Post_dislike
 
 
 
@@ -18,15 +18,16 @@ def calculate_ratio(posts: list[Post]) -> list[list[int, Post]]:
         ratio_post_pair.append([ratio, post])
     return ratio_post_pair
 
-@router.route('/create_post')
-def create_post():
-    return render_template('create_post.html')
-
 @router.route('/post/<post_id>')
 def view_post(post_id):
     post = Post.query.get(post_id)
+
     all_comments = Comment.query.filter_by(post_id=post_id).all()
-    return render_template('post.html', post=post, all_comments=all_comments)
+    return render_template('post.html', post=post, all_comments=all_comments,  user_id=session['user']['user_id'], username=session['user']['username'])
+
+@router.route('/create_post')
+def create_post():
+    return render_template('create_post.html')
 
 @router.post('/createpost')
 def create():
@@ -74,10 +75,29 @@ def create_comment(post_id):
     return redirect(f'/post/{post_id}')
 
 
-@router.post('/deletepost/<int:post_id>')
+@router.post('/<int:post_id>/delete')
 def delete_post(post_id):
     post_to_delete = Post.query.get_or_404(post_id)
-    db.session.delete(post_to_delete)
-    db.session.commit()
+    if 'user' in session:
+        user_id = session['user'].get('user_id')
+        if post_to_delete.user_id == user_id:
+            Post_like.query.filter_by(post_id=post_id).delete()
+            Post_dislike.query.filter_by(post_id=post_id).delete()
 
-    return redirect('/')
+            Comment.query.filter_by(post_id=post_id).delete()
+
+
+            db.session.delete(post_to_delete)
+            db.session.commit()
+    
+    return redirect('/')    
+
+
+@router.post('/post/<int:post_id>/delete/<int:comment_id>')
+def delete_comm(post_id, comment_id):
+    comment_to_delete = Comment.query.get_or_404(comment_id)
+    if comment_to_delete.commentor_id == session['user']['user_id']:
+        db.session.delete(comment_to_delete)
+        db.session.commit()
+        post_id = post_id
+    return redirect('/post/{{post_id}}')
