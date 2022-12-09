@@ -47,7 +47,13 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg-end box-outline">
                         <li><a class="dropdown-item dropdown-text post-menu-item" href="/edit_post/{{post_pair[1].post_id}}"> Edit </a></li>
-                        <li><a class="dropdown-item dropdown-text post-menu-item" href="/{{post_pair[1].post_id}}/delete"> Delete</a></li>
+                        <form method="POST" action="/post/{{post_pair[1].post_id}}/delete">
+                            <button type="submit">
+                                <li> Delete</a></li>
+                            </button>
+                            
+                        </form>
+                        
                     </ul>
                 </li>
                 {% endif %}

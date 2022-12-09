@@ -75,12 +75,12 @@ def create_comment(post_id):
     return redirect(f'/post/{post_id}')
 
 
-@router.post('/<int:post_id>/delete')
+@router.post('/post/<int:post_id>/delete')
 def delete_post(post_id):
     post_to_delete = Post.query.get_or_404(post_id)
     if 'user' in session:
         user_id = session['user'].get('user_id')
-        if post_to_delete.user_id == user_id:
+        if post_to_delete.poster_id == user_id:
             Post_like.query.filter_by(post_id=post_id).delete()
             Post_dislike.query.filter_by(post_id=post_id).delete()
 
