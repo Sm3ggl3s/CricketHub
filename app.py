@@ -66,10 +66,10 @@ def info():
     return render_template('about.html', about_active=True, faq_dictionary = faq_dictionary, username =session['user']['username'])
 
 @app.get('/profile')
-def prof():
-    post_firstname = request.form.get('firstname-dis')
-    post_lastname = request.form.get('lastname-dis')
-    post_email = request.form.get('email')
+def get_profile():
+    # post_firstname = request.form.get('firstname-dis')
+    # post_lastname = request.form.get('lastname-dis')
+    # post_email = request.form.get('email')
 
     return render_template('profile.html', username =session['user']['username'])
 
@@ -118,7 +118,5 @@ def dislike(post_id):
 @app.post('/profile/edit')
 def prof_edit():
 
-
-    
     return redirect('/profile')  
 
