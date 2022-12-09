@@ -21,8 +21,9 @@ def calculate_ratio(posts: list[Post]) -> list[list[int, Post]]:
 @router.route('/post/<post_id>')
 def view_post(post_id):
     post = Post.query.get(post_id)
+
     all_comments = Comment.query.filter_by(post_id=post_id).all()
-    return render_template('post.html', post=post, all_comments=all_comments)
+    return render_template('post.html', post=post, all_comments=all_comments,  user_id=session['user']['user_id'], username=session['user']['username'])
 
 @router.route('/create_post')
 def create_post():
@@ -82,6 +83,7 @@ def delete_post(post_id):
         if post_to_delete.user_id == user_id:
             Post_like.query.filter_by(post_id=post_id).delete()
             Post_dislike.query.filter_by(post_id=post_id).delete()
+
             Comment.query.filter_by(post_id=post_id).delete()
 
 
@@ -89,3 +91,13 @@ def delete_post(post_id):
             db.session.commit()
     
     return redirect('/')    
+
+
+@router.post('/post/<int:post_id>/delete/<int:comment_id>')
+def delete_comm(post_id, comment_id):
+    comment_to_delete = Comment.query.get_or_404(comment_id)
+    if comment_to_delete.commentor_id == session['user']['user_id']:
+        db.session.delete(comment_to_delete)
+        db.session.commit()
+        post_id = post_id
+    return redirect('/post/{{post_id}}')

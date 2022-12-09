@@ -24,22 +24,22 @@
                 <!--post table not updating, fix button-->
                 <form method="POST" action="/post/{{post_pair[1].post_id}}/like" >
                     <button type="submit" class="like-btn">
-                        <i class="fa-solid fa-angle-up fa-xl {% if color == 'green' %} green {% endif %}"></i>
+                        <i class="fa-solid fa-angle-up fa-xl {% if post_pair[0] > 0 %} green {% endif %}"></i>
                     </button>
                 </form>
-                <p class="{{color}} like-counter">
+                <p class="{% if post_pair[0] > 0 %} green {% elif  post_pair[0] < 0 %} red {% else %} nocolor {% endif %} like-counter">
                     {{post_pair[0]}}
                 </p>
                 <form method="POST"action = "/post/{{post_pair[1].post_id}}/dislike" >
                     <button type="submit" class="dislike-btn">
-                        <i class="fa-solid fa-angle-down fa-xl {% if color == 'red' %} red {% endif %}"></i>  
+                        <i class="fa-solid fa-angle-down fa-xl {% if post_pair[0] < 0 %} red {% endif %}"></i>  
                     </button> 
                 </form>
             </div>
             <div class="col-10">
                 <div class="d-flex">
                 <h3 class="post-title p-2"> {{post_pair[1].post_title}} </h3>
-                {% if username == post_pair[1].poster_id %}
+                {% if user_id == post_pair[1].poster_id %}
                 <li class="post-menu dropdown p-2 ms-auto post-toggle">
                     <a class="post-menu-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -59,7 +59,7 @@
                         <p class="post-by"> Posted By: <span> {{post_pair[1].poster.username}} </span> </p>
                     </div>
                     <div class="ms-auto p-2 comment">
-                        <a href="/post/{{post_pair[1].post_id}}" class="comment-btn">
+                        <a href="/post/{{post_pair[1].post_id}}" class="com-btn">
                             <p> Comment <i class="fa-regular fa-comment"></i> </p>
                         </a>
                         

@@ -37,13 +37,7 @@ def index():
     results = all_matches["match_data"][:20]
     #calculate likes dislikes
     post_pairs = calculate_ratio(posts)
-    if post_pairs[0][0] > 0:
-        color = 'green'
-    elif post_pairs[0][0] < 0:
-        color = 'red'
-    else:
-        color = ''
-    return render_template('index.html', home_active=True, loged_in = True, username =session['user']['username'], post_pairs = post_pairs, results = results, color = color)
+    return render_template('index.html', home_active=True, loged_in = True, username =session['user']['username'], user_id=session['user']['user_id'], post_pairs = post_pairs, results = results)
 
 
 @app.route('/signup')
