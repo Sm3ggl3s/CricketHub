@@ -18,7 +18,7 @@
                     </button>
                 </form>
                 <p class="like-counter">
-                    1
+                    {{ratio}}
                 </p>
                 <form method="POST" action="/post/{{post.post_id}}/dislike">
                     <button type="submit" class="dislike-btn">
@@ -63,19 +63,19 @@
 
             <div class="col-1 text-center counter">
                 <!--post table not updating, fix button-->
-                <!-- <form method="POST" action="/post/{{post.post_id}}/like">
+                <form method="POST" action="/post/{{post.post_id}}/{{comment.comment_id}}/like">
                     <button type="submit" class="like-btn">
                         <i class="fa-solid fa-angle-up"></i>
                     </button>
-                </form> -->
+                </form> 
                 <p class="like-counter like-comm">
                     1
                 </p>
-                <!-- <form method="POST" action="/post/{{post.post_id}}/dislike">
+                <form method="POST" action="/post/{{post.post_id}}/{{comment.comment_id}}/dislike">
                     <button type="submit" class="dislike-btn">
                         <i class="fa-solid fa-angle-down "></i>
                     </button>
-                </form> -->
+                </form> 
             </div>
             <div class="col-10">
                 <div class="d-flex">

@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, session, abort
 from security import bcrypt
-from src.models import db,Post, Post_dislike, Post_like
+from src.models import db,Post, Post_dislike, Post_like, Comment, Comment_like, Comment_dislike
 from blueprints.session_blueprint import router as session_router
 from blueprints.posts_blueprint import router as posts_router
 from blueprints.posts_blueprint import calculate_ratio
@@ -129,6 +129,49 @@ def dislike(post_id):
     db.session.commit()
     return redirect('/')
 
+@app.post('/post/<post_id>/<comment_id>/like')
+def like_comment(post_id, comment_id):
+    user = session['user']['user_id']
+
+    comment_like_in_question = Comment_like.query.filter_by(users_liked = user, post_id = post_id, comment_id = comment_id).first()
+    comment_dislike_in_question = Comment_dislike.query.filter_by(users_disliked = user, post_id = post_id, comment_id = comment_id).first()
+
+    if comment_like_in_question and comment_dislike_in_question:
+        Comment_like.query.filter_by(users_liked = user, post_id = post_id, comment_id = comment_id).delete()
+        Comment_dislike.query.filter_by(users_disliked = user, post_id = post_id, comment_id = comment_id).delete()
+        comment_like = Comment_like(post_id = post_id, comment_id= comment_id, user_liked= user)
+        db.session.add(comment_like)
+    elif comment_like_in_question:
+        Comment_like.query.filter_by(users_liked = user, post_id = post_id, comment_id = comment_id).delete()
+    else:
+        if comment_dislike_in_question:
+            Comment_dislike.query.filter_by(users_disliked = user, post_id = post_id, comment_id = comment_id).delete()
+        comment_like = Comment_like(post_id = post_id, comment_id= comment_id, user_liked= user)
+        db.session.add(comment_like)
+    db.session.commit()
+    return redirect(f'/post/{post_id}')
+
+@app.post('/post/<post_id>/<comment_id>/dislike')
+def dislike_comment(post_id, comment_id):
+    user = session['user']['user_id']
+
+    comment_like_in_question = Comment_like.query.filter_by(users_liked = user, post_id = post_id, comment_id = comment_id).first()
+    comment_dislike_in_question = Comment_dislike.query.filter_by(users_disliked = user, post_id = post_id, comment_id = comment_id).first()
+
+    if comment_like_in_question and comment_dislike_in_question:
+        Comment_like.query.filter_by(users_liked = user, post_id = post_id, comment_id = comment_id).delete()
+        Comment_dislike.query.filter_by(users_disliked = user, post_id = post_id, comment_id = comment_id).delete()
+        comment_dislike= Comment_dislike(post_id = post_id, comment_id= comment_id, user_liked= user)
+        db.session.add(comment_dislike)
+    elif comment_dislike_in_question:
+        Comment_dislike.query.filter_by(users_disliked = user, post_id = post_id, comment_id = comment_id).delete()
+    else:
+        if Comment_like.query.filter_by(users_liked = user, post_id = post_id, comment_id = comment_id).delete():
+            Comment_like.query.filter_by(users_liked = user, post_id = post_id, comment_id = comment_id).delete()
+        comment_dislike= Comment_dislike(post_id = post_id, comment_id= comment_id, user_liked= user)
+        db.session.add(comment_dislike)
+    db.session.commit()
+    return redirect(f'/post/{post_id}')
 
 @app.post('/profile/edit')
 def prof_edit():

@@ -18,12 +18,16 @@ def calculate_ratio(posts: list[Post]) -> list[list[int, Post]]:
         ratio_post_pair.append([ratio, post])
     return ratio_post_pair
 
+
 @router.route('/post/<post_id>')
 def view_post(post_id):
     post = Post.query.get(post_id)
+    amt_likes = len(Post_like.query.filter_by(post_id = post.post_id).all())
+    amt_dislikes = len(Post_dislike.query.filter_by(post_id = post.post_id).all())
 
+    ratio=amt_likes-amt_dislikes
     all_comments = Comment.query.filter_by(post_id=post_id).all()
-    return render_template('post.html', post=post, all_comments=all_comments,  user_id=session['user']['user_id'], username=session['user']['username'])
+    return render_template('post.html', post=post, all_comments=all_comments,  user_id=session['user']['user_id'], username=session['user']['username'], ratio=ratio)
 
 @router.route('/create_post')
 def create_post():
@@ -100,4 +104,4 @@ def delete_comm(post_id, comment_id):
         db.session.delete(comment_to_delete)
         db.session.commit()
         post_id = post_id
-    return redirect('/post/{{post_id}}')
+    return redirect('/post/{{post_id}}', )
