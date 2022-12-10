@@ -757,7 +757,8 @@ li {
 
 .login-form,
 .signin-form,
-.edit-form {
+.edit-form,
+.post-edit-form {
     margin: 32px 32px;
 }
 
@@ -932,6 +933,12 @@ li {
     max-width: 600px;
     margin: 30px auto;
 }
+
+.prof-bio,
+.prof-team {
+    margin-bottom: 48px;
+}
+
 .profile-header {
     margin: 30px 40px;
     color: var(--text-title);
@@ -967,10 +974,48 @@ li {
     color: var(--main-color)
 }
 
-.prof-item-title {
-    align-items: center;
+.prof-item-title,
+.prof-item-cont,
+.prof-item-cont-edit {
+    font-size: 20px;
+    padding-bottom: 10px;
 }
 
+.prof-item-cont {
+    color: var(--text-body);
+}
+
+.prof-name, 
+.prof-username, 
+.prof-email,
+.prof-team {
+    margin-left: 20%;
+    color: var(--main-color);
+    font-weight: 600;
+    padding-bottom: 10px;
+}
+
+.prof-name-edit, 
+.prof-username-edit, 
+.prof-email-edit,
+.prof-team-edit {
+    margin-left: 20%;
+    color: var(--main-color);
+    font-weight: 600;
+    padding-bottom: 20px;
+}
+
+.prof-sect-content .form-control {
+    width: 90%;
+}
+
+.lg-input-profile {
+    border: none;
+    box-shadow:
+        0px 2px 2px 0px hsla(0, 0%, 0%, 0.14),
+        0px 3px 1px -2px hsla(0, 0%, 0%, 0.12),
+        0px 1px 5px 0px hsla(0, 0%, 0%, 0.2);
+}
 
 
 /* END Profile Page Styling*/

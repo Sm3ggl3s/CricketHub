@@ -18,11 +18,11 @@
                     Bio
                 </div>
                 <div class="prof-sect-edit-btn col-md-3">
-                    <a href="/profile" class="edit-btn-prof">Edit</a>
+                    <a href="/profile/{{user_id}}/edit" class="edit-btn-prof">Edit</a>
                 </div>
             </div>
             <div class="row prof-sect-content mb-3">
-                <div class="col-md-6 prof-item-title text-center">
+                <div class="col-md-6 prof-item-title">
                     <div class="prof-username">
                         Username:
                     </div>
@@ -35,13 +35,37 @@
                 </div>
                 <div class="col-md-6 prof-item-cont">
                     <div class="prof-item-cont">
-                        superman
+                        {{user_profile.username}}
                     </div>
                     <div class="prof-item-cont">
-                        Clark Kent
+                        {{user_profile.name}}
                     </div>
                     <div class="prof-item-cont">
-                        superman@gmail.com
+                        {{user_profile.email}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="prof-team-container box-outline">
+            <div class="profile-section-title row">
+                <div class="col-md-3"></div>
+                <div class="prof-sect-title col-md-6">
+                    Favorite Team
+                </div>
+                <div class="prof-sect-edit-btn col-md-3">
+                    <a href="/profile/{{user_id}}/edit" class="edit-btn-prof">Edit</a>
+                </div>
+            </div>
+            <div class="row prof-sect-content mb-3">
+                <div class="col-md-6 prof-item-title">
+                    <div class="prof-username">
+                        Name:
+                    </div>
+                </div>
+                <div class="col-md-6 prof-item-cont">
+                    <div class="prof-item-cont">
+                        {{user_profile.pinned_team}}    
                     </div>
                 </div>
             </div>
