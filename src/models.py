@@ -82,16 +82,16 @@ class Comment_like(db.Model):
     comment_id = db.Column(db.Integer, db.ForeignKey('comments.comment_id'), primary_key=True)
     users_liked = db.Column(db.Integer, db.ForeignKey('users.user_id'), primary_key=True)
 
-    def __init__(self, comment_id, user_liked) -> None:
+    def __init__(self, comment_id, users_liked) -> None:
         self.comment_id = comment_id
-        self.users_liked = user_liked
+        self.users_liked = users_liked
 
 class Comment_dislike(db.Model):
     __tablename__ = 'comment_dislikes'
 
     comment_id = db.Column(db.Integer, db.ForeignKey('comments.comment_id'), primary_key=True)
-    users_liked = db.Column(db.Integer, db.ForeignKey('users.user_id'), primary_key=True)
+    users_disliked = db.Column(db.Integer, db.ForeignKey('users.user_id'), primary_key=True)
 
-    def __init__(self, comment_id, user_disliked) -> None:
+    def __init__(self, comment_id, users_disliked) -> None:
         self.comment_id = comment_id
-        self.users_liked = user_disliked
+        self.users_disliked = users_disliked
