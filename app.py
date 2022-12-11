@@ -84,11 +84,18 @@ def edit_profile(user_id):
     user_to_update.username= request.form['username']
     user_to_update.name = request.form['name']
     user_to_update.email = request.form['email']
-    
+
     db.session.commit()
     profile = User.query.get(user_id)
     return render_template('profile.html',user_id = user_id ,username = session['user']['username'], user_profile = profile)
 
+@app.post('/delete_profile/<int:user_id>')
+def delete_profile(user_id):
+    user_to_delete = User.query.get(user_id)
+    db.session.delete(user_to_delete)
+    db.session.commit()
+
+    return redirect('/login')
 
 @app.get('/secret')
 def secret():
