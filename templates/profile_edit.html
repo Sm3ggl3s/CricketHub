@@ -1,0 +1,93 @@
+{% extends '_layout.html' %}
+
+
+{% block title %}CricketHub | Profile{% endblock %}
+
+{% block livescores %}{% endblock %}
+{% block body %}
+</div>
+<div class="col-md-6">
+    <div class="profile">
+        <div class="profile-header">
+            <h1 class="prof-message"> Hello, <span> {{username}} </span></h1>
+        </div>
+        <form class="post-edit-form" action="/update_profile/{{user_id}}" method="post">
+            <div class="prof-bio box-outline">
+                <div class="profile-section-title row">
+                    <div class="col-md-3"></div>
+                    <div class="prof-sect-title col-md-6">
+                        Bio
+                    </div>
+                    <div class="prof-sect-edit-btn col-md-3">
+                    </div>
+                </div>
+                <div class="row prof-sect-content mb-3">
+                    <div class="col-md-6 prof-item-title">
+                        <div class="prof-username-edit">
+                            <label class="form-label lg-lab" for="username">Username:</label>
+                        </div>
+                        <div class="prof-name-edit">
+                            <label class="form-label lg-lab" for="name">Name:</label>
+                        </div>
+                        <div class="prof-email-edit">
+                            <label class="form-label lg-lab" for="email">Email:</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 prof-item-cont">
+                        <div class="prof-item-cont-edit">
+                            <input type="text" id="username" name="username"
+                                class="form-control lg-input-profile form-control-lg" required
+                                value="{{user_profile.username}}" />
+                        </div>
+                        <div class="prof-item-cont-edit">
+                            <input type="text" id="name" name="name" class="form-control lg-input-profile form-control-lg"
+                                required value="{{user_profile.name}}" />
+                        </div>
+                        <div class="prof-item-cont-edit">
+                            <input type="email" id="email" name="email" class="form-control lg-input-profile form-control-lg"
+                                required value="{{user_profile.email}}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="prof-team-container box-outline">
+                <div class="profile-section-title row">
+                    <div class="col-md-3"></div>
+                    <div class="prof-sect-title col-md-6">
+                        Favorite Team
+                    </div>
+                    <div class="prof-sect-edit-btn col-md-3">
+                    </div>
+                </div>
+                <div class="row prof-sect-content mb-3">
+                    <div class="col-md-6 prof-item-title">
+                        <div class="prof-team-edit">
+                            <label class="form-label lg-lab" for="team">Name:</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 prof-item-cont">
+                        <div class="prof-item-cont-edit">
+                            <input type="text" id="team" name="team" class="form-control lg-input-profile form-control-lg"
+                                required value="{{user_profile.pinned_team}}   " />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-lg lg-btn text-center" type="submit">Update Profile</button>
+            </div>
+        </form>
+        <div class="cancel-btn-control text-center mx-auto">
+            <a href="/profile/{{user_id}}"> Cancel </a>
+        </div>
+    </div>
+</div>
+<div class="col-md-3 delete-post-col">
+    <form class="post-edit-form" action="/delete_profile/{{user_id}}" method="post">
+        <button class="btn btn-lg lg-btn text-center" type="submit"> Delete Profile</button>
+    </form> 
+</div>
+
+
+{% endblock %}

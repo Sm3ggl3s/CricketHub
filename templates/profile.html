@@ -6,91 +6,75 @@
 {% block livescores %}{% endblock %}
 {% block body %}
 </div>
-<!--Edit User info Box-->
-<form action="/profile" method="get">
-    <div class="col-5 align-self-center">
-        <h1 class="profTit" style="text-align: center">Hi, User</h1>
-        <div class="card UserInfo">
-            <div class="card-body">
-                <h2 style="text-align:center;">Bio</h2>
-                <div class="form-group mb-2">
-                    <label class="form-label" for="typefirstname">First Name</label>
-                    <input type="username" id="typefirstname" name="firstname-dis" class="form-control form-control-lg"
-                        required placeholder="Bob" autocomplete="off" />
+<div class="col-md-6">
+    <div class="profile">
+        <div class="profile-header">
+            <h1 class="prof-message"> Hello, <span> {{username}} </span></h1>
+        </div>
+        <div class="prof-bio box-outline">
+            <div class="profile-section-title row">
+                <div class="col-md-3"></div>
+                <div class="prof-sect-title col-md-6">
+                    Bio
                 </div>
-                <div class="form-group mb-2">
-                    <label class="form-label" for="typeUsername">Last Name</label>
-                    <input type="username" id="typelastname" name="lastname-dis" class="form-control form-control-lg"
-                        required placeholder="Smith" autocomplete="off" />
+                <div class="prof-sect-edit-btn col-md-3">
+                    <a href="/profile/{{user_id}}/edit" class="edit-btn-prof">Edit</a>
                 </div>
-                <div class="form-group mb-2">
-                    <label class="form-label" for="typeUsername">Email</label>
-                    <input type="email" id="typeemail" name="email" class="form-control form-control-lg" required
-                        placeholder="bob.smith@email.com" autocomplete="off" />
+            </div>
+            <div class="row prof-sect-content mb-3">
+                <div class="col-md-6 prof-item-title">
+                    <div class="prof-username">
+                        Username:
+                    </div>
+                    <div class="prof-name">
+                        Name:
+                    </div>
+                    <div class="prof-email">
+                        Email:
+                    </div>
                 </div>
-                <button type="submit" class="form-control">Edit Info</button>
+                <div class="col-md-6 prof-item-cont">
+                    <div class="prof-item-cont">
+                        {{user_profile.username}}
+                    </div>
+                    <div class="prof-item-cont">
+                        {{user_profile.name}}
+                    </div>
+                    <div class="prof-item-cont">
+                        {{user_profile.email}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="prof-team-container box-outline">
+            <div class="profile-section-title row">
+                <div class="col-md-3"></div>
+                <div class="prof-sect-title col-md-6">
+                    Favorite Team
+                </div>
+                <div class="prof-sect-edit-btn col-md-3">
+                    <a href="/profile/{{user_id}}/edit" class="edit-btn-prof">Edit</a>
+                </div>
+            </div>
+            <div class="row prof-sect-content mb-3">
+                <div class="col-md-6 prof-item-title">
+                    <div class="prof-username">
+                        Name:
+                    </div>
+                </div>
+                <div class="col-md-6 prof-item-cont">
+                    <div class="prof-item-cont">
+                        {{user_profile.pinned_team}}    
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
+<div class="col-md-3">
 
-    <!--Picture Box-->
-    <div class="col align-self-center">
-        <div class="card mb-2 profPic ">
-            <div class="card-body mb-0  ">
-                <figure class="figure">
-                    <img src="static/imgs/Colored-Cricket-Jerseys.png" class="img-fluid rounded"
-                        alt="Image Jersey Placeholder">
-                </figure>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-        </div>
-        <!--Password Box-->
-        <div class="col align-self-start">
-            <div class="card profChangePass">
-                <div class="card-body ">
-                    <h2 style="text-align:center;margin-bottom:20px;">Change Password</h2>
-                    <div class="form-group mb-2">
-                        <label class="form-label" for="typepassword">New Password</label>
-                        <input type="password" id="new-password-1" name="new-password-1"
-                            class="form-control form-control-lg" required placeholder="Enter New Password"
-                            autocomplete="off" />
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="form-label" for="typeconfim">Confirm New Password</label>
-                        <input type="password" id="new-password-2" name="new-password-2"
-                            class="form-control form-control-lg" required placeholder="Re-enter New Password"
-                            autocomplete="off" />
-                    </div>
-                    <button type="submit" class="form-control">Change Password</button>
-                </div>
-            </div>
-        </div>
-        <div class="col align-self-center">
-            <div class="card prefInfo">
-
-                <div class="card-body ">
-                    <h2 style="text-align:center;margin-bottom:20px;">Edit Preferences</h2>
-                    <div class="form-group mb-2">
-                        <label class="form-label" for="typepassword">Favorite Team</label>
-                        <input type="team-name" id="team-name" name="team-name" class="form-control form-control-lg"
-                            required placeholder="Enter Team Name" autocomplete="off" />
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="form-label" for="typeconfim">Favorite Player</label>
-                        <input type="player" id="player" name="player" class="form-control form-control-lg" required
-                            placeholder="Enter Player Name" autocomplete="off" />
-                    </div>
-                    <button type="submit" class="form-control">Change Preferences</button>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-</form>
+</div>
 
 
 {% endblock %}

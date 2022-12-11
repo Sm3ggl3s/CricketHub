@@ -2,6 +2,25 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+class Team(db.Model):
+    __tablename__ = 'team'
+
+    team_id = db.Column(db.Integer, primary_key=True)
+    team_info = db.Column(db.String(255), nullable=False)
+    rank = db.Column(db.Integer, nullable=True)
+
+    def __init__(self, team_info) -> None:
+        self.team_info = team_info
+        
+class favorite_team(db.Model):
+    __tablename__ = 'favorite_team'
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), primary_key=True)
+    team_id= db.Column(db.Integer, db.ForeignKey('team.team_id'), primary_key=True)
+
+    def __init__(self, user_id, team_id) -> None:
+        self.user_id = user_id
+        self.team_id = team_id
 
 class User(db.Model):
     __tablename__ = 'users'

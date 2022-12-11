@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, session, abort
 from security import bcrypt
-from src.models import db,Post, Post_dislike, Post_like, Comment, Comment_like, Comment_dislike
+from src.models import db,Post, Post_dislike, Post_like, Team, User, favorite_team, Comment, Comment_dislike, Comment_like
 from blueprints.session_blueprint import router as session_router
 from blueprints.posts_blueprint import router as posts_router
 from blueprints.posts_blueprint import calculate_ratio
@@ -65,14 +65,37 @@ def info():
         faq_dictionary[faq_listofQuestions[i]] = faq_listofAnswers[i] 
     return render_template('about.html', about_active=True, faq_dictionary = faq_dictionary, username =session['user']['username'])
 
-@app.get('/profile')
-def prof():
-    post_firstname = request.form.get('firstname-dis')
-    post_lastname = request.form.get('lastname-dis')
-    post_email = request.form.get('email')
+@app.get('/profile/<int:user_id>')
+def profile(user_id):
+    profile = User.query.get(user_id)
+    user_id = session['user']['user_id']
+    return render_template('profile.html',user_id = user_id ,username = session['user']['username'], user_profile = profile)
 
-    return render_template('profile.html', username =session['user']['username'])
+@app.get('/profile/<int:user_id>/edit')
+def profile_edit(user_id):
+    profile = User.query.get(user_id)
+    user_id = session['user']['user_id']
+    return render_template('profile_edit.html', user_profile=profile, username = session['user']['username'], user_id= user_id)
 
+@app.post('/update_profile/<int:user_id>')
+def edit_profile(user_id):
+    user_to_update = User.query.get(user_id)
+    user_id = session['user']['user_id']
+    user_to_update.username= request.form['username']
+    user_to_update.name = request.form['name']
+    user_to_update.email = request.form['email']
+
+    db.session.commit()
+    profile = User.query.get(user_id)
+    return render_template('profile.html',user_id = user_id ,username = session['user']['username'], user_profile = profile)
+
+@app.post('/delete_profile/<int:user_id>')
+def delete_profile(user_id):
+    user_to_delete = User.query.get(user_id)
+    db.session.delete(user_to_delete)
+    db.session.commit()
+
+    return redirect('/login')
 
 @app.get('/secret')
 def secret():
