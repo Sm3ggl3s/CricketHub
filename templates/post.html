@@ -38,8 +38,13 @@
                         <ul class="dropdown-menu dropdown-menu-lg-end box-outline">
                             <li><a class="dropdown-item dropdown-text post-menu-item"
                                     href="/edit_post/{{post.post_id}}"> Edit </a></li>
-                            <li><a class="dropdown-item dropdown-text post-menu-item" href="/{{post.post_id}}/delete">
-                                    Delete</a></li>
+                            <form method="POST" action="/post/{{post.post_id}}/delete">
+                                <button type="submit">
+                                    Delete
+                                </button>
+                            </form>
+
+                            
                         </ul>
                     </li>
                     {% endif %}

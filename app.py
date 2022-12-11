@@ -162,14 +162,14 @@ def like_comment(post_id, comment_id):
     if comment_like_in_question and comment_dislike_in_question:
         Comment_like.query.filter_by(users_liked = user, comment_id = comment_id).delete()
         Comment_dislike.query.filter_by(users_disliked = user, comment_id = comment_id).delete()
-        comment_like = Comment_like(comment_id= comment_id, users_liked= user)
+        comment_like = Comment_like(comment_id= comment_id, users_liked= user, post_id = post_id)
         db.session.add(comment_like)
     elif comment_like_in_question:
         Comment_like.query.filter_by(users_liked = user, comment_id = comment_id).delete()
     else:
         if comment_dislike_in_question:
             Comment_dislike.query.filter_by(users_disliked = user, comment_id = comment_id).delete()
-        comment_like = Comment_like(comment_id= comment_id, users_liked= user)
+        comment_like = Comment_like(comment_id= comment_id, users_liked= user, post_id = post_id)
         db.session.add(comment_like)
     db.session.commit()
     return redirect(f'/post/{post_id}')
@@ -184,14 +184,14 @@ def dislike_comment(comment_id, post_id):
     if comment_like_in_question and comment_dislike_in_question:
         Comment_like.query.filter_by(users_liked = user, comment_id = comment_id).delete()
         Comment_dislike.query.filter_by(users_disliked = user, comment_id = comment_id).delete()
-        comment_dislike= Comment_dislike(comment_id= comment_id, users_liked= user)
+        comment_dislike= Comment_dislike(comment_id= comment_id, users_liked= user, post_id = post_id)
         db.session.add(comment_dislike)
     elif comment_dislike_in_question:
         Comment_dislike.query.filter_by(users_disliked = user, comment_id = comment_id).delete()
     else:
         if Comment_like.query.filter_by(users_liked = user, comment_id = comment_id).delete():
             Comment_like.query.filter_by(users_liked = user, comment_id = comment_id).delete()
-        comment_dislike= Comment_dislike(comment_id= comment_id, users_disliked= user)
+        comment_dislike= Comment_dislike(comment_id= comment_id, users_disliked= user, post_id = post_id)
         db.session.add(comment_dislike)
     db.session.commit()
     return redirect(f'/post/{post_id}')

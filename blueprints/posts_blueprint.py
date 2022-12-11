@@ -94,14 +94,18 @@ def create_comment(post_id):
 @router.post('/post/<int:post_id>/delete')
 def delete_post(post_id):
     post_to_delete = Post.query.get_or_404(post_id)
+    #delete_post_method = session.query(Post, Comment, Comment_like, Comment_dislike)
     if 'user' in session:
         user_id = session['user'].get('user_id')
         if post_to_delete.poster_id == user_id:
             Post_like.query.filter_by(post_id=post_id).delete()
             Post_dislike.query.filter_by(post_id=post_id).delete()
 
+            # How to access the dislikes or likes tables foreign keys that are linked to like / dislike
+            #Comment.filter_by(post_id).Comment_like
+            Comment_like.query.filter_by(post_id=post_id).delete()
+            Comment_dislike.query.filter_by(post_id=post_id).delete()
             Comment.query.filter_by(post_id=post_id).delete()
-
 
             db.session.delete(post_to_delete)
             db.session.commit()
