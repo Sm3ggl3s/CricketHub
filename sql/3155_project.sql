@@ -1,6 +1,6 @@
 
 CREATE TABLE IF NOT EXISTS team(
-	team_id int NOT NULL,
+	team_id SERIAL,
 	team_info VARCHAR(255),
 	rank int,
 	PRIMARY KEY(team_id)
@@ -15,6 +15,14 @@ CREATE TABLE IF NOT EXISTS users(
 	password VARCHAR(255),
 	PRIMARY KEY (user_id),
 	FOREIGN KEY (pinned_team) REFERENCES team(team_id)
+);
+
+CREATE TABLE IF NOT EXISTS favorite_team (
+    user_id  INT,
+    team_id   INT,
+    PRIMARY KEY (user_id, team_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (team_id) REFERENCES team(team_id)
 );
 
 CREATE TABLE IF NOT EXISTS posts(

@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, session, abort
 from security import bcrypt
-from src.models import db,Post, Post_dislike, Post_like
+from src.models import Team, User, db,Post, Post_dislike, Post_like, favorite_team
 from blueprints.session_blueprint import router as session_router
 from blueprints.posts_blueprint import router as posts_router
 from blueprints.posts_blueprint import calculate_ratio
@@ -65,72 +65,33 @@ def info():
         faq_dictionary[faq_listofQuestions[i]] = faq_listofAnswers[i] 
     return render_template('about.html', about_active=True, faq_dictionary = faq_dictionary, username =session['user']['username'])
 
-@app.get('/profile')
-def prof():
-    post_firstname = request.form.get('firstname-dis')
-    post_lastname = request.form.get('lastname-dis')
-    post_email = request.form.get('email')
+@app.get('/profile/<int:user_id>')
+def profile(user_id):
+    profile = User.query.get(user_id)
+    user_id = session['user']['user_id']
+    return render_template('profile.html',user_id = user_id ,username = session['user']['username'], user_profile = profile)
 
-    return render_template('profile.html', username =session['user']['username'])
+@app.get('/profile/<int:user_id>/edit')
+def profile_edit(user_id):
+    profile = User.query.get(user_id)
+    user_id = session['user']['user_id']
+    return render_template('profile_edit.html', user_profile=profile, username = session['user']['username'], user_id= user_id)
+
+@app.post('/update_profile/<int:user_id>')
+def edit_profile(user_id):
+    user_to_update = User.query.get(user_id)
+    user_id = session['user']['user_id']
+    user_to_update.username= request.form['username']
+    user_to_update.name = request.form['name']
+    user_to_update.email = request.form['email']
+    
+    db.session.commit()
+    profile = User.query.get(user_id)
+    return render_template('profile.html',user_id = user_id ,username = session['user']['username'], user_profile = profile)
 
 
 @app.get('/secret')
 def secret():
     if 'user' not in session:
         return redirect('/login')
-
-
-#maybe for delete post we can have "on delete cascade or manually delete likes by id in the delete method, query on likes junction table"
-
-#like dislike function
-@app.post('/post/<post_id>/like')
-def like(post_id):
-    
-    user = session['user']['user_id']
-    post_like_in_question = Post_like.query.filter_by(users_liked = user, post_id = post_id).first()
-    post_dislike_in_question = Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).first()
-    if post_like_in_question and post_dislike_in_question:
-        Post_like.query.filter_by(users_liked = user, post_id = post_id).delete()
-        Post_dislike.query.filter_by(users_disliked= user, post_id = post_id).delete()
-        post_like = Post_like(post_id = post_id, users_liked = user)
-        db.session.add(post_like)
-
-    elif post_like_in_question:
-        Post_like.query.filter_by(users_liked = user, post_id = post_id).delete()
-    else:
-        if post_dislike_in_question:
-            Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).delete()
-        post_like = Post_like(post_id = post_id, users_liked = user)
-        db.session.add(post_like)
-    db.session.commit()
-    return redirect('/')
-    
-#
-@app.post('/post/<post_id>/dislike')
-def dislike(post_id):
-    user = session['user']['user_id']
-
-    post_like_in_question = Post_like.query.filter_by(users_liked = user, post_id = post_id).first()
-    post_dislike_in_question = Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).first()
-    #stops after first if since it passes
-    if post_dislike_in_question and post_like_in_question:
-        Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).delete()
-        Post_like.query.filter_by(users_liked = user, post_id = post_id).delete()
-        post_dislike = Post_dislike(post_id = post_id, users_disliked= user)
-        db.session.add(post_dislike)
-    elif post_dislike_in_question:
-        Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).delete()
-    else:
-        if post_like_in_question:
-            Post_like.query.filter_by(users_liked= user, post_id = post_id).delete
-        post_dislike = Post_dislike(post_id = post_id, users_disliked= user)
-        db.session.add(post_dislike)
-
-    db.session.commit()
-    return redirect('/')
-
-
-@app.post('/profile/edit')
-def prof_edit():
-    return redirect('/profile')  
 

@@ -20,8 +20,7 @@ def calculate_ratio(posts: list[Post]) -> list[list[int, Post]]:
 
 @router.route('/post/<post_id>')
 def view_post(post_id):
-    post = Post.query.get(post_id)
-
+    post = Post
     all_comments = Comment.query.filter_by(post_id=post_id).all()
     return render_template('post.html', post=post, all_comments=all_comments,  user_id=session['user']['user_id'], username=session['user']['username'])
 
