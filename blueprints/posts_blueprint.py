@@ -37,8 +37,8 @@ def view_post(post_id):
     ratio=amt_likes-amt_dislikes
     comments = Comment.query.all()
     comment_pairs= calculate_comment_ratio(comments)
-    all_comments = Comment.query.filter_by(post_id=post_id).all()
-    return render_template('post.html', post=post, comments = comments,  user_id=session['user']['user_id'], username=session['user']['username'], ratio=ratio, all_comments=all_comments, 
+
+    return render_template('post.html', post=post,  user_id=session['user']['user_id'], username=session['user']['username'], ratio=ratio,  
     comment_pairs=comment_pairs)
 
 @router.route('/create_post')
