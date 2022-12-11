@@ -1,7 +1,7 @@
 import os
 from flask import abort, redirect, render_template, request, session, Blueprint
 
-from src.models import Post, User, db, Comment,Post_like, Post_dislike
+from src.models import Post, User, db, Comment,Post_like, Post_dislike, Comment_dislike, Comment_like
 
 
 
@@ -21,8 +21,8 @@ def calculate_ratio(posts: list[Post]) -> list[list[int, Post]]:
 def calculate_comment_ratio(comments: list[Comment])-> list[list[int, Comment]]:
     ratio_comment_pair=[]
     for comment in comments:
-        amt_likes = len(Comment.query.filter_by(comment_id = comment.comment_id).all())
-        amt_dislikes = len(Comment.query.filter_by(comment_id = comment.comment_id).all())
+        amt_likes = len(Comment_like.query.filter_by(comment_id = comment.comment_id).all())
+        amt_dislikes = len(Comment_dislike.query.filter_by(comment_id = comment.comment_id).all())
 
         ratio = amt_likes - amt_dislikes
         ratio_comment_pair.append([ratio, comment])
@@ -36,9 +36,10 @@ def view_post(post_id):
 
     ratio=amt_likes-amt_dislikes
     comments = Comment.query.all()
-    ratio_comment_pair= calculate_comment_ratio(comments)
+    comment_pairs= calculate_comment_ratio(comments)
     all_comments = Comment.query.filter_by(post_id=post_id).all()
-    return render_template('post.html', post=post, comments = comments,  user_id=session['user']['user_id'], username=session['user']['username'], ratio=ratio, all_comments=all_comments)
+    return render_template('post.html', post=post, comments = comments,  user_id=session['user']['user_id'], username=session['user']['username'], ratio=ratio, all_comments=all_comments, 
+    comment_pairs=comment_pairs)
 
 @router.route('/create_post')
 def create_post():

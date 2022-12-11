@@ -168,7 +168,7 @@ def dislike_comment(comment_id, post_id):
     else:
         if Comment_like.query.filter_by(users_liked = user, comment_id = comment_id).delete():
             Comment_like.query.filter_by(users_liked = user, comment_id = comment_id).delete()
-        comment_dislike= Comment_dislike(comment_id= comment_id, users_liked= user)
+        comment_dislike= Comment_dislike(comment_id= comment_id, users_disliked= user)
         db.session.add(comment_dislike)
     db.session.commit()
     return redirect(f'/post/{post_id}')

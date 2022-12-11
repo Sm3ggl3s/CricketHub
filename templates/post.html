@@ -18,7 +18,7 @@
                     </button>
                 </form>
                 <p class="like-counter">
-                    1
+                    {{ratio}}
                 </p>
                 <form method="POST" action="/post/{{post.post_id}}/dislike">
                     <button type="submit" class="dislike-btn">
@@ -57,22 +57,22 @@
             </div>
         </div>
     </div>
-    {% for comment in all_comments %}
+    {% for comment_pair in comment_pairs %}
     <div class="container user-post posted-com box-outline">
         <div class="row">
 
             <div class="col-1 text-center counter">
                 <!--post table not updating, fix button reset entire post page, WIP-->
 
-                <form method="POST" action="/post/{{post.post_id}}/like">
+                <form method="POST" action="/post/{{post.post_id}}/{{comment_pair[1].comment_id}}/like">
                     <button type="submit" class="like-btn">
                         <i class="fa-solid fa-angle-up"></i>
                     </button>
                 </form> 
                 <p class="like-counter like-comm">
-                    1
+                    {{comment_pair[0]}}
                 </p>
-                <form method="POST" action="/post/{{post.post_id}}/dislike">
+                <form method="POST" action="/post/{{post.post_id}}/{{comment_pair[1].comment_id}}/dislike">
                     <button type="submit" class="dislike-btn">
                         <i class="fa-solid fa-angle-down "></i>
                     </button>
@@ -81,22 +81,22 @@
             <div class="col-10">
                 <div class="d-flex">
                     <div class="p-2 username-com">
-                        <p class="post-by"> Reply from: <span> {{comment.commentor.username}} </span> </p>
+                        <p class="post-by"> Reply from: <span> {{comment_pair[1].commentor.username}} </span> </p>
                     </div>
-                    {% if user_id == comment.commentor_id %}
+                    {% if user_id == comment_pair[1].commentor_id %}
                     <li class="post-menu dropdown p-2 ms-auto post-toggle">
                         <a class="post-menu-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <i class="fa-solid fa-ellipsis-vertical post-menu-i"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg-end box-outline">
-                            <li><a class="dropdown-item dropdown-text post-menu-item" href="/post/{{post.post_id}}/delete/{{comment.comment_id}}">
+                            <li><a class="dropdown-item dropdown-text post-menu-item" >
                                     Delete</a></li>
                         </ul>
                     </li>
                     {% endif %}
                 </div>
-                <p class="comm-content">{{comment.content}}</p>
+                <p class="comm-content">{{comment_pair[1].content}}</p>
             </div>
         </div>
         <div class="col-1"></div>
