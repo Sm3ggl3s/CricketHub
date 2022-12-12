@@ -14,6 +14,9 @@ def register():
     password = request.form.get('password')
     pinned_team = None
 
+    if username == '' or name == '' or email == '' or password == '':
+        return('/signup')
+
     # Making sure username is unique
     existing_user = User.query.filter_by(username=username).first()
     if existing_user:
@@ -33,6 +36,9 @@ def register():
 def user_login():
     username = request.form.get('username')
     password = request.form.get('password')
+
+    if username == '' or password == '':
+        return('/login')
 
     existing_user = User.query.filter_by(username=username).first()
     if not existing_user:
