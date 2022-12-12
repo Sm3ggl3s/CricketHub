@@ -36,10 +36,10 @@ def user_login():
 
     existing_user = User.query.filter_by(username=username).first()
     if not existing_user:
-        return redirect('/')
+        return redirect('/signup')
 
     if not bcrypt.check_password_hash(existing_user.password, password):
-        return redirect('/')
+        return redirect('/login')
 
     session['user'] = {
         'user_id': existing_user.user_id,
