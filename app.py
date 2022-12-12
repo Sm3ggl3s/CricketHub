@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, session, abort
 from security import bcrypt
-from src.models import Team, User, db,Post, Post_dislike, Post_like, favorite_team
+from src.models import db,Post, Post_dislike, Post_like, Team, User, favorite_team, Comment, Comment_dislike, Comment_like
 from blueprints.session_blueprint import router as session_router
 from blueprints.posts_blueprint import router as posts_router
 from blueprints.posts_blueprint import calculate_ratio
@@ -101,4 +101,102 @@ def delete_profile(user_id):
 def secret():
     if 'user' not in session:
         return redirect('/login')
+
+
+#maybe for delete post we can have "on delete cascade or manually delete likes by id in the delete method, query on likes junction table"
+
+#like dislike function
+@app.post('/post/<post_id>/like')
+def like(post_id):
+    
+    user = session['user']['user_id']
+    post_like_in_question = Post_like.query.filter_by(users_liked = user, post_id = post_id).first()
+    post_dislike_in_question = Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).first()
+    if post_like_in_question and post_dislike_in_question:
+        Post_like.query.filter_by(users_liked = user, post_id = post_id).delete()
+        Post_dislike.query.filter_by(users_disliked= user, post_id = post_id).delete()
+        post_like = Post_like(post_id = post_id, users_liked = user)
+        db.session.add(post_like)
+
+    elif post_like_in_question:
+        Post_like.query.filter_by(users_liked = user, post_id = post_id).delete()
+    else:
+        if post_dislike_in_question:
+            Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).delete()
+        post_like = Post_like(post_id = post_id, users_liked = user)
+        db.session.add(post_like)
+    db.session.commit()
+    return redirect('/')
+    
+#
+@app.post('/post/<post_id>/dislike')
+def dislike(post_id):
+    user = session['user']['user_id']
+
+    post_like_in_question = Post_like.query.filter_by(users_liked = user, post_id = post_id).first()
+    post_dislike_in_question = Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).first()
+    #stops after first if since it passes
+    if post_dislike_in_question and post_like_in_question:
+        Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).delete()
+        Post_like.query.filter_by(users_liked = user, post_id = post_id).delete()
+        post_dislike = Post_dislike(post_id = post_id, users_disliked= user)
+        db.session.add(post_dislike)
+    elif post_dislike_in_question:
+        Post_dislike.query.filter_by(users_disliked = user, post_id = post_id).delete()
+    else:
+        if post_like_in_question:
+            Post_like.query.filter_by(users_liked= user, post_id = post_id).delete
+        post_dislike = Post_dislike(post_id = post_id, users_disliked= user)
+        db.session.add(post_dislike)
+
+    db.session.commit()
+    return redirect('/')
+
+@app.post('/post/<post_id>/<comment_id>/like')
+def like_comment(post_id, comment_id):
+    user = session['user']['user_id']
+
+    comment_like_in_question = Comment_like.query.filter_by(users_liked = user, comment_id = comment_id).first()
+    comment_dislike_in_question = Comment_dislike.query.filter_by(users_disliked = user, comment_id = comment_id).first()
+
+    if comment_like_in_question and comment_dislike_in_question:
+        Comment_like.query.filter_by(users_liked = user, comment_id = comment_id).delete()
+        Comment_dislike.query.filter_by(users_disliked = user, comment_id = comment_id).delete()
+        comment_like = Comment_like(comment_id= comment_id, users_liked= user, post_id = post_id)
+        db.session.add(comment_like)
+    elif comment_like_in_question:
+        Comment_like.query.filter_by(users_liked = user, comment_id = comment_id).delete()
+    else:
+        if comment_dislike_in_question:
+            Comment_dislike.query.filter_by(users_disliked = user, comment_id = comment_id).delete()
+        comment_like = Comment_like(comment_id= comment_id, users_liked= user, post_id = post_id)
+        db.session.add(comment_like)
+    db.session.commit()
+    return redirect(f'/post/{post_id}')
+
+@app.post('/post/<post_id>/<comment_id>/dislike')
+def dislike_comment(comment_id, post_id):
+    user = session['user']['user_id']
+
+    comment_like_in_question = Comment_like.query.filter_by(users_liked = user, comment_id = comment_id).first()
+    comment_dislike_in_question = Comment_dislike.query.filter_by(users_disliked = user, comment_id = comment_id).first()
+    
+    if comment_like_in_question and comment_dislike_in_question:
+        Comment_like.query.filter_by(users_liked = user, comment_id = comment_id).delete()
+        Comment_dislike.query.filter_by(users_disliked = user, comment_id = comment_id).delete()
+        comment_dislike= Comment_dislike(comment_id= comment_id, users_liked= user, post_id = post_id)
+        db.session.add(comment_dislike)
+    elif comment_dislike_in_question:
+        Comment_dislike.query.filter_by(users_disliked = user, comment_id = comment_id).delete()
+    else:
+        if Comment_like.query.filter_by(users_liked = user, comment_id = comment_id).delete():
+            Comment_like.query.filter_by(users_liked = user, comment_id = comment_id).delete()
+        comment_dislike= Comment_dislike(comment_id= comment_id, users_disliked= user, post_id = post_id)
+        db.session.add(comment_dislike)
+    db.session.commit()
+    return redirect(f'/post/{post_id}')
+
+@app.post('/profile/edit')
+def prof_edit():
+    return redirect('/profile')  
 

@@ -59,3 +59,21 @@ CREATE TABLE IF NOT EXISTS post_dislikes(
 	FOREIGN KEY(post_id) REFERENCES posts(post_id),
 	FOREIGN KEY(users_disliked) REFERENCES users(user_id)
 );
+
+CREATE TABLE IF NOT EXISTS comment_likes(
+	comment_id SERIAL,
+	users_liked SERIAL,
+	post_id SERIAL,
+	PRIMARY KEY(comment_id, users_liked),
+	FOREIGN KEY(comment_id) REFERENCES comments(comment_id),
+	FOREIGN KEY(users_liked) REFERENCES users(user_id)
+);
+
+CREATE TABLE IF NOT EXISTS comment_dislikes(
+	comment_id SERIAL,
+	users_disliked SERIAL,
+	post_id SERIAL,
+	PRIMARY KEY(comment_id, users_disliked),
+	FOREIGN KEY(comment_id) REFERENCES comments(comment_id),
+	FOREIGN KEY(users_disliked) REFERENCES users(user_id)
+);
