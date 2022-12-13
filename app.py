@@ -55,11 +55,11 @@ def rules():
 
 @app.route('/about')
 def info():
-    faq_listofQuestions = ["Why cricket in the US?", "Where can I play cricket?", "When is the next Cricket World Cup?", \
-        "Who is the GOAT?","How did this page come into existence?", "I forgot my username and password?"]
-    faq_listofAnswers = ["Cricket is an amazing sport! There is a huge niche of diverse students for example at UNC Charlotte. Everyday more and more are introduced to the game."  \
-        ,"There’s a cricket club at UNC Charlotte.", "October 2023.", "Brian Lara, Sachin Tendulker, or Shane Warne don't @ me." \
-            , "Through the work of college students." , "Check your email on record for original signup information."]  
+    faq_listofQuestions = ["Does CricketHub plan to expand any further? ", "Does my light or dark mode preference work even if I close the browser?", "How do I comment on a post?", \
+        "How strong is CricketHub's security?","Is there a way that I can add a preference for my favorite team?", "Unable to use the search?"]
+    faq_listofAnswers = ["POSSIBLY. 🤔"  \
+        ,"Yes, we store your preference as a cookie.", "Click on the post, and press the red comment button on the top right.", "It's as strong as Facebook selling your data." \
+            , "Not at the moment but our team is working hard to have that feature soon." , "That's because it doesn't work yet."]  
 
     for i in range(6):
         faq_dictionary[faq_listofQuestions[i]] = faq_listofAnswers[i] 
