@@ -57,7 +57,6 @@ def test_register_empty(test_app: FlaskClient):
     # Setup
     refresh_db()
 
-
     # Action
     res = test_app.post('/register', data={}, follow_redirects=True)
     page_data = res.data.decode()
