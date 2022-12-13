@@ -24,6 +24,8 @@ def test_single_posts(test_app: FlaskClient):
     assert res.status_code == 200
     assert '<h3 class="post-title p-2"> Test Post Title </h3>' in page_data
     assert '<p class="post-details">Test Post Body</p>' in page_data
+    assert f'<p class="post-by"> Posted By: <span> {test_user.username} </span> </p>' in page_data
+   
 
 def test_single_post_404(test_app: FlaskClient):
     #setup
@@ -47,7 +49,7 @@ def test_post_create(test_app: FlaskClient):
         }
     poster_id=session['user']['user_id']
     #run action
-    res = test_app.post('/index/create_post', data={
+    res = test_app.post('/createpost', data={
         'post_title': 'Test Post Title',
         'post_body': 'Test Post Body',
         'poster_id': poster_id,
@@ -57,4 +59,5 @@ def test_post_create(test_app: FlaskClient):
     #asserts
     assert res.status_code==200
     assert '<h3 class="post-title p-2"> Test Post Title </h3>' in page_data
-    assert '<p class="post-details">Test Post Body</p>' in page_data
+    assert '<p class="post-details"> Test Post Body</p>' in page_data
+    assert f'<p class="post-by"> Posted By: <span> {test_user.username} </span> </p>' in page_data
