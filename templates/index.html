@@ -5,7 +5,7 @@
 {% block body %}
 </div>
 <div class="col-md-6">
-    
+
     <div class="d-flex mb-3 post-nav box-outline">
         <div class="p-2 new-post">
             <a class="active" href="/"> New </a>
@@ -22,41 +22,41 @@
         <div class="row">
             <div class="col-1 text-center counter">
                 <!--post table not updating, fix button-->
-                <form method="POST" action="/post/{{post_pair[1].post_id}}/like" >
+                <form method="POST" action="/post/{{post_pair[1].post_id}}/like">
                     <button type="submit" class="like-btn">
                         <i class="fa-solid fa-angle-up fa-xl {% if post_pair[0] > 0 %} green {% endif %}"></i>
                     </button>
                 </form>
-                <p class="{% if post_pair[0] > 0 %} green {% elif  post_pair[0] < 0 %} red {% else %} nocolor {% endif %} like-counter">
+                <p
+                    class="{% if post_pair[0] > 0 %} green {% elif  post_pair[0] < 0 %} red {% else %} nocolor {% endif %} like-counter">
                     {{post_pair[0]}}
                 </p>
-                <form method="POST"action = "/post/{{post_pair[1].post_id}}/dislike" >
+                <form method="POST" action="/post/{{post_pair[1].post_id}}/dislike">
                     <button type="submit" class="dislike-btn">
-                        <i class="fa-solid fa-angle-down fa-xl {% if post_pair[0] < 0 %} red {% endif %}"></i>  
-                    </button> 
+                        <i class="fa-solid fa-angle-down fa-xl {% if post_pair[0] < 0 %} red {% endif %}"></i>
+                    </button>
                 </form>
             </div>
             <div class="col-10">
                 <div class="d-flex">
-                <h3 class="post-title p-2"> {{post_pair[1].post_title}} </h3>
-                {% if user_id == post_pair[1].poster_id %}
-                <li class="post-menu dropdown p-2 ms-auto post-toggle">
-                    <a class="post-menu-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="fa-solid fa-ellipsis-vertical fa-xl post-menu-i"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-lg-end box-outline">
-                        <li><a class="dropdown-item dropdown-text post-menu-item" href="/edit_post/{{post_pair[1].post_id}}"> Edit </a></li>
-                        <form method="POST" action="/post/{{post_pair[1].post_id}}/delete">
-                            <button type="submit">
-                                <li> Delete</a></li>
-                            </button>
-                            
-                        </form>
-                        
-                    </ul>
-                </li>
-                {% endif %}
+                    <h3 class="post-title p-2"> {{post_pair[1].post_title}} </h3>
+                    {% if user_id == post_pair[1].poster_id %}
+                    <li class="post-menu dropdown p-2 ms-auto post-toggle">
+                        <a class="post-menu-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis-vertical fa-xl post-menu-i"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-lg-end box-outline">
+                            <li><a class="dropdown-item dropdown-text post-menu-item"
+                                    href="/edit_post/{{post_pair[1].post_id}}"> Edit </a></li>
+                            <li>
+                                <form method="POST" action="/post/{{post_pair[1].post_id}}/delete">
+                                    <button class="dropdown-item dropdown-text post-menu-item" type="submit"> Delete </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endif %}
                 </div>
                 <p class="post-details"> {{post_pair[1].post_body}}</p>
                 <div class="bar"></div>
@@ -68,7 +68,7 @@
                         <a href="/post/{{post_pair[1].post_id}}" class="com-btn">
                             <p> Comment <i class="fa-regular fa-comment"></i> </p>
                         </a>
-                        
+
                     </div>
                 </div>
             </div>
@@ -78,7 +78,8 @@
         </div>
     </div>
     {% endfor %}
-`</div>
+    `
+</div>
 
 
 <div class="col-md-3">

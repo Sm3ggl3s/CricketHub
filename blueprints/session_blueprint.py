@@ -6,6 +6,7 @@ from security import bcrypt
 
 router = Blueprint('session', __name__)
 
+
 @router.post('/register')
 def register():
     username = request.form.get('username')
@@ -51,11 +52,12 @@ def user_login():
         'user_id': existing_user.user_id,
         'username': existing_user.username
     }
+    
 
     return redirect('/')
 
 @router.post('/logout')
 def logout():
-    session.pop('user')
+    session.pop('user', None)
     
     return redirect('/login')
