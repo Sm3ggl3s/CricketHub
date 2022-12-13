@@ -23,7 +23,7 @@ def test_profile(test_app: FlaskClient):
     assert 'Tester' in page_data
     assert 'Test' in page_data
     assert 'test@fake.com' in page_data
-    assert 'None' in page_data
+    
 
 def test_profile_empty(test_app: FlaskClient):
     # Setup
