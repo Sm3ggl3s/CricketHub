@@ -36,7 +36,7 @@ def test_about_rainy_case(test_app: FlaskClient):
     res = test_app.get('/about')
     page_data = res.data.decode()
 
-    assert res.status_code != 500 and res.status_code  != 404
+    assert res.status_code != 500 or res.status_code  != 404
     assert f'<h3 class="post-header"><span class="proj"></span></h3>' not in page_data
     assert f'<p class="post-details"></p>' not in page_data 
     assert f'<h3 class="faq-title"></h3>' not in page_data
