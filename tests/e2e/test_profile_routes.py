@@ -11,7 +11,7 @@ def test_profile(test_app: FlaskClient):
         
         session['user'] = {
             'user_id': test_user.user_id,
-            'username': test_user.username
+            'username': test_user.username  
         }
 
     # Action 
