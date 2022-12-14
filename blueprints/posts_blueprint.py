@@ -80,12 +80,13 @@ def edit_post(post_id):
 def create_comment(post_id):
 
     content = request.form.get('comment_body')
+    commentor_id = session['user']['user_id']
     error_msg =''
     if content is None:
         error_msg = "Comment needs content"
         return abort(403)
     #how to create post id
-    commentor_id = session['user']['user_id']
+    
 
     new_comment = Comment(content=content, post_id=post_id, commentor_id=commentor_id)
 

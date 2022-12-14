@@ -79,7 +79,7 @@ def test_create_post_400(test_app: FlaskClient):
     #asserts
     assert res.status_code == 400
 
-def test_all_comments(test_app: FlaskClient):
+def test_comments(test_app: FlaskClient):
     #setup
     refresh_db()
     with test_app.session_transaction() as session:
@@ -99,4 +99,45 @@ def test_all_comments(test_app: FlaskClient):
     page_data: str = res.data.decode()
 
     #asserts
+    assert res.status_code == 200
     assert '<p class="comm-content">Test Comment Content</p>' in page_data
+    assert f'<p class="post-by"> Reply from: <span> {test_user.username} </span> </p>' in page_data
+
+def test_create_comment(test_app: FlaskClient):
+    #setup
+    refresh_db()
+    with test_app.session_transaction() as session:
+        test_user = create_user()
+
+        session['user'] = {
+            'user_id': test_user.user_id,
+            'username': test_user.username
+        }
+    poster_id=session['user']['user_id']
+    test_post =  create_post(poster_id=session['user']['user_id'])
+    res = test_app.post(f'/post/{test_post.post_id}/create_comment', data={
+        'content': 'Test Comment Content',
+        'post_id': test_post.post_id,
+        'commentor_id': poster_id,
+    }, follow_redirects = True)
+    page_data = res.data.decode()
+
+    assert res.status_code == 200
+    assert '<p class="comm-content">Test Comment Content</p>' in page_data
+    assert f'<p class="post-by"> Reply from: <span> {test_user.username} </span> </p>' in page_data  
+
+def test_create_comment_400(test_app: FlaskClient):
+    #setup
+    refresh_db()
+    with test_app.session_transaction() as session:
+        test_user = create_user()
+
+        session['user'] = {
+            'user_id': test_user.user_id,
+            'username': test_user.username
+        }
+    test_post =  create_post(poster_id=session['user']['user_id'])
+    res = test_app.post(f'/post/{test_post.post_id}/create_comment', data={}, follow_redirects = True)
+    
+
+    assert res.status_code == 400
