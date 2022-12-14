@@ -50,6 +50,10 @@ def create():
     post_title = request.form.get('post_title')
     post_body = request.form.get('post_body')
     poster_id = session['user']['user_id']
+
+    if post_title is None or post_body is None or poster_id =='':
+        abort(400)
+    
     new_post = Post(post_title, post_body, poster_id)
 
     db.session.add(new_post)
@@ -74,16 +78,17 @@ def edit_post(post_id):
 
 @router.post('/post/<post_id>/create_comment')
 def create_comment(post_id):
-
+    post_id = post_id
     content = request.form.get('comment_body')
+    commentor_id = session['user']['user_id']
     error_msg =''
     if content is None:
         error_msg = "Comment needs content"
         return abort(403)
     #how to create post id
-    commentor_id = session['user']['user_id']
+    
 
-    new_comment = Comment(content=content, post_id=post_id, commentor_id=commentor_id)
+    new_comment = Comment(content, post_id, commentor_id)
 
     db.session.add(new_comment)
     db.session.commit()
