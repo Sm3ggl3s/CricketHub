@@ -1,19 +1,17 @@
 import requests
 import json
 
-# url = url 
 
-# headers = {
-# 	"X-RapidAPI-Key": os.getenv("X-RapidAPI-Key")
-# 	"X-RapidAPI-Host": os.getenv("X-RapidAPI-Host")
-# }
+url = url 
 
-# response = requests.request("GET", url, headers=headers)
+headers = {
+	"X-RapidAPI-Key": os.getenv("X-RapidAPI-Key")
+	"X-RapidAPI-Host": os.getenv("X-RapidAPI-Host")
+}
 
-# json_data = json.loads(response.text)
-# Live Scores bugged when deploying
-with open('src/scorescricbuzztest.json') as f:
-    json_data = json.load(f)
+response = requests.request("GET", url, headers=headers)
+
+json_data = json.loads(response.text)
 
 
 match_info = {}
