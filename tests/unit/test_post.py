@@ -115,18 +115,21 @@ def test_create_comment(test_app: FlaskClient):
         }
     poster_id=session['user']['user_id']
     test_post =  create_post(poster_id=session['user']['user_id'])
-    res = test_app.post(f'/post/{test_post.post_id}/create_comment', data={
+    res = test_app.post(f'/create_comment', data={
         'content': 'Test Comment Content',
         'post_id': test_post.post_id,
         'commentor_id': poster_id,
     }, follow_redirects = True)
-    page_data = res.data.decode()
+    test_post =  create_post(poster_id=session['user']['user_id'])
+    test_comment = create_comment(post_id=test_post.post_id, commentor_id = session['user']['user_id'])
+    res = test_app.get(f'/post/{test_post.post_id}')
+    page_data: str = res.data.decode()
 
     assert res.status_code == 200
     assert '<p class="comm-content">Test Comment Content</p>' in page_data
     assert f'<p class="post-by"> Reply from: <span> {test_user.username} </span> </p>' in page_data  
 
-def test_create_comment_400(test_app: FlaskClient):
+def test_create_comment_403(test_app: FlaskClient):
     #setup
     refresh_db()
     with test_app.session_transaction() as session:
@@ -140,4 +143,4 @@ def test_create_comment_400(test_app: FlaskClient):
     res = test_app.post(f'/post/{test_post.post_id}/create_comment', data={}, follow_redirects = True)
     
 
-    assert res.status_code == 400
+    assert res.status_code == 403

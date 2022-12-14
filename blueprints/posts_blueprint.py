@@ -78,7 +78,7 @@ def edit_post(post_id):
 
 @router.post('/post/<post_id>/create_comment')
 def create_comment(post_id):
-
+    post_id = post_id
     content = request.form.get('comment_body')
     commentor_id = session['user']['user_id']
     error_msg =''
@@ -88,7 +88,7 @@ def create_comment(post_id):
     #how to create post id
     
 
-    new_comment = Comment(content=content, post_id=post_id, commentor_id=commentor_id)
+    new_comment = Comment(content, post_id, commentor_id)
 
     db.session.add(new_comment)
     db.session.commit()
