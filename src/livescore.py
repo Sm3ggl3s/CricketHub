@@ -1,11 +1,16 @@
+import os
 import requests
 import json
 
+<<<<<<< HEAD
+url = os.getenv("URL_API_LIVESCORES")
+=======
 
 url = url 
+>>>>>>> 363acaeaa0b03717566a7ab40b3d2be1f0738902
 
 headers = {
-	"X-RapidAPI-Key": os.getenv("X-RapidAPI-Key")
+	"X-RapidAPI-Key": os.getenv("X-RapidAPI-Key"),
 	"X-RapidAPI-Host": os.getenv("X-RapidAPI-Host")
 }
 
