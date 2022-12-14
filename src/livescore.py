@@ -11,7 +11,7 @@ import json
 # response = requests.request("GET", url, headers=headers)
 
 # json_data = json.loads(response.text)
-
+# Live Scores bugged when deploying
 with open('src/scorescricbuzztest.json') as f:
     json_data = json.load(f)
 

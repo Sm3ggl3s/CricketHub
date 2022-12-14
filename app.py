@@ -27,7 +27,7 @@ app.register_blueprint(posts_router)
 
 faq_dictionary = {}
 
-
+#Main Page
 @app.route('/')
 def index():
     if 'user' not in session:
@@ -52,7 +52,7 @@ def login():
 def rules():
     return render_template('rules.html', rules_active=True, username =session['user']['username'])
 
-
+#About Page
 @app.route('/about')
 def info():
     faq_listofQuestions = ["Does CricketHub plan to expand any further? ", "Does my light or dark mode preference work even if I close the browser?", "How do I comment on a post?", \
@@ -64,19 +64,21 @@ def info():
     for i in range(6):
         faq_dictionary[faq_listofQuestions[i]] = faq_listofAnswers[i] 
     return render_template('about.html', about_active=True, faq_dictionary = faq_dictionary, username =session['user']['username'])
-
+#Getting profile data
 @app.get('/profile/<int:user_id>')
 def profile(user_id):
     profile = User.query.get(user_id)
     user_id = session['user']['user_id']
     return render_template('profile.html',user_id = user_id ,username = session['user']['username'], user_profile = profile)
 
+#Getting Profile edit page data
 @app.get('/profile/<int:user_id>/edit')
 def profile_edit(user_id):
     profile = User.query.get(user_id)
     user_id = session['user']['user_id']
     return render_template('profile_edit.html', user_profile=profile, username = session['user']['username'], user_id= user_id)
 
+#Editing a Specific users profile
 @app.post('/update_profile/<int:user_id>')
 def edit_profile(user_id):
     user_to_update = User.query.get(user_id)
@@ -88,7 +90,7 @@ def edit_profile(user_id):
     db.session.commit()
     profile = User.query.get(user_id)
     return render_template('profile.html',user_id = user_id ,username = session['user']['username'], user_profile = profile)
-
+#Deleting a user profile
 @app.post('/delete_profile/<int:user_id>')
 def delete_profile(user_id):
     user_to_delete = User.query.get(user_id)
@@ -128,7 +130,7 @@ def like(post_id):
     db.session.commit()
     return redirect('/')
     
-#
+#Disliking posts
 @app.post('/post/<post_id>/dislike')
 def dislike(post_id):
     user = session['user']['user_id']
@@ -151,7 +153,7 @@ def dislike(post_id):
 
     db.session.commit()
     return redirect('/')
-
+#Liking Comments
 @app.post('/post/<post_id>/<comment_id>/like')
 def like_comment(post_id, comment_id):
     user = session['user']['user_id']
@@ -173,7 +175,7 @@ def like_comment(post_id, comment_id):
         db.session.add(comment_like)
     db.session.commit()
     return redirect(f'/post/{post_id}')
-
+#Disliking comments
 @app.post('/post/<post_id>/<comment_id>/dislike')
 def dislike_comment(comment_id, post_id):
     user = session['user']['user_id']
