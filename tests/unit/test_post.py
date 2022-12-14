@@ -72,7 +72,6 @@ def test_create_post_400(test_app: FlaskClient):
             'user_id': test_user.user_id,
             'username': test_user.username
         }
-    poster_id=session['user']['user_id']
     
     #run action
     res=test_app.post('/createpost', data={}, follow_redirects=True)
@@ -80,3 +79,24 @@ def test_create_post_400(test_app: FlaskClient):
     #asserts
     assert res.status_code == 400
 
+def test_all_comments(test_app: FlaskClient):
+    #setup
+    refresh_db()
+    with test_app.session_transaction() as session:
+        test_user = create_user()
+
+        session['user'] = {
+            'user_id': test_user.user_id,
+            'username': test_user.username
+        }
+    
+
+    #run action
+    test_post =  create_post(poster_id=session['user']['user_id'])
+    test_comment = create_comment(post_id=test_post.post_id, commentor_id = session['user']['user_id'])
+
+    res = test_app.get(f'/post/{test_post.post_id}')
+    page_data: str = res.data.decode()
+
+    #asserts
+    assert '<p class="comm-content">Test Comment Content</p>' in page_data

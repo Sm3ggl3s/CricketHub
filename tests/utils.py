@@ -5,6 +5,9 @@ def refresh_db():
     Team.query.delete()
     Post.query.delete()
     User.query.delete()
+    Comment_dislike.query.delete()
+    Comment_like.query.delete()
+    Comment.query.delete()
     db.session.commit()
 
 
@@ -21,3 +24,8 @@ def create_post(post_title="Test Post Title", post_body="Test Post Body", poster
     db.session.commit()
     return test_post
 
+def create_comment(content = "Test Comment Content", post_id= "Test Comment ID", commentor_id = 1):
+    test_comment = Comment(content = content, post_id = post_id, commentor_id=commentor_id)
+    db.session.add(test_comment)
+    db.session.commit()
+    return test_comment
