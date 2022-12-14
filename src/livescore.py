@@ -2,7 +2,12 @@ import os
 import requests
 import json
 
+<<<<<<< HEAD
 url = os.getenv("URL_API_LIVESCORES")
+=======
+
+url = url 
+>>>>>>> 363acaeaa0b03717566a7ab40b3d2be1f0738902
 
 headers = {
 	"X-RapidAPI-Key": os.getenv("X-RapidAPI-Key"),
@@ -12,9 +17,6 @@ headers = {
 response = requests.request("GET", url, headers=headers)
 
 json_data = json.loads(response.text)
-
-# with open('src/scorescricbuzztest.json') as f:
-#     json_data = json.load(f)
 
 
 match_info = {}
