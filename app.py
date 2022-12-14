@@ -1,6 +1,7 @@
 import os
 
 from dotenv import load_dotenv
+load_dotenv()
 from flask import Flask, redirect, render_template, request, session, abort
 from security import bcrypt
 from src.models import db,Post, Post_dislike, Post_like, Team, User, favorite_team, Comment, Comment_dislike, Comment_like
@@ -9,7 +10,6 @@ from blueprints.posts_blueprint import router as posts_router
 from blueprints.posts_blueprint import calculate_ratio
 from src.livescore import all_matches
 
-load_dotenv()
 
 
 app = Flask(__name__)
