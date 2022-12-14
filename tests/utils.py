@@ -2,12 +2,13 @@ from src.models import *
 
 
 def refresh_db():
-    Team.query.delete()
-    Post.query.delete()
-    User.query.delete()
     Comment_dislike.query.delete()
     Comment_like.query.delete()
     Comment.query.delete()
+    Team.query.delete()
+    Post.query.delete()
+    User.query.delete()
+    
     db.session.commit()
 
 
