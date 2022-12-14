@@ -1,19 +1,19 @@
 import requests
 import json
 
-# url = url 
+url = url 
 
-# headers = {
-# 	"X-RapidAPI-Key": os.getenv("X-RapidAPI-Key")
-# 	"X-RapidAPI-Host": os.getenv("X-RapidAPI-Host")
-# }
+headers = {
+	"X-RapidAPI-Key": os.getenv("X-RapidAPI-Key")
+	"X-RapidAPI-Host": os.getenv("X-RapidAPI-Host")
+}
 
-# response = requests.request("GET", url, headers=headers)
+response = requests.request("GET", url, headers=headers)
 
-# json_data = json.loads(response.text)
+json_data = json.loads(response.text)
 
-with open('src/scorescricbuzztest.json') as f:
-    json_data = json.load(f)
+# with open('src/scorescricbuzztest.json') as f:
+#     json_data = json.load(f)
 
 
 match_info = {}
