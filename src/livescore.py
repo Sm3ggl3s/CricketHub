@@ -1,6 +1,7 @@
 import requests
 import json
 
+
 url = url 
 
 headers = {
@@ -11,9 +12,6 @@ headers = {
 response = requests.request("GET", url, headers=headers)
 
 json_data = json.loads(response.text)
-
-# with open('src/scorescricbuzztest.json') as f:
-#     json_data = json.load(f)
 
 
 match_info = {}

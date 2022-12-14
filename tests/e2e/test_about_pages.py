@@ -2,7 +2,7 @@ from flask.testing import FlaskClient
 from flask import session
 from src.models import User, Post, db
 from tests.utils import create_post, create_user, refresh_db
-
+#
 def test_about_sunny_case(test_app: FlaskClient):
     # Setup
     refresh_db()
