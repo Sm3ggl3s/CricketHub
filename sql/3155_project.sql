@@ -77,3 +77,4 @@ CREATE TABLE IF NOT EXISTS comment_dislikes(
 	FOREIGN KEY(comment_id) REFERENCES comments(comment_id),
 	FOREIGN KEY(users_disliked) REFERENCES users(user_id)
 );
+

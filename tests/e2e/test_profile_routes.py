@@ -24,7 +24,6 @@ def test_profile(test_app: FlaskClient):
     assert 'Test' in page_data
     assert 'test@fake.com' in page_data
 
-
 def test_profile_empty(test_app: FlaskClient):
     # Setup
     refresh_db()
