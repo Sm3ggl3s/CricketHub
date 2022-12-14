@@ -50,6 +50,10 @@ def create():
     post_title = request.form.get('post_title')
     post_body = request.form.get('post_body')
     poster_id = session['user']['user_id']
+
+    if post_title is None or post_body is None or poster_id =='':
+        abort(400)
+    
     new_post = Post(post_title, post_body, poster_id)
 
     db.session.add(new_post)
