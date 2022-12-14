@@ -80,17 +80,3 @@ def test_create_post_400(test_app: FlaskClient):
     #asserts
     assert res.status_code == 400
 
-def test_all_comments(test_app: FlaskClient):
-    #setup
-    refresh_db()
-    with test_app.session_transaction() as session:
-        test_user = create_user()
-
-        session['user'] = {
-            'user_id': test_user.user_id,
-            'username': test_user.username
-        }
-    poster_id=session['user']['user_id']
-
-    #run action
-    test_post =  create_post(poster_id=session['user']['user_id'])
