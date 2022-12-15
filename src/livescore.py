@@ -72,8 +72,8 @@ for match in json_data['typeMatches']:
                 all_matches['match_data'].append(match_info.copy())
 
 
-# for match in all_matches['match_data']:
-#     print(match)
-#     print()
+for match in all_matches['match_data']:
+    print(match)
+    print()
 
 
