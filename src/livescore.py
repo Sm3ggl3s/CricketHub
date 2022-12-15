@@ -73,7 +73,7 @@ for match in json_data['typeMatches']:
 
 
 # for match in all_matches['match_data']:
-#     print(match)
-#     print()
+#     # print(match)
+#     # print()
 
 
